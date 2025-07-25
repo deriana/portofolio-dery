@@ -26,7 +26,7 @@ export function Header() {
         <ModeToggle />
       </div>
 
-      <div className="relative w-full mb-20 h-40 md:h-56 lg:h-64 flex justify-center">
+      <div className="relative w-full mb-20 h-40 md:h-56 lg:h-80 flex justify-center">
         <Banner path="banner.png" />
 
         <div className="absolute left-1/2 -bottom-16 transform -translate-x-1/2">
@@ -69,7 +69,7 @@ export function Header() {
 
       <Navigation items={navItems} />
 
-      <hr className="w-full border-t border-gray-300 my-4" />
+      <hr className="w-full border-t bg-primary my-4" />
     </>
   );
 }
