@@ -29,7 +29,7 @@ const SOCIALS = [
   },
 ];
 
-const ICON_CLASS = "w-7 h-7";
+const ICON_CLASS = "w-7 h-7 hover-target";
 const TOOLTIP_CLASS =
   "absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-black rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap";
 
@@ -49,11 +49,12 @@ function SocialLink({
       rel="noopener noreferrer"
       className="relative group"
     >
-      {icon}
+      <span className="hover-target inline-block">{icon}</span>
       <span className={TOOLTIP_CLASS}>{label}</span>
     </a>
   );
 }
+
 
 export function SocialLinks() {
   return (

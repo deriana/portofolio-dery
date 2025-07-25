@@ -14,6 +14,7 @@ import LoadingIndicator from "@/components/ui/loader";
 import { useNavigation } from "react-router";
 import { useEffect, useState } from "react";
 import { ThemeProvider } from "./components/theme-provider";
+import { CustomCursor } from "./components/custom-cursor";
 
 export function usePageLoading(delay = 200) {
   const navigation = useNavigation();
@@ -81,6 +82,7 @@ export default function App() {
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      <CustomCursor />
       {initialLoading ? <LoadingIndicator /> : <Outlet />}
     </ThemeProvider>
   );

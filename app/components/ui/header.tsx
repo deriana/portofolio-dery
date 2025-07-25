@@ -43,7 +43,7 @@ export function Header() {
         </h2>
         <TextLink
           to="mailto:deryana.maruf@gmail.com"
-          className="text-sm mb-4 break-all hover:underline"
+          className="text-sm mb-4 break-all hover:underline hover-target"
         >
           deryana.maruf@gmail.com
         </TextLink>
@@ -55,7 +55,7 @@ export function Header() {
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button className="rounded-2xl shadow bg-gray-600 mb-4 px-4 py-2 text-sm">
+            <Button className="rounded-2xl shadow bg-gray-600 mb-4 px-4 py-2 text-sm hover-target">
               Resume Cv
             </Button>
           </TooltipTrigger>
