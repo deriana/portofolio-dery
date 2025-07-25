@@ -13,6 +13,7 @@ import "@/app.css";
 import LoadingIndicator from "@/components/ui/loader";
 import { useNavigation } from "react-router";
 import { useEffect, useState } from "react";
+import { ThemeProvider } from "./components/theme-provider";
 
 export function usePageLoading(delay = 200) {
   const navigation = useNavigation();
@@ -35,7 +36,6 @@ export function usePageLoading(delay = 200) {
 
   return show;
 }
-
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -68,19 +68,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-
 export default function App() {
-  const isLoading = usePageLoading(200);
+  const [initialLoading, setInitialLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setInitialLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
-    <>
-      {isLoading && <LoadingIndicator />}
-      <Outlet />
-    </>
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      {initialLoading ? <LoadingIndicator /> : <Outlet />}
+    </ThemeProvider>
   );
 }
-
-
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
