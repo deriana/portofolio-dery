@@ -87,7 +87,7 @@ export function CustomCursor() {
       style={{
         width: size.width,
         height: size.height,
-        borderRadius: "9999px",
+        borderRadius: "16px",
         backgroundColor: "rgba(156, 163, 175, 0.15)",
         position: "fixed",
         top: 0,
