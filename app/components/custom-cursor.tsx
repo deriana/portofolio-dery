@@ -5,18 +5,34 @@ export function CustomCursor() {
   const [size, setSize] = useState({ width: 32, height: 32 });
   const [isHovering, setIsHovering] = useState(false);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
+  const [isDesktop, setIsDesktop] = useState(true); // default true biar nggak flicker
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setIsDesktop(e.matches);
+    };
+
+    setIsDesktop(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleMediaChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) return;
+
     const cursor = cursorRef.current;
 
     const move = (e: MouseEvent) => {
       if (!cursor) return;
 
       if (isHovering && targetRect) {
-        // Tambahkan efek "sticky"
         const centerX = targetRect.left + targetRect.width / 2;
         const centerY = targetRect.top + targetRect.height / 2;
-        // Gerakan sedikit mengikut mouse
         const offsetX = (e.clientX - centerX) * 0.1;
         const offsetY = (e.clientY - centerY) * 0.1;
 
@@ -24,7 +40,6 @@ export function CustomCursor() {
           centerX - size.width / 2 + offsetX
         }px, ${centerY - size.height / 2 + offsetY}px)`;
       } else {
-        // Normal follow cursor
         cursor.style.transform = `translate(${e.clientX - size.width / 2}px, ${
           e.clientY - size.height / 2
         }px)`;
@@ -38,7 +53,7 @@ export function CustomCursor() {
         setIsHovering(true);
         setTargetRect(rect);
         setSize({
-          width: rect.width + 20, // tambahkan padding
+          width: rect.width + 20,
           height: rect.height + 20,
         });
       }
@@ -62,7 +77,9 @@ export function CustomCursor() {
       document.removeEventListener("mouseover", handleMouseEnter);
       document.removeEventListener("mouseout", handleMouseLeave);
     };
-  }, [isHovering, size, targetRect]);
+  }, [isHovering, size, targetRect, isDesktop]);
+
+  if (!isDesktop) return null;
 
   return (
     <div
@@ -71,7 +88,7 @@ export function CustomCursor() {
         width: size.width,
         height: size.height,
         borderRadius: "9999px",
-        backgroundColor: "rgba(156, 163, 175, 0.15)", // lebih transparan
+        backgroundColor: "rgba(156, 163, 175, 0.15)",
         position: "fixed",
         top: 0,
         left: 0,

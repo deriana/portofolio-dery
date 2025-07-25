@@ -69,7 +69,7 @@ export function Header() {
 
       <Navigation items={navItems} />
 
-      <hr className="w-full border-t bg-primary my-4" />
+      <hr className="w-full border-t-2 border-primary my-4" />
     </>
   );
 }
