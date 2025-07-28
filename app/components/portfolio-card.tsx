@@ -18,7 +18,7 @@ interface PortfolioCardProps {
 
 export const PortfolioCard = ({ item }: PortfolioCardProps) => {
   return (
-    <Card className="backdrop-blur-md border-none shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl hover:-translate-y-1 hover:scale-[1.01] transform">
+    <Card className="backdrop-blur-md border-none shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl hover:-translate-y-1 hover:scale-[1.01] transform hover-target">
       <CardHeader className="p-0">
         <div className="rounded-t-xl overflow-hidden px-4 pt-4">
           <img
@@ -30,12 +30,11 @@ export const PortfolioCard = ({ item }: PortfolioCardProps) => {
       </CardHeader>
 
       <CardContent className="px-4 space-y-1">
-        <a
-          href="#"
-          className="text-lg font-semibold text-white hover:underline"
+        <p
+          className="text-lg font-semibold text-white"
         >
           {item.title}
-        </a>
+        </p>
         <p className="text-gray-400 text-sm">
           {item.description.length > 50
             ? item.description.slice(0, 50) + "..."

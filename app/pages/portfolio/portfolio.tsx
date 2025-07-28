@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from "@/data/portofolio.json";
 import { WebLayout } from "@/components/layouts/web-layout";
 import { LoadMoreButton } from "@/components/load-more";
@@ -6,6 +6,7 @@ import { PortfolioList } from "@/components/portfolio-list";
 import { PageTitle } from "@/components/page-title";
 import { PortfolioModal } from "@/components/portfolio-modal";
 import { PageLayout } from "@/components/page-layout";
+import { DecryptedText } from "@/components/ui/decrypted-text";
 
 export interface PortfolioItem {
   id: number;
@@ -13,12 +14,21 @@ export interface PortfolioItem {
   description: string;
   image: string;
   author: string;
+  url: string;
 }
 
 export function Portofolio() {
   const [visibleCount, setVisibleCount] = useState(8);
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 4);

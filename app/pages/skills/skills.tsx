@@ -4,6 +4,7 @@ import { PageTitle } from "@/components/page-title";
 import { SkillGrid } from "@/components/skill-grid";
 import { SkillMeta } from "@/components/skill-meta";
 import data from "@/data/skills.json";
+import { useEffect, useState } from "react";
 
 interface Skill {
   icon: string;
@@ -18,6 +19,15 @@ interface SkillsJson {
 }
 
 export function Skills() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1200);
+    return () => clearTimeout(timer);
+  });
+
   const skillsData = data as SkillsJson;
 
   return (
