@@ -17,6 +17,7 @@
         "framer-motion": "^12.23.9",
         "isbot": "^5.1.27",
         "lucide-react": "^0.525.0",
+        "motion": "^12.23.9",
         "ogl": "^1.0.11",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
@@ -558,6 +559,8 @@
     "mkdirp": ["mkdirp@3.0.1", "", { "bin": { "mkdirp": "dist/cjs/src/bin.js" } }, "sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg=="],
 
     "morgan": ["morgan@1.10.1", "", { "dependencies": { "basic-auth": "~2.0.1", "debug": "2.6.9", "depd": "~2.0.0", "on-finished": "~2.3.0", "on-headers": "~1.1.0" } }, "sha512-223dMRJtI/l25dJKWpgij2cMtywuG/WiUKXdvwfbhGKBhy1puASqXwFzmWZ7+K73vUPoR7SS2Qz2cI/g9MKw0A=="],
+
+    "motion": ["motion@12.23.9", "", { "dependencies": { "framer-motion": "^12.23.9", "tslib": "^2.4.0" }, "peerDependencies": { "@emotion/is-prop-valid": "*", "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0" }, "optionalPeers": ["@emotion/is-prop-valid", "react", "react-dom"] }, "sha512-5PDgsbNtZ4cpfew3STYL0p06rIiy8vOveQuQBXUAa2+m1WMzjf65DXYn6eo88dM2s+XLxAQq3ZiOjcnKMACEtQ=="],
 
     "motion-dom": ["motion-dom@12.23.9", "", { "dependencies": { "motion-utils": "^12.23.6" } }, "sha512-6Sv++iWS8XMFCgU1qwKj9l4xuC47Hp4+2jvPfyTXkqDg2tTzSgX6nWKD4kNFXk0k7llO59LZTPuJigza4A2K1A=="],
 

@@ -7,10 +7,10 @@ export function About() {
   return (
     <WebLayout>
       <PageLayout>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-12 items-center">
-            <AboutImage path="about-image.jpg" />
-            <AboutDesc
-              text="   I'm a passionate web developer who started my journey in high
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-12 items-center justify-center">
+          <AboutImage path="sui-4.gif" />
+          <AboutDesc
+            text="   I'm a passionate web developer who started my journey in high
               school. I love building web apps that solve real-world problems
               and are easy to use. My focus is on Laravel, React, and modern
               JavaScript frameworks. Lorem, ipsum dolor sit amet consectetur
@@ -21,8 +21,8 @@ export function About() {
               adipisci illo odit voluptatum officiis dolore odio ducimus
               mollitia dolorum ex assumenda repudiandae, eum sequi. Aperiam,
               cupiditate. Molestias?"
-            />
-          </div>
+          />
+        </div>
       </PageLayout>
     </WebLayout>
   );

@@ -12,8 +12,8 @@ export function Header() {
   return (
     <>
       <Profile
-        pathBanner="banner.jpg"
-        pathIcon="profile.jpg"
+        pathBanner="banner.png"
+        pathIcon="sui.gif"
         name="Deryana Maruf"
         email="deryana.maruf@gmail.com"
         bio="Backend Developer & Tech Enthusiast. I love Laravel, React, and building clean, efficient systems to solve real-world problems."

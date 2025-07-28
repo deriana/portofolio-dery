@@ -118,3 +118,6 @@ export interface SkillMetaProps {
   label: string;
   items: string[];
 }
+export interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  placeholderClassName?: string;
+}
