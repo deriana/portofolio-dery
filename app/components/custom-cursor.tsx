@@ -23,7 +23,14 @@ export function CustomCursor() {
     setIsHovering(false);
     setTargetRect(null);
     setSize({ width: 32, height: 32 });
-    
+
+    const cursor = cursorRef.current;
+    if (cursor) {
+      const centerX = window.innerWidth / 2 - 16;
+      const centerY = window.innerHeight / 2 - 16;
+      cursor.style.transform = `translate(${centerX}px, ${centerY}px)`;
+    }
+
     return () => {
       mediaQuery.removeEventListener("change", handleMediaChange);
     };

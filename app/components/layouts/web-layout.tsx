@@ -1,3 +1,4 @@
+import { CustomCursor } from "../custom-cursor";
 import { ScrollToTop } from "../scroll-top";
 import { Header } from "../ui/header";
 

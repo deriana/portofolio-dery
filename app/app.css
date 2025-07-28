@@ -15,8 +15,6 @@ body {
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
-
-  cursor: none !important;
 }
 
 @theme inline {
