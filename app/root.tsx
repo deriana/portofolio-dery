@@ -39,6 +39,7 @@ export function usePageLoading(delay = 200) {
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  { rel: "icon", type: "image/png", href:"icon.jpeg"},
   {
     rel: "preconnect",
     href: "https://fonts.gstatic.com",
