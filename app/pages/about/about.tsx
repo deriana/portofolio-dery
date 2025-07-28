@@ -1,10 +1,11 @@
 import { WebLayout } from "@/components/layouts/web-layout";
+import { PageLayout } from "@/components/page-layout";
 import { SocialLinks } from "@/components/ui/social-icon";
 
 export function About() {
   return (
     <WebLayout>
-      <div className="container mx-auto px-4 py-12">
+      <PageLayout>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-12 items-center">
           {/* Gambar */}
           <div className="flex justify-center">
@@ -36,7 +37,7 @@ export function About() {
             </div>
           </div>
         </div>
-      </div>
+      </PageLayout>
     </WebLayout>
   );
 }

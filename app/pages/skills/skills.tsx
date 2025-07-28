@@ -1,4 +1,5 @@
 import { WebLayout } from "@/components/layouts/web-layout";
+import { PageLayout } from "@/components/page-layout";
 import { PageTitle } from "@/components/page-title";
 import { SkillGrid } from "@/components/skill-grid";
 import { SkillMeta } from "@/components/skill-meta";
@@ -21,9 +22,8 @@ export function Skills() {
 
   return (
     <WebLayout>
-      <div className="container mx-auto px-4 py-12 space-y-16">
+      <PageLayout title="Technical Skills">
         <section>
-          <PageTitle title="Technical Skills" />
           <SkillGrid skills={skillsData.technical} />
         </section>
 
@@ -32,7 +32,7 @@ export function Skills() {
           <SkillMeta label="Interested in" items={skillsData.interests} />
           <SkillMeta label="Soft Skills" items={skillsData.softSkills} />
         </section>
-      </div>
+      </PageLayout>
     </WebLayout>
   );
 }

@@ -22,9 +22,9 @@ const navItems = [
 export function Header() {
   return (
     <>
-      {/* <div className="fixed top-4 right-4 z-50">
+      <div className="fixed top-4 right-4 z-50">
         <ModeToggle />
-      </div> */}
+      </div>
 
       <div className="relative w-full mb-20 h-40 md:h-56 lg:h-80 flex justify-center">
         <Banner path="banner.png" />

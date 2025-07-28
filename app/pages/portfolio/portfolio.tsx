@@ -5,6 +5,7 @@ import { LoadMoreButton } from "@/components/load-more";
 import { PortfolioList } from "@/components/portfolio-list";
 import { PageTitle } from "@/components/page-title";
 import { PortfolioModal } from "@/components/portfolio-modal";
+import { PageLayout } from "@/components/page-layout";
 
 export interface PortfolioItem {
   id: number;
@@ -35,9 +36,8 @@ export function Portofolio() {
 
   return (
     <WebLayout>
-      <div className="container mx-auto px-4 py-12 space-y-8">
+      <PageLayout title="Portfolio">
         <section>
-          <PageTitle title="Portofolio" />
           <PortfolioList
             data={data.slice(0, visibleCount)}
             onCardClick={handleCardClick}
@@ -52,7 +52,7 @@ export function Portofolio() {
           onClose={handleCloseModal}
           item={selectedItem}
         />
-      </div>
+      </PageLayout>
     </WebLayout>
   );
 }

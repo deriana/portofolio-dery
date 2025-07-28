@@ -8,6 +8,6 @@ export function meta({}: Route.MetaArgs) {
     ]
 }
 
-export default function Home() {
+export default function Portfolio() {
     return <Portofolio />
 }

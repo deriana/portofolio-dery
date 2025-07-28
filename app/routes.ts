@@ -4,5 +4,5 @@ import {mainRoutes} from "./routes/main";
 
 export default [
   ...mainRoutes,
-  ...authRoutes,
+  // ...authRoutes,
 ] satisfies RouteConfig;
