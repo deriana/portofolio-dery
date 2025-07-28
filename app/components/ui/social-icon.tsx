@@ -1,6 +1,6 @@
 import { Facebook, Github, Instagram, Linkedin, Twitter } from "lucide-react";
-import React from "react";
-import { cn } from "@/lib/utils"; // path ke fungsi cn kamu
+import { cn } from "@/lib/utils"; 
+import type { SocialLinkProps, SocialLinksProps } from "@/types/props";
 
 const SOCIALS = [
   {
@@ -33,12 +33,7 @@ const SOCIALS = [
 const TOOLTIP_CLASS =
   "absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-black rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap";
 
-type SocialLinkProps = {
-  icon: React.ElementType;
-  label: string;
-  url: string;
-  size?: number;
-};
+
 
 function SocialLink({
   icon: Icon,
@@ -59,11 +54,6 @@ function SocialLink({
   );
 }
 
-type SocialLinksProps = {
-  direction?: "row" | "col";
-  iconSize?: number;
-  className?: string;
-};
 
 export function SocialLinks({
   direction = "row",

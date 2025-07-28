@@ -1,10 +1,5 @@
+import type { Skill } from "@/types/props";
 import { SkillCard } from "./skill-card";
-
-interface Skill {
-  icon: string;
-  label: string;
-  desc: string;
-}
 
 export function SkillGrid({ skills }: { skills: Skill[] }) {
   return (

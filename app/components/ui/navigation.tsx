@@ -1,14 +1,6 @@
 import { useLocation } from "react-router";
 import { TextLink } from "./text-link";
-
-type NavItem = {
-  label: string;
-  path: string;
-};
-
-type NavigationProps = {
-  items: NavItem[];
-};
+import type { NavigationProps } from "@/types/props";
 
 export function Navigation({ items }: NavigationProps) {
   const location = useLocation();

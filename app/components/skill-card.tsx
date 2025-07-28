@@ -1,11 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { SkillIcon } from "./skill-icon";
-
-interface SkillCardProps {
-  icon: string;
-  label: string;
-  desc: string;
-}
+import type { SkillCardProps } from "@/types/props";
 
 export function SkillCard({ icon, label, desc }: SkillCardProps) {
   return (

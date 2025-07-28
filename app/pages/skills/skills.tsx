@@ -4,19 +4,8 @@ import { PageTitle } from "@/components/page-title";
 import { SkillGrid } from "@/components/skill-grid";
 import { SkillMeta } from "@/components/skill-meta";
 import data from "@/data/skills.json";
+import type { SkillsJson } from "@/types/props";
 import { useEffect, useState } from "react";
-
-interface Skill {
-  icon: string;
-  label: string;
-  desc: string;
-}
-
-interface SkillsJson {
-  technical: Skill[];
-  interests: string[];
-  softSkills: string[];
-}
 
 export function Skills() {
   const [isLoading, setIsLoading] = useState(true);

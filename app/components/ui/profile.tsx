@@ -1,7 +1,6 @@
 import { ProfileImage } from "./profile-image";
 import { ProfileDetail } from "./profile-detail";
-import type { ProfileImageProps } from "./profile-image";
-import type { ProfileDetailProps } from "./profile-detail";
+import type { ProfileDetailProps, ProfileImageProps } from "@/types/props";
 
 type ProfileProps = ProfileImageProps & ProfileDetailProps;
 

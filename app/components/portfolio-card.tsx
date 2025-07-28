@@ -4,17 +4,8 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import type { PortfolioCardProps } from "@/types/props";
 import { Github } from "lucide-react";
-
-interface PortfolioCardProps {
-  item: {
-    id: number | string;
-    title: string;
-    description: string;
-    image: string;
-    author: string;
-  };
-}
 
 export const PortfolioCard = ({ item }: PortfolioCardProps) => {
   return (

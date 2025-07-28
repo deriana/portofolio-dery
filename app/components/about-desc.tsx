@@ -1,8 +1,5 @@
 import { SocialLinks } from "./ui/social-icon";
-
-interface AboutDescProps {
-  text: string;
-}
+import type { AboutDescProps } from "@/types/props";
 
 export function AboutDesc({ text }: AboutDescProps) {
   return (

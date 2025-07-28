@@ -6,15 +6,9 @@ import {
   DialogDescription,
   DialogClose,
 } from "@/components/ui/dialog";
-import type { PortfolioItem } from "@/pages/portfolio/portfolio";
 import { Github } from "lucide-react";
 import { TextLink } from "./ui/text-link";
-
-interface PortfolioModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  item: PortfolioItem | null;
-}
+import type { PortfolioModalProps } from "@/types/props";
 
 export function PortfolioModal({ isOpen, onClose, item }: PortfolioModalProps) {
   if (!item) return null;

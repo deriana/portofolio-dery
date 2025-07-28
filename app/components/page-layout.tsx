@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { PageTitle } from "./page-title";
 import { DecryptedText } from "./ui/decrypted-text";
+import type { PageLayoutProps } from "@/types/props";
 
-interface PageLayout {
-  children: React.ReactNode;
-  title?: string;
-}
 
-export function PageLayout({ children, title }: PageLayout) {
+export function PageLayout({ children, title }: PageLayoutProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

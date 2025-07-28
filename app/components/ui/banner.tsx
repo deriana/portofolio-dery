@@ -1,6 +1,4 @@
-interface BannerProps {
-  path: string;
-}
+import type { BannerProps } from "@/types/props";
 
 export function Banner({ path }: BannerProps) {
   return (

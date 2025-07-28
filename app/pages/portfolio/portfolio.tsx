@@ -7,15 +7,8 @@ import { PageTitle } from "@/components/page-title";
 import { PortfolioModal } from "@/components/portfolio-modal";
 import { PageLayout } from "@/components/page-layout";
 import { DecryptedText } from "@/components/ui/decrypted-text";
+import type { PortfolioItem } from "@/types/props";
 
-export interface PortfolioItem {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  author: string;
-  url: string;
-}
 
 export function Portofolio() {
   const [visibleCount, setVisibleCount] = useState(8);

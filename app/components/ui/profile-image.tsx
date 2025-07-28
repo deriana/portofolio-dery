@@ -1,10 +1,6 @@
+import type { ProfileImageProps } from "@/types/props";
 import { Banner } from "./banner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-export interface ProfileImageProps {
-  pathBanner: string;
-  pathIcon: string;
-}
 
 export function ProfileImage({ pathBanner, pathIcon }: ProfileImageProps) {
   return (

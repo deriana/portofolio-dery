@@ -1,6 +1,4 @@
-interface AboutImageProps {
-  path: string;
-}
+import type { AboutImageProps } from "@/types/props";
 
 export function AboutImage({ path }: AboutImageProps) {
   return (

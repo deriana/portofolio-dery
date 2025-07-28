@@ -1,3 +1,4 @@
+import type { ProfileDetailProps } from "@/types/props";
 import { Button } from "./button";
 import { DecryptedText } from "./decrypted-text";
 import { SocialLinks } from "./social-icon";
@@ -7,12 +8,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-
-export interface ProfileDetailProps {
-  name: string;
-  email: string;
-  bio: string;
-}
 
 export function ProfileDetail({ name, email, bio }: ProfileDetailProps) {
   return (

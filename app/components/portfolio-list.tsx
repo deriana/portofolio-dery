@@ -1,10 +1,6 @@
-import type { PortfolioItem } from "@/pages/portfolio/portfolio";
+import type { PortfolioListProps } from "@/types/props";
 import { PortfolioCard } from "./portfolio-card";
 
-interface PortfolioListProps {
-  data: PortfolioItem[];
-  onCardClick: (item: PortfolioItem) => void;
-}
 
 export function PortfolioList({ data, onCardClick }: PortfolioListProps) {
   return (
