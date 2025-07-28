@@ -30,10 +30,17 @@ export const PortfolioCard = ({ item }: PortfolioCardProps) => {
       </CardHeader>
 
       <CardContent className="px-4 space-y-1">
-        <a href="#" className="text-lg font-semibold text-white hover:underline">
+        <a
+          href="#"
+          className="text-lg font-semibold text-white hover:underline"
+        >
           {item.title}
         </a>
-        <p className="text-gray-400 text-sm">{item.description}</p>
+        <p className="text-gray-400 text-sm">
+          {item.description.length > 50
+            ? item.description.slice(0, 50) + "..."
+            : item.description}
+        </p>
       </CardContent>
 
       <CardFooter className="flex justify-between items-center text-sm text-gray-400 px-4 pt-4">

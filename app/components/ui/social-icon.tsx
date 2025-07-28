@@ -23,11 +23,11 @@ const SOCIALS = [
     label: "Instagram",
     url: "https://www.instagram.com/hi_deri",
   },
-  {
-    icon: Twitter,
-    label: "X",
-    url: "https://x.com/Deriana765",
-  },
+  // {
+  //   icon: Twitter,
+  //   label: "X",
+  //   url: "https://x.com/Deriana765",
+  // },
 ];
 
 const TOOLTIP_CLASS =

@@ -3,84 +3,84 @@
     "id": 1,
     "title": "Personal Website",
     "description": "A modern personal website built with React and Tailwind CSS to showcase my projects, blog, and resume.",
-    "image": "personal-website.jpeg",
+    "image": "https://i.pinimg.com/736x/66/b7/fc/66b7fc3cb015c55d981112a9da1735ca.jpg",
     "author": "deriana"
   },
   {
     "id": 2,
     "title": "E-commerce Dashboard",
     "description": "An admin dashboard for managing products, orders, and analytics for an online store.",
-    "image": "ecommerce-dashboard.jpeg",
+    "image": "https://i.pinimg.com/736x/95/cd/30/95cd30cbecef37533d2dc742675faa86.jpg",
     "author": "deriana"
   },
   {
     "id": 3,
     "title": "Photography Portfolio",
     "description": "A gallery website to display my best landscape and portrait photography works.",
-    "image": "photography-portfolio.jpeg",
+    "image": "https://i.pinimg.com/736x/45/59/5e/45595e309332c272b252bbb7c724582c.jpg",
     "author": "deriana"
   },
   {
     "id": 4,
     "title": "Task Manager App",
     "description": "A productivity app to organize daily tasks, set reminders, and track progress.",
-    "image": "task-manager.jpeg",
+    "image": "https://i.pinimg.com/736x/6a/92/2b/6a922bc23c4af08e637adef3d682a391.jpg",
     "author": "deriana"
   },
   {
     "id": 5,
     "title": "Recipe Sharing Platform",
     "description": "A web platform for users to share and discover new recipes with step-by-step instructions.",
-    "image": "recipe-platform.jpeg",
+    "image": "https://i.pinimg.com/736x/d8/48/5e/d8485eaca6d9bed32ac763784833403b.jpg",
     "author": "deriana"
   },
   {
     "id": 6,
     "title": "Travel Blog",
     "description": "A blog documenting my travel experiences, tips, and photo journals from around the world.",
-    "image": "travel-blog.jpeg",
+    "image": "https://i.pinimg.com/736x/bc/e4/fe/bce4fe1d95a50ed6ed139144623e46ba.jpg",
     "author": "deriana"
   },
   {
     "id": 7,
     "title": "Online Learning Portal",
     "description": "A platform offering online courses, quizzes, and certificates for various subjects.",
-    "image": "learning-portal.jpeg",
+    "image": "https://i.pinimg.com/1200x/b6/0f/bd/b60fbd967e6922ad55fcfe83ee295fee.jpg",
     "author": "deriana"
   },
   {
     "id": 8,
     "title": "Fitness Tracker",
     "description": "A web app to log workouts, monitor progress, and set fitness goals.",
-    "image": "fitness-tracker.jpeg",
+    "image": "https://i.pinimg.com/736x/4c/08/6f/4c086f7e5b160afad39dbf3432be6022.jpg",
     "author": "deriana"
   },
   {
     "id": 9,
     "title": "Event Booking System",
     "description": "A system for users to browse, book, and manage tickets for events and workshops.",
-    "image": "event-booking.jpeg",
+    "image": "https://i.pinimg.com/736x/0f/b0/6c/0fb06cb7387ef8802529806eb9dad316.jpg",
     "author": "deriana"
   },
   {
     "id": 10,
     "title": "Music Streaming UI",
     "description": "A sleek user interface for a music streaming service with playlists and recommendations.",
-    "image": "music-streaming.jpeg",
+    "image": "https://i.pinimg.com/736x/bf/b4/44/bfb444df1ea685ae3c08f6f4d6cfa5e8.jpg",
     "author": "deriana"
   },
   {
     "id": 11,
     "title": "Blog CMS",
     "description": "A content management system for creating, editing, and publishing blog posts.",
-    "image": "blog-cms.jpeg",
+    "image": "https://i.pinimg.com/736x/33/f6/e6/33f6e6e7f320136790557e924e559f7e.jpg",
     "author": "deriana"
   },
   {
     "id": 12,
     "title": "Portfolio Gallery",
     "description": "A responsive gallery to showcase design and development projects with filter options.",
-    "image": "portfolio-gallery.jpeg",
+    "image": "https://i.pinimg.com/736x/f1/d6/75/f1d67533507eb3febe35c3acb095a3ef.jpg",
     "author": "deriana"
   }
 ]

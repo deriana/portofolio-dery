@@ -1,0 +1,51 @@
+{
+  "technical": [
+    {
+      "icon": "Code",
+      "label": "JavaScript",
+      "desc": "Frontend & Backend • JS, TS, React, Express, Hono, Elysia"
+    },
+    {
+      "icon": "Database",
+      "label": "SQL / NoSQL",
+      "desc": "MySQL, PostgreSQL, MongoDB"
+    },
+    {
+      "icon": "Cpu",
+      "label": "Laravel",
+      "desc": "REST API, MVC • PHP, Blade, Inertia"
+    },
+    {
+      "icon": "Terminal",
+      "label": "CLI",
+      "desc": "Bash, Artisan, WSL, Linux"
+    },
+    {
+      "icon": "MonitorSmartphone",
+      "label": "Responsive UI",
+      "desc": "TailwindCSS, Bootstrap, ShadCN UI"
+    },
+    {
+      "icon": "Server",
+      "label": "DevOps",
+      "desc": "Docker, Nginx, CI/CD"
+    },
+    {
+      "icon": "Settings2",
+      "label": "Problem Solving",
+      "desc": "Algorithms, Python, Logical thinking"
+    },
+    {
+      "icon": "GitBranch",
+      "label": "Git & GitHub",
+      "desc": "Version control & collaboration"
+    },
+    {
+      "icon": "Network",
+      "label": "API & Web",
+      "desc": "RESTful APIs, HTTP"
+    }
+  ],
+  "interests": ["Web3", "Machine Learning", "Design Systems", "Open Source"],
+  "softSkills": ["Communication", "Teamwork", "Adaptability", "Problem-Solving"]
+}
