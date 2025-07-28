@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "title": "Personal Website",
+    "description": "A modern personal website built with React and Tailwind CSS to showcase my projects, blog, and resume.",
+    "image": "personal-website.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 2,
+    "title": "E-commerce Dashboard",
+    "description": "An admin dashboard for managing products, orders, and analytics for an online store.",
+    "image": "ecommerce-dashboard.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 3,
+    "title": "Photography Portfolio",
+    "description": "A gallery website to display my best landscape and portrait photography works.",
+    "image": "photography-portfolio.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 4,
+    "title": "Task Manager App",
+    "description": "A productivity app to organize daily tasks, set reminders, and track progress.",
+    "image": "task-manager.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 5,
+    "title": "Recipe Sharing Platform",
+    "description": "A web platform for users to share and discover new recipes with step-by-step instructions.",
+    "image": "recipe-platform.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 6,
+    "title": "Travel Blog",
+    "description": "A blog documenting my travel experiences, tips, and photo journals from around the world.",
+    "image": "travel-blog.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 7,
+    "title": "Online Learning Portal",
+    "description": "A platform offering online courses, quizzes, and certificates for various subjects.",
+    "image": "learning-portal.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 8,
+    "title": "Fitness Tracker",
+    "description": "A web app to log workouts, monitor progress, and set fitness goals.",
+    "image": "fitness-tracker.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 9,
+    "title": "Event Booking System",
+    "description": "A system for users to browse, book, and manage tickets for events and workshops.",
+    "image": "event-booking.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 10,
+    "title": "Music Streaming UI",
+    "description": "A sleek user interface for a music streaming service with playlists and recommendations.",
+    "image": "music-streaming.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 11,
+    "title": "Blog CMS",
+    "description": "A content management system for creating, editing, and publishing blog posts.",
+    "image": "blog-cms.jpeg",
+    "author": "deriana"
+  },
+  {
+    "id": 12,
+    "title": "Portfolio Gallery",
+    "description": "A responsive gallery to showcase design and development projects with filter options.",
+    "image": "portfolio-gallery.jpeg",
+    "author": "deriana"
+  }
+]

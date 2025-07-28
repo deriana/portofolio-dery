@@ -12,61 +12,60 @@ import {
   Network,
 } from "lucide-react";
 
+function SkillIcon({ icon: Icon }: { icon: React.ElementType }) {
+  return <Icon className="w-7 h-7 text-primary" />;
+}
+
 const skills = [
   {
-    icon: <Code className="w-7 h-7 text-primary" />,
+    icon: Code,
     label: "JavaScript",
     desc: "Frontend & Backend • JS, TS, React, Express, Hono, Elysia",
   },
   {
-    icon: <Database className="w-7 h-7 text-primary" />,
+    icon: Database,
     label: "SQL / NoSQL",
     desc: "MySQL, PostgreSQL, MongoDB",
   },
   {
-    icon: <Cpu className="w-7 h-7 text-primary" />,
+    icon: Cpu,
     label: "Laravel",
     desc: "REST API, MVC • PHP, Blade, Inertia",
   },
   {
-    icon: <Terminal className="w-7 h-7 text-primary" />,
+    icon: Terminal,
     label: "CLI",
     desc: "Bash, Artisan, WSL, Linux",
   },
   {
-    icon: <MonitorSmartphone className="w-7 h-7 text-primary" />,
+    icon: MonitorSmartphone,
     label: "Responsive UI",
     desc: "TailwindCSS, Bootstrap, ShadCN UI",
   },
   {
-    icon: <Server className="w-7 h-7 text-primary" />,
+    icon: Server,
     label: "DevOps",
     desc: "Docker, Nginx, CI/CD",
   },
   {
-    icon: <Settings2 className="w-7 h-7 text-primary" />,
+    icon: Settings2,
     label: "Problem Solving",
     desc: "Algorithms, Python, Logical thinking",
   },
   {
-    icon: <GitBranch className="w-7 h-7 text-primary" />,
+    icon: GitBranch,
     label: "Git & GitHub",
     desc: "Version control & collaboration",
   },
   {
-    icon: <Network className="w-7 h-7 text-primary" />,
+    icon: Network,
     label: "API & Web",
     desc: "RESTful APIs, HTTP",
   },
 ];
 
 const interests = ["Web3", "Machine Learning", "Design Systems", "Open Source"];
-const softSkills = [
-  "Communication",
-  "Teamwork",
-  "Adaptability",
-  "Problem-Solving",
-];
+const softSkills = ["Communication", "Teamwork", "Adaptability", "Problem-Solving"];
 
 export function Skills() {
   return (
@@ -80,11 +79,11 @@ export function Skills() {
             {skills.map((skill, i) => (
               <Card
                 key={i}
-                className="transition-transform hover:-translate-y-2 duration-300 shadow-md rounded- rounded-2xl hover-target"
+                className="transition-transform hover:-translate-y-2 duration-300 shadow-md rounded-2xl hover-target"
               >
                 <CardContent className="p-6 space-y-3">
                   <div className="flex items-center gap-3">
-                    {skill.icon}
+                    <SkillIcon icon={skill.icon} />
                     <h3 className="text-lg font-semibold">{skill.label}</h3>
                   </div>
                   <p className="text-muted-foreground text-sm">{skill.desc}</p>

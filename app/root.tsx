@@ -81,7 +81,7 @@ export default function App() {
   }, []);
 
   return (
-    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <CustomCursor />
       {initialLoading ? <LoadingIndicator /> : <Outlet />}
     </ThemeProvider>

@@ -1,3 +1,4 @@
+import { ScrollToTop } from "../scroll-top";
 import { Header } from "../ui/header";
 
 interface WebLayoutProps {
@@ -12,6 +13,8 @@ export function WebLayout({ children }: WebLayoutProps) {
       <div className="container flex flex-col gap-6 md:gap-8 lg:gap-10">
         {children}
       </div>
+
+      <ScrollToTop />
     </div>
   );
 }

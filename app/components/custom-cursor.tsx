@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router";
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 32, height: 32 });
   const [isHovering, setIsHovering] = useState(false);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
-  const [isDesktop, setIsDesktop] = useState(true); // default true biar nggak flicker
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  const location = useLocation();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -17,10 +20,14 @@ export function CustomCursor() {
     setIsDesktop(mediaQuery.matches);
     mediaQuery.addEventListener("change", handleMediaChange);
 
+    setIsHovering(false);
+    setTargetRect(null);
+    setSize({ width: 32, height: 32 });
+    
     return () => {
       mediaQuery.removeEventListener("change", handleMediaChange);
     };
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (!isDesktop) return;
@@ -88,7 +95,7 @@ export function CustomCursor() {
         width: size.width,
         height: size.height,
         borderRadius: "16px",
-        backgroundColor: "rgba(156, 163, 175, 0.15)",
+        backgroundColor: "rgba(156, 163, 175, 0.30)",
         position: "fixed",
         top: 0,
         left: 0,
