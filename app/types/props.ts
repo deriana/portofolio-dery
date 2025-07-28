@@ -1,3 +1,5 @@
+import type { ElementType } from "react";
+
 export interface AboutDescProps {
   text: string;
 }
@@ -71,7 +73,6 @@ export interface SkillCardProps {
   desc: string;
 }
 
-
 export type NavItem = {
   label: string;
   path: string;
@@ -104,3 +105,16 @@ export type SocialLinksProps = {
   iconSize?: number;
   className?: string;
 };
+
+export interface AnimatedEaseOutProps<T extends ElementType> {
+  as?: T;
+  delay?: number;
+  duration?: number;
+  className?: string;
+  [key: string]: any;
+}
+
+export interface SkillMetaProps {
+  label: string;
+  items: string[];
+}

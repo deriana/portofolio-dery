@@ -1,7 +1,4 @@
-interface SkillMetaProps {
-  label: string;
-  items: string[];
-}
+import type { SkillMetaProps } from "@/types/props";
 
 export function SkillMeta({ label, items }: SkillMetaProps) {
   return (
