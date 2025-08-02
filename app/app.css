@@ -56,7 +56,7 @@ body {
 }
 
 :root {
-  --background: #F7F7F7;
+  --background: #f7f7f7;
   --foreground: #222222;
 
   --card: #f5f5f5;
@@ -65,8 +65,8 @@ body {
   --popover: #f5f5f5;
   --popover-foreground: #222222;
 
-  --primary: #6b7280; /* ungu kebiruan terang */
-  --primary-foreground: #F7F7F7;
+  --primary: #6b7280;
+  --primary-foreground: #f7f7f7;
 
   --secondary: #d4d4d4;
   --secondary-foreground: #222222;
@@ -77,17 +77,21 @@ body {
   --accent: #e5e5e5;
   --accent-foreground: #222222;
 
-  --destructive: #ff4d4f; /* tetap merah soft */
+  --destructive: #ff4d4f;
   --border: #e5e7eb;
   --input: #f9fafb;
   --ring: #6b7280;
 
-  --sidebar: #f9fafb;
-  --sidebar-foreground: #222222;
+  /* Sidebar disamakan dengan .dark */
+  --sidebar: #1e1e1e;
+  --sidebar-foreground: #ffffff;
   --sidebar-primary: #6b7280;
-  --sidebar-primary-foreground: #F7F7F7;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eeeeee;
+  --sidebar-accent-foreground: #403f3f;
+  --sidebar-border: #e6e6e6;
+  --sidebar-ring: #cccccc;
 }
-
 
 .dark {
   --background: #222222;
@@ -99,7 +103,7 @@ body {
   --popover: #2a2a2a;
   --popover-foreground: #ffffff;
 
-  --primary: #6b7280; /* diganti ke gray-500 */
+  --primary: #6b7280;
   --primary-foreground: #ffffff;
 
   --secondary: #57564f;
@@ -114,14 +118,17 @@ body {
   --destructive: #ff4d4f;
   --border: #2f2f2f;
   --input: #333333;
-  --ring: #6b7280; /* samakan dengan primary */
+  --ring: #6b7280;
 
   --sidebar: #1e1e1e;
   --sidebar-foreground: #ffffff;
   --sidebar-primary: #6b7280;
   --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eeeeee;
+  --sidebar-accent-foreground: #403f3f;
+  --sidebar-border: #e6e6e6;
+  --sidebar-ring: #cccccc;
 }
-
 
 @layer base {
   * {

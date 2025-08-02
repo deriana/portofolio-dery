@@ -1,5 +1,10 @@
+// src/components/lazy-image.tsx
+
 import type { LazyImageProps } from "@/types/props";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+// Cache global di luar komponen
+const loadedImages = new Set<string>();
 
 export function LazyImage({
   src,
@@ -8,12 +13,17 @@ export function LazyImage({
   placeholderClassName = "",
   ...rest
 }: LazyImageProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(() => loadedImages.has(src));
+
+  useEffect(() => {
+    if (loadedImages.has(src)) {
+      setIsLoaded(true);
+    }
+  }, [src]);
 
   function handleLoad() {
-    setTimeout(() => {
-      setIsLoaded(true);
-    }, 1000);
+    loadedImages.add(src);
+    setIsLoaded(true);
   }
 
   return (
