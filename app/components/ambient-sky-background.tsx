@@ -153,23 +153,21 @@ function MountainScene({ period }: { period: TimePeriod }) {
 
 /* ─────────────────────────────────────────────
    CELESTIAL BODY  (sun / moon in the sky)
-   Rendered BEFORE MountainScene so mountains
-   appear in front of it.
+   Rendered with clean SVG paths + native CSS
+   drop-shadow (NO buggy SVG filters or masks)
 ───────────────────────────────────────────── */
 function CelestialBody({ period }: { period: TimePeriod }) {
-  // Position & size per period (% of viewport)
   const config: Record<TimePeriod, { top: string; left: string; size: number }> = {
-    night:  { top: "10%",  left: "72%", size: 90  },
-    dawn:   { top: "54%",  left: "50%", size: 110 }, // near horizon
-    day:    { top: "8%",   left: "65%", size: 110 },
-    sunset: { top: "52%",  left: "38%", size: 130 }, // low on horizon
+    night:  { top: "11%", left: "72%", size: 84  },
+    dawn:   { top: "54%", left: "50%", size: 104 },
+    day:    { top: "9%",  left: "65%", size: 104 },
+    sunset: { top: "52%", left: "38%", size: 118 },
   };
   const { top, left, size } = config[period];
-  const half = size / 2;
 
   return (
     <div
-      className="absolute pointer-events-none"
+      className="absolute pointer-events-none select-none"
       style={{
         top,
         left,
@@ -180,109 +178,118 @@ function CelestialBody({ period }: { period: TimePeriod }) {
       }}
     >
       {period === "night" && (
-        <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size} xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="cb-moon-glow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="10" result="b1" />
-              <feGaussianBlur stdDeviation="18" result="b2" />
-              <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <mask id="cb-moon-mask">
-              <circle cx={half} cy={half} r={half * 0.72} fill="white" />
-              <circle cx={half + half * 0.38} cy={half - half * 0.2} r={half * 0.58} fill="black" />
-            </mask>
-          </defs>
-          {/* soft halo */}
-          <circle cx={half} cy={half} r={half * 0.9} fill="rgba(199,210,254,0.06)" />
-          <circle cx={half} cy={half} r={half * 0.78} fill="rgba(221,230,255,0.10)" filter="url(#cb-moon-glow)" />
-          {/* moon body */}
-          <circle cx={half} cy={half} r={half * 0.72} fill="#e8eeff" mask="url(#cb-moon-mask)" filter="url(#cb-moon-glow)" />
-          {/* craters */}
-          <circle cx={half * 0.62} cy={half * 1.1}  r={half * 0.09} fill="rgba(180,190,230,0.45)" mask="url(#cb-moon-mask)" />
-          <circle cx={half * 0.48} cy={half * 0.72} r={half * 0.06} fill="rgba(180,190,230,0.35)" mask="url(#cb-moon-mask)" />
-          <circle cx={half * 0.72} cy={half * 0.88} r={half * 0.04} fill="rgba(180,190,230,0.3)"  mask="url(#cb-moon-mask)" />
-          <circle cx={half * 0.55} cy={half * 1.30} r={half * 0.05} fill="rgba(180,190,230,0.3)"  mask="url(#cb-moon-mask)" />
-        </svg>
+        <div
+          style={{
+            width: size,
+            height: size,
+            filter: "drop-shadow(0 0 16px rgba(199, 210, 254, 0.85)) drop-shadow(0 0 32px rgba(129, 140, 248, 0.4))",
+          }}
+        >
+          <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
+            {/* Outer haze halo */}
+            <circle cx="50" cy="50" r="44" fill="rgba(199,210,254,0.06)" />
+            {/* Pure crescent path — zero mask, zero filter */}
+            <path
+              d="M 50,14 A 36,36 0 0,0 50,86 Q 74,50 50,14 Z"
+              fill="#e8eeff"
+            />
+            {/* Subtle craters directly on crescent */}
+            <circle cx="34" cy="50" r="3.2" fill="rgba(165,180,252,0.4)" />
+            <circle cx="41" cy="36" r="2.4" fill="rgba(165,180,252,0.35)" />
+            <circle cx="39" cy="65" r="2.8" fill="rgba(165,180,252,0.35)" />
+            <circle cx="30" cy="60" r="1.8" fill="rgba(165,180,252,0.3)" />
+          </svg>
+        </div>
       )}
 
       {period === "dawn" && (
-        <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size} xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="cb-dawn-grad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%"   stopColor="#fff7ed" stopOpacity="1"   />
-              <stop offset="45%"  stopColor="#fcd34d" stopOpacity="0.95"/>
-              <stop offset="80%"  stopColor="#f59e0b" stopOpacity="0.7" />
-              <stop offset="100%" stopColor="#d97706" stopOpacity="0"   />
-            </radialGradient>
-            <filter id="cb-dawn-glow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="14" result="b" />
-              <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          {/* large soft halo */}
-          <circle cx={half} cy={half} r={half} fill="url(#cb-dawn-grad)" />
-          {/* bright core */}
-          <circle cx={half} cy={half} r={half * 0.38} fill="#fff7ed" filter="url(#cb-dawn-glow)" />
-          <circle cx={half} cy={half} r={half * 0.22} fill="white" />
-        </svg>
+        <div
+          style={{
+            width: size,
+            height: size,
+            filter: "drop-shadow(0 0 20px rgba(251, 146, 60, 0.9)) drop-shadow(0 0 40px rgba(244, 63, 94, 0.45))",
+          }}
+        >
+          <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="cb-dawn-grad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"   stopColor="#fff7ed" />
+                <stop offset="45%"  stopColor="#fdba74" />
+                <stop offset="80%"  stopColor="#f97316" />
+                <stop offset="100%" stopColor="#e11d48" />
+              </radialGradient>
+            </defs>
+            {/* Morning halos */}
+            <circle cx="50" cy="50" r="48" fill="rgba(253,186,116,0.18)" />
+            <circle cx="50" cy="50" r="38" fill="rgba(244,114,182,0.22)" />
+            {/* Rising sun disc */}
+            <circle cx="50" cy="50" r="24" fill="url(#cb-dawn-grad)" />
+          </svg>
+        </div>
       )}
 
       {period === "day" && (
-        <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size} xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="cb-sun-grad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%"   stopColor="#ffffff" stopOpacity="1"   />
-              <stop offset="30%"  stopColor="#fef08a" stopOpacity="1"   />
-              <stop offset="65%"  stopColor="#fbbf24" stopOpacity="0.85"/>
-              <stop offset="100%" stopColor="#f59e0b" stopOpacity="0"   />
-            </radialGradient>
-            <filter id="cb-sun-glow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="12" result="b1" />
-              <feGaussianBlur stdDeviation="22" result="b2" />
-              <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          {/* corona / outer glow */}
-          <circle cx={half} cy={half} r={half} fill="url(#cb-sun-grad)" />
-          {/* rays */}
-          {Array.from({ length: 12 }, (_, i) => {
-            const a = (Math.PI / 6) * i;
-            return (
-              <line key={i}
-                x1={half + half * 0.52 * Math.cos(a)} y1={half + half * 0.52 * Math.sin(a)}
-                x2={half + half * 0.82 * Math.cos(a)} y2={half + half * 0.82 * Math.sin(a)}
-                stroke="rgba(253,224,71,0.6)" strokeWidth={size * 0.025} strokeLinecap="round"
-              />
-            );
-          })}
-          {/* bright disc */}
-          <circle cx={half} cy={half} r={half * 0.38} fill="#fef9c3" filter="url(#cb-sun-glow)" />
-          <circle cx={half} cy={half} r={half * 0.22} fill="white" />
-        </svg>
+        <div
+          style={{
+            width: size,
+            height: size,
+            filter: "drop-shadow(0 0 22px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 44px rgba(245, 158, 11, 0.55))",
+          }}
+        >
+          <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="cb-sun-grad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"   stopColor="#ffffff" />
+                <stop offset="35%"  stopColor="#fef08a" />
+                <stop offset="70%"  stopColor="#fbbf24" />
+                <stop offset="100%" stopColor="#f59e0b" />
+              </radialGradient>
+            </defs>
+            {/* Corona halos */}
+            <circle cx="50" cy="50" r="48" fill="rgba(253,224,71,0.14)" />
+            <circle cx="50" cy="50" r="38" fill="rgba(251,191,36,0.22)" />
+            {/* Rays */}
+            {Array.from({ length: 12 }, (_, i) => {
+              const a = (Math.PI / 6) * i;
+              return (
+                <line
+                  key={i}
+                  x1={50 + 26 * Math.cos(a)} y1={50 + 26 * Math.sin(a)}
+                  x2={50 + 42 * Math.cos(a)} y2={50 + 42 * Math.sin(a)}
+                  stroke="rgba(253,224,71,0.75)" strokeWidth="2.5" strokeLinecap="round"
+                />
+              );
+            })}
+            {/* Sun disc */}
+            <circle cx="50" cy="50" r="22" fill="url(#cb-sun-grad)" />
+          </svg>
+        </div>
       )}
 
       {period === "sunset" && (
-        <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size} xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="cb-set-grad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%"   stopColor="#fff7ed" stopOpacity="1"   />
-              <stop offset="25%"  stopColor="#fca5a5" stopOpacity="1"   />
-              <stop offset="55%"  stopColor="#ef4444" stopOpacity="0.85"/>
-              <stop offset="80%"  stopColor="#dc2626" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#991b1b" stopOpacity="0"   />
-            </radialGradient>
-            <filter id="cb-set-glow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="16" result="b1" />
-              <feGaussianBlur stdDeviation="28" result="b2" />
-              <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          {/* large blood-orange halo */}
-          <circle cx={half} cy={half} r={half} fill="url(#cb-set-grad)" />
-          {/* bright rim */}
-          <circle cx={half} cy={half} r={half * 0.36} fill="#fed7aa" filter="url(#cb-set-glow)" />
-          <circle cx={half} cy={half} r={half * 0.20} fill="#fff7ed" />
-        </svg>
+        <div
+          style={{
+            width: size,
+            height: size,
+            filter: "drop-shadow(0 0 24px rgba(239, 68, 68, 0.95)) drop-shadow(0 0 50px rgba(249, 115, 22, 0.55))",
+          }}
+        >
+          <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="cb-set-grad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"   stopColor="#fff7ed" />
+                <stop offset="35%"  stopColor="#fca5a5" />
+                <stop offset="70%"  stopColor="#ef4444" />
+                <stop offset="100%" stopColor="#b91c1c" />
+              </radialGradient>
+            </defs>
+            {/* Deep crimson sunset halos */}
+            <circle cx="50" cy="50" r="48" fill="rgba(248,113,113,0.18)" />
+            <circle cx="50" cy="50" r="38" fill="rgba(239,68,68,0.25)" />
+            {/* Sunset disc */}
+            <circle cx="50" cy="50" r="25" fill="url(#cb-set-grad)" />
+          </svg>
+        </div>
       )}
     </div>
   );
