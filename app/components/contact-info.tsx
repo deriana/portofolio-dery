@@ -4,7 +4,8 @@ const contactItems = [
   {
     icon: Mail,
     text: "deryana.maruf@gmail.com",
-    isLink: false,
+    href: "mailto:deryana.maruf@gmail.com",
+    isLink: true,
   },
   {
     icon: MapPin,
@@ -25,8 +26,9 @@ const contactItems = [
   },
   {
     icon: Phone,
-    text: "+62 8958084747030",
-    isLink: false,
+    text: "+62 895 8084 7470 30",
+    href: "https://wa.me/628958084747030",
+    isLink: true,
   },
 ];
 

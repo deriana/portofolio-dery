@@ -9,7 +9,7 @@ type Props = {
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+-=[]{}";
 
-export function DecryptedText({ text, speed = 50, className = "", loop = true }: Props) {
+export function DecryptedText({ text, speed = 50, className = "", loop = false }: Props) {
   const [displayed, setDisplayed] = useState("");
 
   useEffect(() => {

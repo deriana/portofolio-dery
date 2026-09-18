@@ -1,98 +1,179 @@
 [
   {
     "id": 1,
-    "title": "Personal Website",
-    "description": "A modern personal website built with React and Tailwind CSS to showcase my projects, blog, and resume.",
-    "image": "https://i.pinimg.com/736x/66/b7/fc/66b7fc3cb015c55d981112a9da1735ca.jpg",
+    "title": "Wangsa Tea",
+    "category": "E-Commerce & Export",
+    "client": "Wangsa Tea Nusantara",
+    "tagline": "Platform Ekspor & Katalog Teh Artisan untuk UMKM",
+    "description": "Platform web untuk memberdayakan UMKM teh lokal Indonesia agar dapat menembus pasar ekspor global. Menyediakan katalog varian teh artisan, kalkulator freight kontainer, dan verifikasi sertifikasi mutu komoditas.",
+    "image": "/portfolio_photos/wangsa-tea.png",
     "author": "deriana",
-    "url": "https://github.com/deriana"
+    "url": "#",
+    "features": [
+      "Katalog Digital Artisan Tea (White, Green, Black, Oolong)",
+      "Inquiry Pesanan Ekspor B2B & Negosiasi Volume Kontainer",
+      "Kalkulator Estimasi Biaya Logistik & Freight Ekspor",
+      "Traceability Sertifikasi Mutu (Halal, BPOM, Organik)",
+      "Multi-Currency Invoicing & Pembayaran Internasional"
+    ],
+    "tags": ["Next.js", "React", "Laravel", "PostgreSQL", "Tailwind CSS"],
+    "metrics": [
+      { "label": "UMKM Mitra", "value": "100+ Petani" },
+      { "label": "Target Ekspor", "value": "Global Market" }
+    ]
   },
   {
     "id": 2,
-    "title": "E-commerce Dashboard",
-    "description": "An admin dashboard for managing products, orders, and analytics for an online store.",
-    "image": "https://i.pinimg.com/736x/95/cd/30/95cd30cbecef37533d2dc742675faa86.jpg",
+    "title": "Neuro Learn",
+    "category": "AI & Machine Learning",
+    "client": "Neuro Learn",
+    "tagline": "Platform Belajar Mandiri Berbasis AI Fine-Tuning",
+    "description": "Aplikasi belajar mandiri berbasis model AI yang di-tuning khusus dengan API key mandiri. Dilengkapi chatbot independen tanpa kontrol pihak ketiga untuk menjamin 100% privasi data pengguna.",
+    "image": "/portfolio_photos/neuro-learn.png",
     "author": "deriana",
-    "url": "https://github.com/deriana"
+    "url": "#",
+    "features": [
+      "Model AI Kustom dengan Fine-Tuning Mandiri",
+      "Asisten AI Bebas Kontrol Pihak Ketiga (100% Private)",
+      "Generator Kurikulum Otomatis dalam Hitungan Detik",
+      "Struktur Pembelajaran Mendalam & Terpersonalisasi"
+    ],
+    "tags": ["React", "FastAPI", "Python", "LLM", "Tailwind CSS"],
+    "metrics": [
+      { "label": "Privasi Data", "value": "100% Local" },
+      { "label": "Waktu Respon", "value": "< 400ms" }
+    ]
   },
   {
     "id": 3,
-    "title": "Photography Portfolio",
-    "description": "A gallery website to display my best landscape and portrait photography works.",
-    "image": "https://i.pinimg.com/736x/45/59/5e/45595e309332c272b252bbb7c724582c.jpg",
+    "title": "Enterprise HRIS",
+    "category": "Enterprise HRIS",
+    "client": "Enterprise HRIS",
+    "tagline": "Sistem Manajemen SDM, Presensi Face ID & Payroll",
+    "description": "Sistem HRIS komprehensif untuk perusahaan skala besar. Mengintegrasikan absensi biometrik Face ID anti-spoofing, persetujuan cuti berjenjang, dan kalkulasi otomatis penggajian karyawan.",
+    "image": "/portfolio_photos/hris-system.png",
     "author": "deriana",
-    "url": "https://github.com/deriana"
+    "url": "#",
+    "features": [
+      "Dashboard Admin & Karyawan Interaktif",
+      "Presensi Biometrik Wajah AI & Geofencing GPS",
+      "Alur Persetujuan Cuti Bertingkat Real-Time",
+      "Kalkulasi Otomatis Penggajian (Payroll Engine)"
+    ],
+    "tags": ["React", "Laravel", "MySQL", "Face Recognition", "Tailwind CSS"],
+    "metrics": [
+      { "label": "Akurasi Payroll", "value": "100%" },
+      { "label": "Kecurangan Absen", "value": "0% Zero Fraud" }
+    ]
   },
   {
     "id": 4,
-    "title": "Task Manager App",
-    "description": "A productivity app to organize daily tasks, set reminders, and track progress.",
-    "image": "https://i.pinimg.com/736x/6a/92/2b/6a922bc23c4af08e637adef3d682a391.jpg",
+    "title": "AI Chat Voice & Vision",
+    "category": "AI & Machine Learning",
+    "client": "Open Source AI",
+    "tagline": "Chatbot Open-Source dengan Qwen 2.5B & Kokoro TTS",
+    "description": "Platform AI chatbot interaktif yang memadukan LLM Qwen 2.5B lokal dengan suara neural alami Kokoro 82M TTS. Mendukung integrasi input suara dan feed kamera secara real-time via WebRTC.",
+    "image": "/portfolio_photos/ai-chat-waifu.png",
     "author": "deriana",
-    "url": "https://github.com/deriana"
+    "url": "#",
+    "features": [
+      "Mesin Percakapan Model Lokal Qwen 2.5B",
+      "Sintesis Suara Alami Berlatensi Rendah Kokoro 82M",
+      "Integrasi Kamera & Screen Sharing Stream via WebRTC",
+      "100% Self-Hosted & Bebas Biaya Langganan"
+    ],
+    "tags": ["Qwen 2.5B", "Kokoro TTS", "WebRTC", "Python", "React"],
+    "metrics": [
+      { "label": "Latensi Suara", "value": "< 300ms" },
+      { "label": "Engine TTS", "value": "Kokoro 82M" }
+    ]
   },
   {
     "id": 5,
-    "title": "Recipe Sharing Platform",
-    "description": "A web platform for users to share and discover new recipes with step-by-step instructions.",
-    "image": "https://i.pinimg.com/736x/d8/48/5e/d8485eaca6d9bed32ac763784833403b.jpg",
+    "title": "Garment & Order Management",
+    "category": "ERP & Manufacturing",
+    "client": "Textile Manufacturing",
+    "tagline": "Sistem Manajemen Pesanan & Produksi Konveksi",
+    "description": "Sistem operasional konveksi end-to-end untuk melacak status pesanan produksi mulai dari cutting, sewing, QC, hingga pengiriman, serta manajemen inventaris bahan baku kain.",
+    "image": "/portfolio_photos/garment-oms.svg",
     "author": "deriana",
-    "url": "https://github.com/deriana"
+    "url": "#",
+    "features": [
+      "Pelacakan Status Produksi (Cutting, Sewing, QC, Packing)",
+      "Manajemen Inventaris Bahan Baku Kain & Aksesoris",
+      "Otomatisasi Surat Jalan & Label Ekspedisi",
+      "Laporan Finansial & Margin Keuntungan per PO"
+    ],
+    "tags": ["Laravel", "PHP", "MySQL", "ERP", "Tailwind CSS"],
+    "metrics": [
+      { "label": "Pelacakan Order", "value": "100% Real-Time" },
+      { "label": "Kecepatan Kirim", "value": "+45%" }
+    ]
   },
   {
     "id": 6,
-    "title": "Travel Blog",
-    "description": "A blog documenting my travel experiences, tips, and photo journals from around the world.",
-    "image": "https://i.pinimg.com/736x/bc/e4/fe/bce4fe1d95a50ed6ed139144623e46ba.jpg",
+    "title": "Hospital SIMRS Core",
+    "category": "HealthTech",
+    "client": "Integrated Healthcare",
+    "tagline": "Sistem Informasi Rumah Sakit & Rekam Medis Elektronik",
+    "description": "Modul inti sistem informasi rumah sakit dengan rekam medis elektronik terstandarisasi ICD-10, sistem antrean poli rawat jalan, e-resep farmasi, dan ketersediaan bed rawat inap.",
+    "image": "/portfolio_photos/hospital-simrs.svg",
     "author": "deriana",
-    "url": "https://github.com/deriana"
+    "url": "#",
+    "features": [
+      "Rekam Medis Elektronik (EMR) Standar ICD-10",
+      "Antrean Poli & Penjadwalan Dokter Spesialis",
+      "Integrasi Farmasi Elektronik (E-Resep)",
+      "Manajemen Ketersediaan Bed Kamar Real-Time"
+    ],
+    "tags": ["Laravel", "PHP", "PostgreSQL", "SIMRS", "HealthTech"],
+    "metrics": [
+      { "label": "Waktu Tunggu", "value": "-60%" },
+      { "label": "Akurasi Resep", "value": "100%" }
+    ]
   },
   {
     "id": 7,
-    "title": "Online Learning Portal",
-    "description": "A platform offering online courses, quizzes, and certificates for various subjects.",
-    "image": "https://i.pinimg.com/1200x/b6/0f/bd/b60fbd967e6922ad55fcfe83ee295fee.jpg",
+    "title": "Plantation & Logistics",
+    "category": "AgriTech & Logistics",
+    "client": "Agro Enterprise",
+    "tagline": "Sistem Panen & Logistik Kelapa Sawit Terintegrasi",
+    "description": "Sistem pencatatan panen perkebunan kelapa sawit dengan integrasi jembatan timbang otomatis di pabrik, manajemen armada truk angkut, dan analitik rendemen ekstraksi minyak (CPO).",
+    "image": "/portfolio_photos/plantation-logistics.svg",
     "author": "deriana",
-    "url": "https://github.com/deriana"
+    "url": "#",
+    "features": [
+      "Pencatatan Hasil Panen Buah Sawit per Afdeling",
+      "Integrasi Sensor Jembatan Timbang Pabrik Otomatis",
+      "Manajemen Armada Truk & Dispatching Perkebunan",
+      "Analitik Rendemen Ekstraksi Minyak Sawit (CPO)"
+    ],
+    "tags": ["Laravel", "PHP", "MySQL", "REST API", "Supply Chain"],
+    "metrics": [
+      { "label": "Akurasi Timbang", "value": "99.98%" },
+      { "label": "Waktu Timbang", "value": "< 45 Detik" }
+    ]
   },
   {
     "id": 8,
-    "title": "Fitness Tracker",
-    "description": "A web app to log workouts, monitor progress, and set fitness goals.",
-    "image": "https://i.pinimg.com/736x/4c/08/6f/4c086f7e5b160afad39dbf3432be6022.jpg",
+    "title": "Centralized Master Data Hub",
+    "category": "Distributed Systems",
+    "client": "Fintech Ecosystem",
+    "tagline": "Single Source of Truth dengan gRPC, Protobuf & Go",
+    "description": "Layanan data master terpusat berlatensi ultra-rendah dan throughput tinggi (100k+ RPS) menggunakan gRPC binary multiplexing, Go Fiber engine, dan Redis cache-aside cluster.",
+    "image": "/portfolio_photos/attendance_laptop_mockup.jpg",
     "author": "deriana",
-    "url": "https://github.com/deriana"
-  },
-  {
-    "id": 9,
-    "title": "Event Booking System",
-    "description": "A system for users to browse, book, and manage tickets for events and workshops.",
-    "image": "https://i.pinimg.com/736x/0f/b0/6c/0fb06cb7387ef8802529806eb9dad316.jpg",
-    "author": "deriana",
-    "url": "https://github.com/deriana"
-  },
-  {
-    "id": 10,
-    "title": "Music Streaming UI",
-    "description": "A sleek user interface for a music streaming service with playlists and recommendations.",
-    "image": "https://i.pinimg.com/736x/bf/b4/44/bfb444df1ea685ae3c08f6f4d6cfa5e8.jpg",
-    "author": "deriana",
-    "url": "https://github.com/deriana"
-  },
-  {
-    "id": 11,
-    "title": "Blog CMS",
-    "description": "A content management system for creating, editing, and publishing blog posts.",
-    "image": "https://i.pinimg.com/736x/33/f6/e6/33f6e6e7f320136790557e924e559f7e.jpg",
-    "author": "deriana",
-    "url": "https://github.com/deriana"
-  },
-  {
-    "id": 12,
-    "title": "Portfolio Gallery",
-    "description": "A responsive gallery to showcase design and development projects with filter options.",
-    "image": "https://i.pinimg.com/736x/f1/d6/75/f1d67533507eb3febe35c3acb095a3ef.jpg",
-    "author": "deriana",
-    "url": "https://github.com/deriana"
+    "url": "#",
+    "features": [
+      "Arsitektur gRPC & Protocol Buffers Multiplexed",
+      "Go Fiber Zero-Allocation High Performance Engine",
+      "Redis Cache-Aside Cluster dengan Idempotency Control",
+      "Append-Only Audit Trail Log untuk Integritas Data"
+    ],
+    "tags": ["Golang", "gRPC", "Protobuf", "Redis", "Docker"],
+    "metrics": [
+      { "label": "Throughput", "value": "100k+ RPS" },
+      { "label": "Latensi Service", "value": "< 2ms" }
+    ]
   }
 ]

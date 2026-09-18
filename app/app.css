@@ -4,13 +4,14 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 html,
 body {
   @apply bg-white dark:bg-gray-950;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -55,99 +56,199 @@ body {
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* ──────────────────────────────────────────────
+   BASE THEME (dark default — matches night sky)
+────────────────────────────────────────────── */
 :root {
-  --background: #f7f7f7;
-  --foreground: #222222;
+  --background: #0f1117;
+  --foreground: #e8eaf0;
 
-  --card: #f5f5f5;
-  --card-foreground: #222222;
+  --card: rgba(20, 22, 35, 0.82);
+  --card-foreground: #e8eaf0;
 
-  --popover: #f5f5f5;
-  --popover-foreground: #222222;
+  --popover: #16182a;
+  --popover-foreground: #e8eaf0;
 
-  --primary: #6b7280;
-  --primary-foreground: #f7f7f7;
+  --primary: #818cf8;
+  --primary-foreground: #0f1117;
 
-  --secondary: #d4d4d4;
-  --secondary-foreground: #222222;
+  --secondary: #2d3150;
+  --secondary-foreground: #a5b4fc;
 
-  --muted: #e5e5e5;
-  --muted-foreground: #222222;
+  --muted: #1e2035;
+  --muted-foreground: #9399b2;
 
-  --accent: #e5e5e5;
-  --accent-foreground: #222222;
+  --accent: #2d3150;
+  --accent-foreground: #c7d2fe;
 
-  --destructive: #ff4d4f;
-  --border: #e5e7eb;
-  --input: #f9fafb;
-  --ring: #6b7280;
+  --destructive: #f87171;
+  --border: rgba(129, 140, 248, 0.12);
+  --input: #1e2035;
+  --ring: #6366f1;
 
-  /* Sidebar disamakan dengan .dark */
-  --sidebar: #1e1e1e;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #6b7280;
+  --sidebar: #0d0f1c;
+  --sidebar-foreground: #e8eaf0;
+  --sidebar-primary: #818cf8;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eeeeee;
-  --sidebar-accent-foreground: #403f3f;
-  --sidebar-border: #e6e6e6;
-  --sidebar-ring: #cccccc;
+  --sidebar-accent: #1e2035;
+  --sidebar-accent-foreground: #a5b4fc;
+  --sidebar-border: rgba(129, 140, 248, 0.1);
+  --sidebar-ring: #6366f1;
+
+  --radius: 0.875rem;
 }
 
-.dark {
-  --background: #222222;
-  --foreground: #ffffff;
+/* ──────────────────────────────────────────────
+   NIGHT PERIOD (stars, cosmic, deep indigo)
+────────────────────────────────────────────── */
+[data-period="night"] {
+  --background: #070b14;
+  --foreground: #dce3f5;
+  --card: rgba(10, 14, 30, 0.85);
+  --card-foreground: #dce3f5;
+  --popover: #0d1225;
+  --popover-foreground: #dce3f5;
+  --primary: #818cf8;
+  --primary-foreground: #070b14;
+  --secondary: #1a1f3d;
+  --muted: #131628;
+  --muted-foreground: #7c88ab;
+  --accent: #1a1f3d;
+  --accent-foreground: #c7d2fe;
+  --border: rgba(99, 102, 241, 0.14);
+  --input: #131628;
+  --ring: #6366f1;
+}
 
-  --card: #2a2a2a;
-  --card-foreground: #ffffff;
+/* ──────────────────────────────────────────────
+   DAWN / SUBUH (rose-amber warmth, soft purple)
+────────────────────────────────────────────── */
+[data-period="dawn"] {
+  --background: #1a0e1e;
+  --foreground: #f7ded8;
+  --card: rgba(40, 18, 35, 0.80);
+  --card-foreground: #f7ded8;
+  --popover: #2a1228;
+  --popover-foreground: #f7ded8;
+  --primary: #f4a261;
+  --primary-foreground: #1a0e1e;
+  --secondary: #2e1420;
+  --muted: #241220;
+  --muted-foreground: #c49a8a;
+  --accent: #2e1420;
+  --accent-foreground: #f9c9a9;
+  --border: rgba(244, 162, 97, 0.15);
+  --input: #241220;
+  --ring: #e76f51;
+}
 
-  --popover: #2a2a2a;
-  --popover-foreground: #ffffff;
-
-  --primary: #6b7280;
+/* ──────────────────────────────────────────────
+   DAY / SIANG (sky blue, clean light)
+────────────────────────────────────────────── */
+[data-period="day"] {
+  --background: #f0f7ff;
+  --foreground: #0d1b2a;
+  --card: rgba(255, 255, 255, 0.82);
+  --card-foreground: #0d1b2a;
+  --popover: #ffffff;
+  --popover-foreground: #0d1b2a;
+  --primary: #2563eb;
   --primary-foreground: #ffffff;
-
-  --secondary: #57564f;
-  --secondary-foreground: #ffffff;
-
-  --muted: #444444;
-  --muted-foreground: #d9d9d9;
-
-  --accent: #444444;
-  --accent-foreground: #ffffff;
-
-  --destructive: #ff4d4f;
-  --border: #2f2f2f;
-  --input: #333333;
-  --ring: #6b7280;
-
-  --sidebar: #1e1e1e;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #6b7280;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eeeeee;
-  --sidebar-accent-foreground: #403f3f;
-  --sidebar-border: #e6e6e6;
-  --sidebar-ring: #cccccc;
+  --secondary: #dbeafe;
+  --secondary-foreground: #1d4ed8;
+  --muted: #e0ecff;
+  --muted-foreground: #4b6180;
+  --accent: #dbeafe;
+  --accent-foreground: #1e40af;
+  --border: rgba(37, 99, 235, 0.12);
+  --input: #e8f2ff;
+  --ring: #3b82f6;
 }
 
+/* ──────────────────────────────────────────────
+   SUNSET / SORE (warm amber-purple transition)
+────────────────────────────────────────────── */
+[data-period="sunset"] {
+  --background: #14091e;
+  --foreground: #fce8d0;
+  --card: rgba(35, 12, 42, 0.82);
+  --card-foreground: #fce8d0;
+  --popover: #200c2e;
+  --popover-foreground: #fce8d0;
+  --primary: #f97316;
+  --primary-foreground: #14091e;
+  --secondary: #2c0f2a;
+  --muted: #22102a;
+  --muted-foreground: #c2906a;
+  --accent: #2c0f2a;
+  --accent-foreground: #fed7aa;
+  --border: rgba(249, 115, 22, 0.15);
+  --input: #22102a;
+  --ring: #ea580c;
+}
+
+/* Weather mutes — tint cards when fog/overcast */
+[data-weather="fog"] {
+  --card: rgba(170, 185, 200, 0.45);
+  --muted: rgba(160, 175, 190, 0.4);
+}
+[data-weather="overcast"] {
+  --card: rgba(50, 55, 70, 0.78);
+}
+[data-weather="rain"] {
+  --primary: #38bdf8;
+  --ring: #0ea5e9;
+}
+[data-weather="snow"] {
+  --primary: #7dd3fc;
+  --ring: #38bdf8;
+  --border: rgba(186, 230, 253, 0.22);
+}
+
+/* ──────────────────────────────────────────────
+   CARD backdrop-blur glass feel
+────────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+    transition: background-color 1.2s ease, color 0.6s ease;
   }
 }
 
+/* ──────────────────────────────────────────────
+   SCROLLBAR
+────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
-
 ::-webkit-scrollbar-thumb {
-  background-color: var(--foreground); /* Tailwind's gray-200 */
+  background-color: var(--primary);
   border-radius: 9999px;
+  opacity: 0.5;
 }
-
 ::-webkit-scrollbar-track {
   background: var(--background);
+}
+
+/* ──────────────────────────────────────────────
+   AMBIENT SKY AURORA KEYFRAMES
+────────────────────────────────────────────── */
+@keyframes aurora1 {
+  0%, 100% { transform: translateY(0) scaleY(1) rotate(0deg); }
+  50% { transform: translateY(24px) scaleY(1.18) rotate(2deg); }
+}
+@keyframes aurora2 {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-20px) scaleY(1.22) rotate(-2deg); }
+}
+@keyframes aurora3 {
+  0%, 100% { transform: translateY(0) scaleX(1); }
+  50% { transform: translateY(18px) scaleX(1.08); }
+}
+@keyframes fogDrift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(60px); }
 }

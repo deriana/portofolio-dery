@@ -1,4 +1,4 @@
-import { Facebook, Github, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Github, Instagram, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils"; 
 import type { SocialLinkProps, SocialLinksProps } from "@/types/props";
 
@@ -23,17 +23,10 @@ const SOCIALS = [
     label: "Instagram",
     url: "https://www.instagram.com/hi_deri",
   },
-  // {
-  //   icon: Twitter,
-  //   label: "X",
-  //   url: "https://x.com/Deriana765",
-  // },
 ];
 
 const TOOLTIP_CLASS =
-  "absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-black rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap";
-
-
+  "absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-background bg-foreground rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-md";
 
 function SocialLink({
   icon: Icon,
@@ -46,9 +39,10 @@ function SocialLink({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="relative group"
+      className="relative group inline-flex items-center justify-center p-1 rounded-lg text-muted-foreground hover:text-foreground transition-colors hover-target"
+      aria-label={label}
     >
-      <Icon className={cn("hover-target", `w-[${size}px] h-[${size}px]`)} />
+      <Icon size={size} className="transition-transform duration-200 group-hover:scale-110" />
       <span className={TOOLTIP_CLASS}>{label}</span>
     </a>
   );

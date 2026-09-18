@@ -1,51 +1,412 @@
 {
   "technical": [
     {
-      "icon": "Code",
-      "label": "JavaScript",
-      "desc": "Frontend & Backend • JS, TS, React, Next JS, Express, Hono"
+      "icon": "/tech_stack_icons/php.svg",
+      "label": "PHP",
+      "version": "v8.3",
+      "category": "Backend",
+      "desc": "Fondasi web handal, kompatibilitas luas, dan eksekusi skrip berkecepatan tinggi."
     },
     {
-      "icon": "Database",
-      "label": "SQL / NoSQL",
-      "desc": "MySQL, PostgreSQL, MongoDB"
-    },
-    {
-      "icon": "Cpu",
+      "icon": "/tech_stack_icons/laravel.svg",
       "label": "Laravel",
-      "desc": "REST API, MVC • PHP, Blade, Inertia"
+      "version": "v11 Framework",
+      "category": "Backend",
+      "desc": "Framework PHP enterprise-grade dengan Eloquent ORM, queue workers, dan keamanan bawaan."
     },
     {
-      "icon": "Terminal",
-      "label": "CLI",
-      "desc": "Bash, Artisan, WSL, Linux"
+      "icon": "/tech_stack_icons/golang.svg",
+      "label": "Golang",
+      "version": "v1.23 High Perf",
+      "category": "Backend",
+      "desc": "Bahasa komputasi tinggi, concurrency goroutines, dan konsumsi memori minimal."
     },
     {
-      "icon": "MonitorSmartphone",
-      "label": "Responsive UI",
-      "desc": "TailwindCSS, Bootstrap, ShadCN UI"
+      "icon": "/tech_stack_icons/java.svg",
+      "label": "Java",
+      "version": "Java 21 LTS",
+      "category": "Backend",
+      "desc": "Enterprise core engine dengan Virtual Threads (Project Loom) & zero-downtime reliability."
     },
     {
-      "icon": "Server",
-      "label": "DevOps",
-      "desc": "Docker, Nginx, CI/CD"
+      "icon": "/tech_stack_icons/nodejs.svg",
+      "label": "Node.js",
+      "version": "v22 LTS",
+      "category": "Backend",
+      "desc": "Event-driven asynchronous runtime untuk service real-time berlatensi rendah."
     },
     {
-      "icon": "Settings2",
-      "label": "Problem Solving",
-      "desc": "Algorithms, Python, Logical thinking"
+      "icon": "/tech_stack_icons/python.svg",
+      "label": "Python",
+      "version": "v3.12 AI & Data",
+      "category": "Backend",
+      "desc": "Ekosistem utama untuk machine learning, fine-tuning LLM, FastAPI, PyTorch, dan komputasi data."
     },
     {
-      "icon": "GitBranch",
-      "label": "Git & GitHub",
-      "desc": "Version control & collaboration"
+      "icon": "/tech_stack_icons/react.svg",
+      "label": "React.js",
+      "version": "v19 Modern",
+      "category": "Frontend",
+      "desc": "Library komponen interaktif modern dengan arsitektur virtual DOM yang responsif."
     },
     {
-      "icon": "Network",
-      "label": "API & Web",
-      "desc": "RESTful APIs, HTTP"
+      "icon": "/tech_stack_icons/nextjs.svg",
+      "label": "Next.js",
+      "version": "v15 App Router",
+      "category": "Frontend",
+      "desc": "Fullstack framework dengan SSR, SSG, streaming server components, dan performa SEO teratas."
+    },
+    {
+      "icon": "/tech_stack_icons/vue.svg",
+      "label": "Vue.js",
+      "version": "v3 Reactive",
+      "category": "Frontend",
+      "desc": "Framework frontend reaktif yang ringan dan modular dengan Composition API."
+    },
+    {
+      "icon": "/tech_stack_icons/typescript.svg",
+      "label": "TypeScript",
+      "version": "Strict Typing",
+      "category": "Frontend",
+      "desc": "Superset JavaScript berstatus strictly-typed untuk mencegah runtime error di level kompilasi."
+    },
+    {
+      "icon": "/tech_stack_icons/tailwind.svg",
+      "label": "Tailwind CSS",
+      "version": "v4 Engine",
+      "category": "Frontend",
+      "desc": "Engine CSS utility-first untuk desain UI modern berkecepatan tinggi dan responsif."
+    },
+    {
+      "icon": "/tech_stack_icons/figma.svg",
+      "label": "Figma",
+      "version": "Pro Design",
+      "category": "Frontend",
+      "desc": "Standar industri untuk UI/UX wireframing, prototyping interaktif, dan desain sistem antarmuka."
+    },
+    {
+      "icon": "/tech_stack_icons/postgresql.svg",
+      "label": "PostgreSQL",
+      "version": "v16 Enterprise",
+      "category": "Database",
+      "desc": "Relational database engine enterprise dengan fitur JSONB, indexing canggih, dan integritas ACID."
+    },
+    {
+      "icon": "/tech_stack_icons/mysql.svg",
+      "label": "MySQL",
+      "version": "v8.4 RDBMS",
+      "category": "Database",
+      "desc": "Database relasional populer dengan performa query tinggi dan replikasi data yang stabil."
+    },
+    {
+      "icon": "/tech_stack_icons/mongodb.svg",
+      "label": "MongoDB",
+      "version": "v7.0 NoSQL",
+      "category": "Database",
+      "desc": "NoSQL document database untuk fleksibilitas skema dan skalabilitas data dinamis."
+    },
+    {
+      "icon": "/tech_stack_icons/docker.svg",
+      "label": "Docker",
+      "version": "Containers",
+      "category": "DevOps",
+      "desc": "Kontainerisasi aplikasi untuk standarisasi environment development hingga production."
+    },
+    {
+      "icon": "/tech_stack_icons/kubernetes.svg",
+      "label": "Kubernetes",
+      "version": "Orchestration",
+      "category": "DevOps",
+      "desc": "Otomatisasi orkestrasi, deployment, auto-scaling, dan manajemen container di skala besar."
+    },
+    {
+      "icon": "/tech_stack_icons/github.svg",
+      "label": "GitHub & CI/CD",
+      "version": "Workflows",
+      "category": "DevOps",
+      "desc": "Version control, automated testing, pull request code review, dan continuous delivery."
+    },
+    {
+      "icon": "/tech_stack_icons/openai.svg",
+      "label": "OpenAI & LLMs",
+      "version": "GPT-4o & Qwen",
+      "category": "AI",
+      "desc": "Integrasi kecerdasan buatan terdepan, prompt engineering, RAG, dan local LLM inference."
     }
   ],
-  "interests": ["Web3", "Machine Learning", "Design Systems", "Open Source"],
-  "softSkills": ["Communication", "Teamwork", "Adaptability", "Problem-Solving"]
+  "categories": [
+    {
+      "id": "backend",
+      "label": "Backend & Core Systems",
+      "description": "High-performance server runtimes, microservices, and enterprise frameworks.",
+      "skills": [
+        {
+          "name": "PHP",
+          "version": "v8.3",
+          "icon": "/tech_stack_icons/php.svg",
+          "category": "Backend",
+          "desc": "Fondasi web handal, performa eksekusi tinggi, dan arsitektur enterprise.",
+          "proficiency": "Advanced"
+        },
+        {
+          "name": "Laravel",
+          "version": "v11 Framework",
+          "icon": "/tech_stack_icons/laravel.svg",
+          "category": "Backend",
+          "desc": "Enterprise MVC, Eloquent ORM, queue workers, dan ecosystem authentication bawaan.",
+          "proficiency": "Mastery"
+        },
+        {
+          "name": "Golang",
+          "version": "v1.23 High Perf",
+          "icon": "/tech_stack_icons/golang.svg",
+          "category": "Backend",
+          "desc": "Bahasa komputasi tinggi, concurrency goroutines, dan konsumsi memori minimal.",
+          "proficiency": "Advanced"
+        },
+        {
+          "name": "Java",
+          "version": "Java 21 LTS",
+          "icon": "/tech_stack_icons/java.svg",
+          "category": "Backend",
+          "desc": "Platform handal untuk enterprise core engine dengan Virtual Threads (Project Loom).",
+          "proficiency": "Proficient"
+        },
+        {
+          "name": "Node.js",
+          "version": "v22 LTS",
+          "icon": "/tech_stack_icons/nodejs.svg",
+          "category": "Backend",
+          "desc": "Event-driven asynchronous runtime untuk service real-time berlatensi rendah.",
+          "proficiency": "Advanced"
+        },
+        {
+          "name": "Python",
+          "version": "v3.12 AI & Data",
+          "icon": "/tech_stack_icons/python.svg",
+          "category": "Backend",
+          "desc": "Ekosistem utama untuk machine learning, fine-tuning LLM, FastAPI, PyTorch, dan komputasi data.",
+          "proficiency": "Advanced"
+        }
+      ]
+    },
+    {
+      "id": "frontend",
+      "label": "Frontend & Modern UI",
+      "description": "Component-driven architectures, reactive frameworks, and responsive UX design.",
+      "skills": [
+        {
+          "name": "React.js",
+          "version": "v19 Modern",
+          "icon": "/tech_stack_icons/react.svg",
+          "category": "Frontend",
+          "desc": "Library komponen interaktif modern dengan arsitektur virtual DOM yang responsif.",
+          "proficiency": "Mastery"
+        },
+        {
+          "name": "Next.js",
+          "version": "v15 App Router",
+          "icon": "/tech_stack_icons/nextjs.svg",
+          "category": "Frontend",
+          "desc": "Fullstack framework dengan SSR, SSG, streaming server components, dan SEO tingkat tinggi.",
+          "proficiency": "Advanced"
+        },
+        {
+          "name": "Vue.js",
+          "version": "v3 Reactive",
+          "icon": "/tech_stack_icons/vue.svg",
+          "category": "Frontend",
+          "desc": "Framework frontend reaktif yang ringan dan modular dengan Composition API.",
+          "proficiency": "Proficient"
+        },
+        {
+          "name": "TypeScript",
+          "version": "Strict Typing",
+          "icon": "/tech_stack_icons/typescript.svg",
+          "category": "Frontend",
+          "desc": "Superset JavaScript berstatus strictly-typed untuk mencegah runtime error di level kompilasi.",
+          "proficiency": "Mastery"
+        },
+        {
+          "name": "Tailwind CSS",
+          "version": "v4 Engine",
+          "icon": "/tech_stack_icons/tailwind.svg",
+          "category": "Frontend",
+          "desc": "Engine CSS utility-first untuk desain UI modern berkecepatan tinggi dan responsif.",
+          "proficiency": "Mastery"
+        },
+        {
+          "name": "Figma",
+          "version": "Pro Design",
+          "icon": "/tech_stack_icons/figma.svg",
+          "category": "Frontend",
+          "desc": "Standar industri untuk UI/UX wireframing, prototyping interaktif, dan desain sistem.",
+          "proficiency": "Proficient"
+        }
+      ]
+    },
+    {
+      "id": "database",
+      "label": "Database & Storage",
+      "description": "Relational ACID integrity, distributed NoSQL, and low-latency cache systems.",
+      "skills": [
+        {
+          "name": "PostgreSQL",
+          "version": "v16 Enterprise",
+          "icon": "/tech_stack_icons/postgresql.svg",
+          "category": "Database",
+          "desc": "Relational database engine enterprise dengan fitur JSONB, indexing canggih, dan integritas ACID.",
+          "proficiency": "Advanced"
+        },
+        {
+          "name": "MySQL",
+          "version": "v8.4 RDBMS",
+          "icon": "/tech_stack_icons/mysql.svg",
+          "category": "Database",
+          "desc": "Database relasional populer dengan performa query tinggi dan replikasi data stabil.",
+          "proficiency": "Mastery"
+        },
+        {
+          "name": "MongoDB",
+          "version": "v7.0 NoSQL",
+          "icon": "/tech_stack_icons/mongodb.svg",
+          "category": "Database",
+          "desc": "NoSQL document database untuk fleksibilitas skema dan skalabilitas data dinamis.",
+          "proficiency": "Proficient"
+        }
+      ]
+    },
+    {
+      "id": "devops",
+      "label": "DevOps & Cloud Infrastructure",
+      "description": "Containerization, cluster orchestration, CI/CD automation, and edge delivery.",
+      "skills": [
+        {
+          "name": "Docker",
+          "version": "Containers",
+          "icon": "/tech_stack_icons/docker.svg",
+          "category": "DevOps",
+          "desc": "Kontainerisasi aplikasi untuk standarisasi environment development hingga production.",
+          "proficiency": "Advanced"
+        },
+        {
+          "name": "Kubernetes (K8s)",
+          "version": "Orchestration",
+          "icon": "/tech_stack_icons/kubernetes.svg",
+          "category": "DevOps",
+          "desc": "Otomatisasi orkestrasi, deployment, auto-scaling, dan manajemen container skala besar.",
+          "proficiency": "Proficient"
+        },
+        {
+          "name": "GitHub & CI/CD",
+          "version": "Workflows",
+          "icon": "/tech_stack_icons/github.svg",
+          "category": "DevOps",
+          "desc": "Automated pipelines, multi-stage testing, code quality checks, and deployment triggers.",
+          "proficiency": "Advanced"
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "label": "AI & Intelligent Automation",
+      "description": "Large Language Models, neural speech synthesis, and custom fine-tuning.",
+      "skills": [
+        {
+          "name": "OpenAI GPT-4o",
+          "version": "GPT-4o API",
+          "icon": "/tech_stack_icons/openai.svg",
+          "category": "AI",
+          "desc": "Integrasi kecerdasan buatan terdepan untuk chatbot cerdas dan otomatisasi alur kerja.",
+          "proficiency": "Advanced"
+        },
+        {
+          "name": "Qwen 2.5B & Local LLM",
+          "version": "Local LLM",
+          "icon": "/tech_stack_icons/openai.svg",
+          "category": "AI",
+          "desc": "Model bahasa lokal open-source untuk komputasi privat bebas biaya langganan API.",
+          "proficiency": "Advanced"
+        }
+      ]
+    }
+  ],
+  "architectureStudies": [
+    {
+      "id": "hris-engine",
+      "title": "Enterprise HRIS Core Engine",
+      "architecture": "Java 21 Virtual Threads (Project Loom), Biometrics & Immutable Audit Engine",
+      "challenges": [
+        {
+          "problem": "I/O Blocking Bottlenecks pada jutaan log absensi bersamaan",
+          "solution": "Mengadopsi Java 21 Virtual Threads untuk mengeksekusi thread ringan tanpa memory overhead berlebih."
+        },
+        {
+          "problem": "Kompleksitas multi-level cuti korporat dan manipulasi data",
+          "solution": "Dynamic Approval Engine dengan expiry triggers otomatis dan tamper-evident audit log."
+        },
+        {
+          "problem": "Kecurangan presensi dan spoofing lokasi",
+          "solution": "Biometric Face Recognition terintegrasi Geofencing GPS dan Liveness Detection anti-fraud."
+        }
+      ],
+      "tags": ["Java 21", "Loom Virtual Threads", "Dynamic Approval", "Biometric AI", "Geofencing"]
+    },
+    {
+      "id": "master-data-hub",
+      "title": "High-Throughput Centralized Master Data Hub",
+      "architecture": "Ultra Low-Latency Single Source of Truth with gRPC, Protobuf & Zero-Allocation Go",
+      "challenges": [
+        {
+          "problem": "Ukuran payload JSON besar dan latensi HTTP/1.1",
+          "solution": "gRPC & Protocol Buffers memangkas ukuran paket data 60-80% via HTTP/2 binary multiplexing."
+        },
+        {
+          "problem": "Lonjakan konkurensi data hingga ratusan ribu request per detik",
+          "solution": "Go Fiber & Fasthttp engine dengan zero memory allocation dan Goroutines asinkron."
+        },
+        {
+          "problem": "Inkonsistensi data saat terjadi transient network failure",
+          "solution": "Idempotency Keys dengan Redis Cache-Aside pattern dan Append-Only transaction logging."
+        }
+      ],
+      "tags": ["gRPC", "Protobuf", "Go Fiber", "Goroutines", "Redis Cache-Aside", "Idempotency"]
+    },
+    {
+      "id": "financial-governance",
+      "title": "Multi-Entity Financial Governance & Subsidiary Assessment",
+      "architecture": "Multi-Tenant Financial Analytics with Go Parallel Engine & Serializable Isolation",
+      "challenges": [
+        {
+          "problem": "Isolasi data antar anak perusahaan (multi-tenancy) yang ketat",
+          "solution": "Dual-View Granular RBAC dengan claim JWT terenkripsi dan query tenant isolation di level database."
+        },
+        {
+          "problem": "Perhitungan rasio keuangan dan penilaian kesehatan korporasi memakan waktu",
+          "solution": "Go parallel analytic engine mengevaluasi scoring matrix kesehatan anak perusahaan secara real-time."
+        },
+        {
+          "problem": "Race conditions pada penutupan buku kas akhir periode",
+          "solution": "SERIALIZABLE isolation level database dengan pessimistic locks pada alur transaksional kritis."
+        }
+      ],
+      "tags": ["Multi-Tenant JWT", "Go Parallel Analytics", "Health Scoring", "Serializable Isolation"]
+    }
+  ],
+  "interests": [
+    "Artificial Intelligence & LLMs",
+    "Distributed Systems Architecture",
+    "Cloud Native & Kubernetes",
+    "E-Commerce & UMKM Tech",
+    "Real-Time Voice AI & WebRTC",
+    "Open Source Ecosystem"
+  ],
+  "softSkills": [
+    "Technical Architecture Planning",
+    "System Scalability & Performance Tuning",
+    "Cross-Functional Team Collaboration",
+    "Critical Problem Solving",
+    "Code Review & Engineering Mentorship",
+    "Agile & Scrum Methodologies"
+  ]
 }

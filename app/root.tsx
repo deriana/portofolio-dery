@@ -10,36 +10,12 @@ import {
 import type { Route } from "./+types/root";
 import "@/app.css";
 
-import LoadingIndicator from "@/components/ui/loader";
-import { useNavigation } from "react-router";
-import { useEffect, useState } from "react";
 import { ThemeProvider } from "./components/theme-provider";
-
-export function usePageLoading(delay = 200) {
-  const navigation = useNavigation();
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    let timeout: NodeJS.Timeout | undefined;
-
-    if (navigation.state === "loading") {
-      timeout = setTimeout(() => setShow(true), delay);
-    } else {
-      if (timeout) clearTimeout(timeout);
-      setShow(false);
-    }
-
-    return () => {
-      if (timeout) clearTimeout(timeout);
-    };
-  }, [navigation.state, delay]);
-
-  return show;
-}
+import { SkyThemeProvider } from "./components/sky-theme-context";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  { rel: "icon", type: "image/png", href:"icon.jpeg"},
+  { rel: "icon", type: "image/png", href: "icon.jpeg" },
   {
     rel: "preconnect",
     href: "https://fonts.gstatic.com",
@@ -47,13 +23,13 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap",
   },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -70,19 +46,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const [initialLoading, setInitialLoading] = useState(true);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setInitialLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      {initialLoading ? <LoadingIndicator /> : <Outlet />}
+      <SkyThemeProvider>
+        <Outlet />
+      </SkyThemeProvider>
     </ThemeProvider>
   );
 }

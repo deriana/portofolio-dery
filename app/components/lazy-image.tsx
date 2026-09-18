@@ -1,7 +1,5 @@
-// src/components/lazy-image.tsx
-
 import type { LazyImageProps } from "@/types/props";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Cache global di luar komponen
 const loadedImages = new Set<string>();
@@ -13,31 +11,43 @@ export function LazyImage({
   placeholderClassName = "",
   ...rest
 }: LazyImageProps) {
-  const [isLoaded, setIsLoaded] = useState(() => loadedImages.has(src));
+  const [isLoaded, setIsLoaded] = useState(() => Boolean(src && loadedImages.has(src)));
+  const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    if (loadedImages.has(src)) {
+    if (src && loadedImages.has(src)) {
+      setIsLoaded(true);
+      return;
+    }
+
+    // Check if the image was already loaded or cached by the browser before React attached onLoad
+    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
+      if (src) loadedImages.add(src);
       setIsLoaded(true);
     }
   }, [src]);
 
   function handleLoad() {
-    loadedImages.add(src);
+    if (src) {
+      loadedImages.add(src);
+    }
     setIsLoaded(true);
   }
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden">
       {!isLoaded && (
         <div
-          className={`absolute inset-0 bg-gray-300 animate-pulse ${placeholderClassName}`}
+          className={`absolute inset-0 bg-muted animate-pulse ${placeholderClassName}`}
         />
       )}
       <img
+        ref={imgRef}
         src={src}
         alt={alt}
         onLoad={handleLoad}
-        className={`transition-opacity duration-700 ease-in-out ${
+        onError={() => setIsLoaded(true)}
+        className={`transition-opacity duration-300 ease-in-out ${
           isLoaded ? "opacity-100" : "opacity-0"
         } ${className}`}
         {...rest}

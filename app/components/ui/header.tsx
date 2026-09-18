@@ -12,16 +12,16 @@ export function Header() {
   return (
     <>
       <Profile
-        pathBanner="banner.png"
-        pathIcon="sui.gif"
+        pathBanner="banner-hd.png"
+        pathIcon="profile-opt.webp"
         name="Deryana Maruf"
         email="deryana.maruf@gmail.com"
-        bio="Backend Developer & Tech Enthusiast. I love Laravel, React, and building clean, efficient systems to solve real-world problems."
+        bio="Backend Engineer berfokus pada arsitektur server, RESTful API performa tinggi, dan keandalan database. Berpengalaman membangun sistem produksi skala enterprise dengan Laravel & Go."
       />
 
       <Navigation items={navItems} />
 
-      <hr className="w-full border-t-2 border-primary my-4" />
+      <hr className="w-full border-t border-border my-4" />
     </>
   );
 }

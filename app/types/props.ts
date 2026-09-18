@@ -26,22 +26,23 @@ export interface PageTitleProps {
 }
 
 export interface PortfolioCardProps {
-  item: {
-    id: number | string;
-    title: string;
-    description: string;
-    image: string;
-    author: string;
-  };
+  item: PortfolioItem;
 }
 
 export interface PortfolioItem {
   id: number;
   title: string;
+  category?: string;
+  client?: string;
+  tagline?: string;
   description: string;
   image: string;
   author: string;
   url: string;
+  demoUrl?: string;
+  features?: string[];
+  tags?: string[];
+  metrics?: { label: string; value: string }[];
 }
 
 export interface PortfolioListProps {
@@ -55,14 +56,42 @@ export interface PortfolioModalProps {
   item: PortfolioItem | null;
 }
 
+export interface SkillItem {
+  name: string;
+  version?: string;
+  icon: string;
+  category: string;
+  desc: string;
+  proficiency?: string;
+}
+
+export interface ArchitectureStudy {
+  id: string;
+  title: string;
+  architecture: string;
+  challenges: { problem: string; solution: string }[];
+  tags: string[];
+}
+
 export interface Skill {
   icon: string;
   label: string;
   desc: string;
+  version?: string;
+  category?: string;
+}
+
+export interface SkillCategory {
+  id: string;
+  label: string;
+  description: string;
+  skills: SkillItem[];
 }
 
 export interface SkillsJson {
   technical: Skill[];
+  categories?: SkillCategory[];
+  architectureStudies?: ArchitectureStudy[];
   interests: string[];
   softSkills: string[];
 }
@@ -71,6 +100,8 @@ export interface SkillCardProps {
   icon: string;
   label: string;
   desc: string;
+  version?: string;
+  category?: string;
 }
 
 export type NavItem = {

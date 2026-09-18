@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#061325"/>
+      <stop offset="100%" stop-color="#020814"/>
+    </linearGradient>
+    <linearGradient id="cardBg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0C203E"/>
+      <stop offset="100%" stop-color="#07142A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="800" fill="url(#bg2)"/>
+  <rect width="1280" height="60" fill="#081A38"/>
+  <line x1="0" y1="60" x2="1280" y2="60" stroke="#15325C" stroke-width="1"/>
+
+  <rect x="24" y="16" width="28" height="28" rx="6" fill="#0EA5E9"/>
+  <path d="M38 22V38M30 30H46" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <text x="64" y="35" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="800">DOCURE · SIMRS</text>
+  <text x="225" y="35" fill="#38BDF8" font-family="sans-serif" font-size="11" font-weight="700">HOSPITAL SUITE</text>
+
+  <rect x="360" y="14" width="380" height="32" rx="8" fill="#0D284F" stroke="#1C457D" stroke-width="1"/>
+  <text x="380" y="34" fill="#64748B" font-family="sans-serif" font-size="12">Cari No Rekam Medis (RM), Nama Pasien, NIK...</text>
+
+  <rect x="980" y="15" width="140" height="30" rx="15" fill="#064E3B" stroke="#10B981" stroke-width="1"/>
+  <circle cx="995" cy="30" r="4" fill="#10B981"/>
+  <text x="1005" y="34" fill="#6EE7B7" font-family="sans-serif" font-size="11" font-weight="700">SatuSehat Integrated</text>
+
+  <rect x="1130" y="15" width="125" height="30" rx="8" fill="#0D284F" stroke="#1C457D" stroke-width="1"/>
+  <text x="1145" y="34" fill="#E2E8F0" font-family="sans-serif" font-size="12" font-weight="600">Dr. Sp.PD (Poli)</text>
+
+  <rect x="0" y="60" width="220" height="740" fill="#051124"/>
+  <line x1="220" y1="60" x2="220" y2="800" stroke="#15325C" stroke-width="1"/>
+
+  <g transform="translate(16, 80)">
+    <rect x="0" y="0" width="188" height="38" rx="8" fill="#0D3262" stroke="#38BDF8" stroke-width="1"/>
+    <circle cx="20" cy="19" r="6" fill="#38BDF8"/>
+    <text x="36" y="24" fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="700">Poli &amp; Rawat Jalan</text>
+
+    <text x="36" y="71" fill="#94A3B8" font-family="sans-serif" font-size="13">Rekam Medis (EMR)</text>
+    <text x="36" y="117" fill="#94A3B8" font-family="sans-serif" font-size="13">Antrean &amp; Farmasi</text>
+    <text x="36" y="163" fill="#94A3B8" font-family="sans-serif" font-size="13">Rawat Inap &amp; Bed</text>
+    <text x="36" y="209" fill="#94A3B8" font-family="sans-serif" font-size="13">Laboratorium (LIS)</text>
+    <text x="36" y="255" fill="#94A3B8" font-family="sans-serif" font-size="13">Billing &amp; BPJS VClaim</text>
+  </g>
+
+  <text x="250" y="102" fill="#FFFFFF" font-family="sans-serif" font-size="22" font-weight="800">Sistem Informasi Manajemen Rumah Sakit (SIMRS Core)</text>
+  <text x="250" y="122" fill="#94A3B8" font-family="sans-serif" font-size="12">Pemantauan antrean poli, rekam medis elektronik real-time, ketersediaan bed, dan resep farmasi</text>
+
+  <g transform="translate(250, 140)">
+    <rect x="0" y="0" width="235" height="90" rx="12" fill="url(#cardBg2)" stroke="#173B6C" stroke-width="1"/>
+    <text x="18" y="28" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="700">PASIEN HARI INI</text>
+    <text x="18" y="60" fill="#FFFFFF" font-family="sans-serif" font-size="26" font-weight="900">642 <tspan font-size="14" fill="#94A3B8" font-weight="500">Pasien</tspan></text>
+    <text x="18" y="79" fill="#10B981" font-family="sans-serif" font-size="10" font-weight="700">▲ 412 BPJS · 230 Umum</text>
+
+    <rect x="255" y="0" width="235" height="90" rx="12" fill="url(#cardBg2)" stroke="#173B6C" stroke-width="1"/>
+    <text x="273" y="28" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="700">ANTREAN AKTIF POLI</text>
+    <text x="273" y="60" fill="#38BDF8" font-family="sans-serif" font-size="26" font-weight="900">28 <tspan font-size="14" fill="#94A3B8" font-weight="500">Sedang Dilayani</tspan></text>
+    <text x="273" y="79" fill="#38BDF8" font-family="sans-serif" font-size="10">Avg Waktu Konsul: 8.5 Mnt</text>
+
+    <rect x="510" y="0" width="235" height="90" rx="12" fill="url(#cardBg2)" stroke="#173B6C" stroke-width="1"/>
+    <text x="528" y="28" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="700">RESEP ELEKTRONIK (E-RESEP)</text>
+    <text x="528" y="60" fill="#10B981" font-family="sans-serif" font-size="26" font-weight="900">385 <tspan font-size="14" fill="#94A3B8" font-weight="500">Selesai</tspan></text>
+    <text x="528" y="79" fill="#10B981" font-family="sans-serif" font-size="10">Farmasi Obat Racik 98% On-Time</text>
+
+    <rect x="765" y="0" width="235" height="90" rx="12" fill="url(#cardBg2)" stroke="#173B6C" stroke-width="1"/>
+    <text x="783" y="28" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="700">BED OCCUPANCY (BOR)</text>
+    <text x="783" y="60" fill="#F59E0B" font-family="sans-serif" font-size="26" font-weight="900">84.6%</text>
+    <text x="783" y="79" fill="#94A3B8" font-family="sans-serif" font-size="10">184 Bed Terisi / 218 Total</text>
+  </g>
+
+  <g transform="translate(250, 250)">
+    <rect x="0" y="0" width="1000" height="510" rx="14" fill="url(#cardBg2)" stroke="#173B6C" stroke-width="1"/>
+    <text x="24" y="32" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="700">Live Patient Queue &amp; Electronic Medical Records (EMR)</text>
+
+    <rect x="20" y="50" width="960" height="34" rx="6" fill="#051124"/>
+    <text x="35" y="72" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="700">NO. ANTREAN</text>
+    <text x="160" y="72" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="700">NO RM / NIK</text>
+    <text x="320" y="72" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="700">NAMA PASIEN</text>
+    <text x="520" y="72" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="700">POLI TUJUAN</text>
+    <text x="700" y="72" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="700">PENJAMIN</text>
+    <text x="860" y="72" fill="#94A3B8" font-family="sans-serif" font-size="11" font-weight="700">STATUS</text>
+
+    <line x1="20" y1="125" x2="980" y2="125" stroke="#15325C" stroke-width="1"/>
+    <text x="35" y="112" fill="#38BDF8" font-family="monospace" font-size="14" font-weight="800">A-042</text>
+    <text x="160" y="112" fill="#FFFFFF" font-family="sans-serif" font-size="12">RM-0091823</text>
+    <text x="320" y="112" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="600">Ny. Ratna Sulistyo (46 Th)</text>
+    <text x="520" y="112" fill="#CBD5E1" font-family="sans-serif" font-size="12">Poli Penyakit Dalam (R.302)</text>
+    <text x="700" y="112" fill="#34D399" font-family="sans-serif" font-size="12">BPJS Kesehatan</text>
+    <rect x="860" y="97" width="100" height="22" rx="11" fill="#047857" stroke="#10B981" stroke-width="1"/>
+    <text x="875" y="112" fill="#D1FAE5" font-family="sans-serif" font-size="10" font-weight="700">DIPERIKSA</text>
+
+    <line x1="20" y1="170" x2="980" y2="170" stroke="#15325C" stroke-width="1"/>
+    <text x="35" y="157" fill="#38BDF8" font-family="monospace" font-size="14" font-weight="800">A-043</text>
+    <text x="160" y="157" fill="#FFFFFF" font-family="sans-serif" font-size="12">RM-0084712</text>
+    <text x="320" y="157" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="600">Tn. Hendra Wijaya (52 Th)</text>
+    <text x="520" y="157" fill="#CBD5E1" font-family="sans-serif" font-size="12">Poli Jantung &amp; Pembuluh</text>
+    <text x="700" y="157" fill="#60A5FA" font-family="sans-serif" font-size="12">Asuransi Mandiri Inhealth</text>
+    <rect x="860" y="142" width="100" height="22" rx="11" fill="#1E3A8A" stroke="#3B82F6" stroke-width="1"/>
+    <text x="882" y="157" fill="#DBEAFE" font-family="sans-serif" font-size="10" font-weight="700">MENUNGGU</text>
+  </g>
+</svg>

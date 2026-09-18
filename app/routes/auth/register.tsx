@@ -1,7 +1,5 @@
 import { RegisterPage } from "@/pages/auth/register-page";
-import type { Route } from "./+types/register";
-
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Register Page" },
     { name: "description", content: "Please register to create an account." },
