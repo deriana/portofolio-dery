@@ -320,6 +320,242 @@ function MountainDeer({
   );
 }
 
+function MountainWaterfall({
+  x = 952,
+  y = 150,
+  period,
+}: {
+  x?: number;
+  y?: number;
+  period: TimePeriod;
+}) {
+  const isNight = period === "night";
+  const isSunset = period === "sunset";
+  const isDawn = period === "dawn";
+
+  const waterColor = isNight
+    ? "#93c5fd"
+    : isSunset
+    ? "#fed7aa"
+    : isDawn
+    ? "#fed7aa"
+    : "#e0f2fe";
+
+  const foamColor = isNight
+    ? "#dbeafe"
+    : isSunset
+    ? "#ffedd5"
+    : "#ffffff";
+
+  return (
+    <g transform={`translate(${x}, ${y})`}>
+      {/* Dark mountain gorge ravine where water carves through rock */}
+      <path
+        d="M -3,-2 Q -6,35 -8,65 Q -9,95 -12,128 L 16,128 Q 13,95 11,65 Q 9,35 7,-2 Z"
+        fill="#050811"
+        opacity={0.6}
+      />
+
+      {/* Rock shelf dividing cascades */}
+      <rect x="-6" y="58" width="16" height="4" rx="1.5" fill="#0f172a" opacity={0.8} />
+
+      {/* Tier 1 Cascade */}
+      <path
+        d="M -1,0 Q -2,30 -4,58 L 7,58 Q 5,30 4,0 Z"
+        fill={waterColor}
+        opacity={0.85}
+      />
+      <path
+        d="M 1,0 L -1,58 M 3,0 L 2,58 M -2,10 L -3,55"
+        stroke={foamColor}
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeDasharray="6 4"
+        style={{ animation: "waterfallStream 0.8s linear infinite" }}
+      />
+      <ellipse cx="1" cy="59" rx="8" ry="2.2" fill={foamColor} opacity={0.85} />
+
+      {/* Tier 2 Plunge */}
+      <path
+        d="M -4,60 Q -6,92 -8,126 L 9,126 Q 8,92 6,60 Z"
+        fill={waterColor}
+        opacity={0.9}
+      />
+      <path
+        d="M -1,60 L -4,126 M 2,60 L 0,126 M 5,60 L 4,126 M -3,70 L -6,122"
+        stroke={foamColor}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeDasharray="7 5"
+        style={{ animation: "waterfallStream 0.7s linear infinite" }}
+      />
+
+      {/* Foaming plunge pool */}
+      <ellipse
+        cx="0"
+        cy="126"
+        rx="14"
+        ry="3.5"
+        fill={foamColor}
+        opacity={0.92}
+        style={{ filter: "drop-shadow(0 0 6px rgba(255,255,255,0.85))" }}
+      />
+      {/* Rising misty spray */}
+      <ellipse
+        cx="1"
+        cy="120"
+        rx="18"
+        ry="6"
+        fill={isNight ? "#93c5fd" : "#ffffff"}
+        opacity={0.35}
+        style={{
+          filter: "blur(4px)",
+          animation: "waterfallMist 2.5s ease-in-out infinite alternate",
+        }}
+      />
+    </g>
+  );
+}
+
+function MountainLake({
+  period,
+  c,
+}: {
+  period: TimePeriod;
+  c: MountainPalette;
+}) {
+  const isNight = period === "night";
+  const isSunset = period === "sunset";
+  const isDawn = period === "dawn";
+  const lakeGradId = `lake-grad-${period}`;
+
+  return (
+    <g>
+      <defs>
+        <linearGradient id={lakeGradId} x1="0%" y1="0%" x2="0%" y2="100%">
+          {isNight && (
+            <>
+              <stop offset="0%" stopColor="#0a1628" stopOpacity="0.95" />
+              <stop offset="50%" stopColor="#0f2445" stopOpacity="0.88" />
+              <stop offset="100%" stopColor="#050d1a" stopOpacity="0.98" />
+            </>
+          )}
+          {isDawn && (
+            <>
+              <stop offset="0%" stopColor="#4a1838" stopOpacity="0.92" />
+              <stop offset="45%" stopColor="#83284a" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#f4a261" stopOpacity="0.75" />
+            </>
+          )}
+          {period === "day" && (
+            <>
+              <stop offset="0%" stopColor="#0284c7" stopOpacity="0.92" />
+              <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.88" />
+              <stop offset="100%" stopColor="#0369a1" stopOpacity="0.95" />
+            </>
+          )}
+          {isSunset && (
+            <>
+              <stop offset="0%" stopColor="#581c3f" stopOpacity="0.95" />
+              <stop offset="50%" stopColor="#c2410c" stopOpacity="0.88" />
+              <stop offset="100%" stopColor="#f97316" stopOpacity="0.82" />
+            </>
+          )}
+        </linearGradient>
+
+        <clipPath id="lake-clip">
+          <path d="M 410,285 Q 560,268 730,272 Q 900,268 1050,282 Q 930,332 730,338 Q 530,332 410,285 Z" />
+        </clipPath>
+      </defs>
+
+      {/* Lake Water Basin */}
+      <path
+        d="M 410,285 Q 560,268 730,272 Q 900,268 1050,282 Q 930,332 730,338 Q 530,332 410,285 Z"
+        fill={`url(#${lakeGradId})`}
+      />
+
+      {/* Mirrored Reflections */}
+      <g clipPath="url(#lake-clip)">
+        {/* Mountain ridge mirror reflections */}
+        <path
+          d="M 400,280 L 490,298 L 580,285 L 670,302 L 770,284 L 860,296 L 950,282 L 1050,288 L 1050,340 L 400,340 Z"
+          fill={c.mid}
+          opacity={0.32}
+        />
+        <path
+          d="M 420,282 L 530,292 L 620,286 L 710,294 L 800,288 L 890,293 L 980,286 L 1040,290 L 1040,340 L 420,340 Z"
+          fill={c.back}
+          opacity={0.22}
+        />
+
+        {/* Waterfall Stream Reflection */}
+        <path
+          d="M 948,280 L 944,324 L 958,324 L 954,280 Z"
+          fill={isNight ? "#93c5fd" : "#ffffff"}
+          opacity={0.38}
+          style={{ filter: "blur(2px)" }}
+        />
+
+        {/* Sunpath / Moonpath reflection */}
+        {isNight && (
+          <g style={{ animation: "celestialReflection 4s ease-in-out infinite alternate" }}>
+            <ellipse cx="780" cy="292" rx="18" ry="3" fill="#e0e7ff" opacity={0.35} style={{ filter: "blur(2px)" }} />
+            <ellipse cx="780" cy="304" rx="28" ry="4" fill="#c7d2fe" opacity={0.30} style={{ filter: "blur(3px)" }} />
+            <ellipse cx="780" cy="318" rx="22" ry="3.5" fill="#a5b4fc" opacity={0.25} style={{ filter: "blur(3px)" }} />
+          </g>
+        )}
+        {period === "day" && (
+          <g style={{ animation: "celestialReflection 3.5s ease-in-out infinite alternate" }}>
+            <ellipse cx="710" cy="288" rx="32" ry="3.5" fill="#ffffff" opacity={0.45} style={{ filter: "blur(2px)" }} />
+            <ellipse cx="710" cy="302" rx="42" ry="4.5" fill="#fef08a" opacity={0.38} style={{ filter: "blur(3px)" }} />
+            <ellipse cx="710" cy="318" rx="36" ry="4" fill="#ffffff" opacity={0.32} style={{ filter: "blur(2px)" }} />
+          </g>
+        )}
+        {isSunset && (
+          <g style={{ animation: "celestialReflection 3.8s ease-in-out infinite alternate" }}>
+            <ellipse cx="640" cy="290" rx="30" ry="3.5" fill="#fed7aa" opacity={0.5} style={{ filter: "blur(2px)" }} />
+            <ellipse cx="640" cy="306" rx="44" ry="5" fill="#f97316" opacity={0.42} style={{ filter: "blur(3px)" }} />
+            <ellipse cx="640" cy="322" rx="36" ry="4" fill="#ea580c" opacity={0.35} style={{ filter: "blur(3px)" }} />
+          </g>
+        )}
+        {isDawn && (
+          <g style={{ animation: "celestialReflection 4s ease-in-out infinite alternate" }}>
+            <ellipse cx="790" cy="292" rx="26" ry="3.5" fill="#fde68a" opacity={0.45} style={{ filter: "blur(2px)" }} />
+            <ellipse cx="790" cy="308" rx="38" ry="4.5" fill="#fb923c" opacity={0.38} style={{ filter: "blur(3px)" }} />
+          </g>
+        )}
+
+        {/* Shimmering horizontal water ripple highlights */}
+        <g stroke="rgba(255, 255, 255, 0.45)" strokeLinecap="round" style={{ animation: "waterRipples 3.5s ease-in-out infinite alternate" }}>
+          <line x1="470" y1="286" x2="560" y2="286" strokeWidth="0.9" />
+          <line x1="600" y1="289" x2="720" y2="289" strokeWidth="1.1" />
+          <line x1="770" y1="287" x2="890" y2="287" strokeWidth="1.0" />
+          <line x1="920" y1="289" x2="1010" y2="289" strokeWidth="0.8" />
+
+          <line x1="510" y1="298" x2="630" y2="298" strokeWidth="1.2" />
+          <line x1="680" y1="301" x2="830" y2="301" strokeWidth="1.3" />
+          <line x1="860" y1="299" x2="960" y2="299" strokeWidth="1.0" />
+
+          <line x1="480" y1="312" x2="590" y2="312" strokeWidth="1.0" />
+          <line x1="640" y1="314" x2="780" y2="314" strokeWidth="1.2" />
+          <line x1="820" y1="313" x2="940" y2="313" strokeWidth="1.1" />
+
+          <line x1="560" y1="326" x2="700" y2="326" strokeWidth="0.9" />
+          <line x1="740" y1="327" x2="870" y2="327" strokeWidth="0.9" />
+        </g>
+      </g>
+
+      {/* Subtle shoreline edge highlight */}
+      <path
+        d="M 410,285 Q 560,268 730,272 Q 900,268 1050,282"
+        stroke="rgba(255, 255, 255, 0.4)"
+        strokeWidth="1.2"
+        fill="none"
+      />
+    </g>
+  );
+}
+
 function MountainScene({ period }: { period: TimePeriod }) {
   const c = MOUNTAIN_COLORS[period];
   if (!c) return null;
@@ -362,7 +598,13 @@ function MountainScene({ period }: { period: TimePeriod }) {
              L1070,152 L1160,115 L1250,148 L1330,110 L1440,132 L1440,340 Z"
         />
 
-        {/* ── 3. Soaring Birds across Sky ── */}
+        {/* ── 3. Cascading Alpine Waterfall ── */}
+        <MountainWaterfall x={952} y={150} period={period} />
+
+        {/* ── 4. Serene Mountain Lake & Mirror Reflections ── */}
+        <MountainLake period={period} c={c} />
+
+        {/* ── 5. Soaring Birds across Sky ── */}
         {period === "dawn" && (
           <g>
             <SoaringBird x={480} y={88} scale={0.55} opacity={0.7} color={c.mid} />
@@ -955,14 +1197,69 @@ function StarsCanvas() {
 }
 
 /* ─────────────────────────────────────────────
-   AURORA BANDS
+   AURORA BOREALIS (Northern Lights at Night)
+   Multi-layered luminous ribbons, rays & coronal glow
 ───────────────────────────────────────────── */
 function AuroraBands() {
   return (
-    <div className="absolute top-0 left-0 right-0 h-[60vh] overflow-hidden pointer-events-none" style={{ mixBlendMode: "screen" }}>
-      <div className="absolute -top-28 -left-[20%] w-[140%] h-[340px] blur-[56px] opacity-70" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(16,185,129,0.42), rgba(20,184,166,0.22), transparent 75%)", animation: "aurora1 14s ease-in-out infinite alternate" }} />
-      <div className="absolute -top-20 left-[5%] w-[130%] h-[390px] blur-[64px] opacity-60" style={{ background: "radial-gradient(ellipse at 40% 60%, rgba(6,182,212,0.36), rgba(56,189,248,0.22), transparent 70%)", animation: "aurora2 18s ease-in-out infinite alternate" }} />
-      <div className="absolute -top-10 left-0 w-[120%] h-[360px] blur-[68px] opacity-45" style={{ background: "radial-gradient(ellipse at 65% 45%, rgba(139,92,246,0.32), rgba(99,102,241,0.18), transparent 68%)", animation: "aurora3 16s ease-in-out infinite alternate" }} />
+    <div
+      className="absolute top-0 left-0 right-0 h-[70vh] overflow-hidden pointer-events-none select-none"
+      style={{ mixBlendMode: "screen" }}
+    >
+      {/* 1. Deep atmospheric green-cyan coronal glow */}
+      <div
+        className="absolute -top-24 left-1/2 -translate-x-1/2 w-[130vw] h-[450px]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 30%, rgba(16,185,129,0.38) 0%, rgba(6,182,212,0.25) 35%, rgba(139,92,246,0.18) 65%, transparent 80%)",
+          filter: "blur(54px)",
+          animation: "auroraPulse 10s ease-in-out infinite alternate",
+        }}
+      />
+
+      {/* 2. Primary Ribbon: Sweeping Emerald Wave */}
+      <div
+        className="absolute -top-12 -left-[15%] w-[135%] h-[340px]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 45% 50%, rgba(52,211,153,0.60) 0%, rgba(16,185,129,0.45) 30%, rgba(5,150,105,0.20) 60%, transparent 75%)",
+          filter: "blur(38px)",
+          animation: "auroraDrift1 16s ease-in-out infinite alternate",
+        }}
+      />
+
+      {/* 3. Secondary Ribbon: Electric Turquoise & Cyan Wave */}
+      <div
+        className="absolute -top-16 left-[5%] w-[125%] h-[370px]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 55% 45%, rgba(34,211,238,0.52) 0%, rgba(6,182,212,0.38) 35%, rgba(2,132,199,0.18) 65%, transparent 80%)",
+          filter: "blur(42px)",
+          animation: "auroraDrift2 20s ease-in-out infinite alternate",
+        }}
+      />
+
+      {/* 4. Upper Ribbon: Ethereal Violet & Magenta Curtains */}
+      <div
+        className="absolute -top-8 left-[-5%] w-[120%] h-[320px]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 65% 55%, rgba(168,85,247,0.45) 0%, rgba(139,92,246,0.30) 40%, rgba(236,72,153,0.18) 65%, transparent 80%)",
+          filter: "blur(42px)",
+          animation: "auroraDrift3 18s ease-in-out infinite alternate",
+        }}
+      />
+
+      {/* 5. Shimmering Vertical Ray Bands (Rayed Drapery) */}
+      <div
+        className="absolute top-0 left-0 w-full h-[400px]"
+        style={{
+          background:
+            "repeating-linear-gradient(90deg, transparent 0px, transparent 45px, rgba(110,231,183,0.18) 65px, rgba(34,211,238,0.22) 85px, transparent 115px)",
+          filter: "blur(20px)",
+          animation: "auroraRays 12s ease-in-out infinite alternate",
+        }}
+      />
     </div>
   );
 }
@@ -1126,7 +1423,12 @@ export function AmbientSkyBackground() {
         )}
 
         {/* Night: stars + aurora */}
-        {isNight && weather === "clear" && (<><StarsCanvas /><AuroraBands /></>)}
+        {isNight && weather !== "overcast" && weather !== "rain" && (
+          <>
+            <StarsCanvas />
+            <AuroraBands />
+          </>
+        )}
         {isNight && weather === "overcast" && (
           <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 to-gray-800/60 pointer-events-none" />
         )}

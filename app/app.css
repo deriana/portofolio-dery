@@ -121,48 +121,48 @@ body {
 }
 
 /* ──────────────────────────────────────────────
-   DAWN / SUBUH (rose-amber warmth, soft purple)
+   DAWN / SUBUH (rose-amber warmth, high contrast)
 ────────────────────────────────────────────── */
 [data-period="dawn"] {
   --background: #1a0e1e;
-  --foreground: #f7ded8;
-  --card: rgba(40, 18, 35, 0.80);
-  --card-foreground: #f7ded8;
-  --popover: #2a1228;
-  --popover-foreground: #f7ded8;
-  --primary: #f4a261;
+  --foreground: #ffffff;
+  --card: rgba(32, 12, 30, 0.88);
+  --card-foreground: #ffffff;
+  --popover: #260e24;
+  --popover-foreground: #ffffff;
+  --primary: #fb923c;
   --primary-foreground: #1a0e1e;
-  --secondary: #2e1420;
-  --muted: #241220;
-  --muted-foreground: #c49a8a;
-  --accent: #2e1420;
-  --accent-foreground: #f9c9a9;
-  --border: rgba(244, 162, 97, 0.15);
-  --input: #241220;
-  --ring: #e76f51;
+  --secondary: #3b1629;
+  --muted: #291222;
+  --muted-foreground: #fed7aa;
+  --accent: #3b1629;
+  --accent-foreground: #fed7aa;
+  --border: rgba(251, 146, 60, 0.22);
+  --input: #291222;
+  --ring: #f97316;
 }
 
 /* ──────────────────────────────────────────────
-   DAY / SIANG (sky blue, clean light)
+   DAY / SIANG (sky blue, ultra crisp contrast)
 ────────────────────────────────────────────── */
 [data-period="day"] {
-  --background: #f0f7ff;
-  --foreground: #0d1b2a;
-  --card: rgba(255, 255, 255, 0.82);
-  --card-foreground: #0d1b2a;
+  --background: #eef6ff;
+  --foreground: #071526;
+  --card: rgba(255, 255, 255, 0.92);
+  --card-foreground: #071526;
   --popover: #ffffff;
-  --popover-foreground: #0d1b2a;
-  --primary: #2563eb;
+  --popover-foreground: #071526;
+  --primary: #1d4ed8;
   --primary-foreground: #ffffff;
   --secondary: #dbeafe;
-  --secondary-foreground: #1d4ed8;
-  --muted: #e0ecff;
-  --muted-foreground: #4b6180;
+  --secondary-foreground: #1e40af;
+  --muted: #e2edfd;
+  --muted-foreground: #1e3a5f;
   --accent: #dbeafe;
-  --accent-foreground: #1e40af;
-  --border: rgba(37, 99, 235, 0.12);
-  --input: #e8f2ff;
-  --ring: #3b82f6;
+  --accent-foreground: #172554;
+  --border: rgba(29, 78, 216, 0.20);
+  --input: #e0edff;
+  --ring: #2563eb;
 }
 
 /* ──────────────────────────────────────────────
@@ -234,19 +234,47 @@ body {
 }
 
 /* ──────────────────────────────────────────────
-   AMBIENT SKY AURORA KEYFRAMES
+   AMBIENT SKY AURORA & WATER REFLECTION KEYFRAMES
 ────────────────────────────────────────────── */
-@keyframes aurora1 {
-  0%, 100% { transform: translateY(0) scaleY(1) rotate(0deg); }
-  50% { transform: translateY(24px) scaleY(1.18) rotate(2deg); }
+@keyframes auroraPulse {
+  0% { opacity: 0.55; transform: scaleY(0.95); }
+  100% { opacity: 0.90; transform: scaleY(1.15); }
 }
-@keyframes aurora2 {
-  0%, 100% { transform: translateY(0) scaleY(1); }
-  50% { transform: translateY(-20px) scaleY(1.22) rotate(-2deg); }
+@keyframes auroraDrift1 {
+  0% { transform: translateY(0) skewX(-4deg) scaleY(1); }
+  50% { transform: translateY(28px) skewX(5deg) scaleY(1.2); }
+  100% { transform: translateY(-12px) skewX(-3deg) scaleY(0.95); }
 }
-@keyframes aurora3 {
-  0%, 100% { transform: translateY(0) scaleX(1); }
-  50% { transform: translateY(18px) scaleX(1.08); }
+@keyframes auroraDrift2 {
+  0% { transform: translateY(0) skewX(5deg) scaleY(1.1); }
+  50% { transform: translateY(-22px) skewX(-4deg) scaleY(0.9); }
+  100% { transform: translateY(18px) skewX(3deg) scaleY(1.15); }
+}
+@keyframes auroraDrift3 {
+  0% { transform: translateY(0) scaleX(1); }
+  50% { transform: translateY(20px) scaleX(1.1); }
+  100% { transform: translateY(-15px) scaleX(0.95); }
+}
+@keyframes auroraRays {
+  0% { transform: translateX(-30px); opacity: 0.35; }
+  100% { transform: translateX(30px); opacity: 0.65; }
+}
+
+@keyframes waterfallStream {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -22; }
+}
+@keyframes waterfallMist {
+  0% { transform: scale(1) translateY(0); opacity: 0.3; }
+  100% { transform: scale(1.25) translateY(-3px); opacity: 0.55; }
+}
+@keyframes waterRipples {
+  0% { transform: scaleX(0.96) translateX(-4px); opacity: 0.35; }
+  100% { transform: scaleX(1.04) translateX(4px); opacity: 0.75; }
+}
+@keyframes celestialReflection {
+  0% { transform: scaleX(0.92) translateX(-3px); opacity: 0.7; }
+  100% { transform: scaleX(1.08) translateX(3px); opacity: 1; }
 }
 @keyframes fogDrift {
   0% { transform: translateX(0); }
