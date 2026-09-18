@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useLocation } from "react-router";
 import {
   Sun, Sunset, Moon, Sunrise, Cloud, CloudRain, Snowflake, Shuffle, X,
 } from "lucide-react";
@@ -598,14 +599,11 @@ function MountainScene({ period }: { period: TimePeriod }) {
   const isHouseLit = period === "night" || period === "dawn";
 
   return (
-    <div
-      className="absolute bottom-0 left-0 right-0 w-full pointer-events-none"
-      style={{ height: "40vh", minHeight: 190 }}
-    >
+    <>
       <svg
         viewBox="0 0 1440 340"
         preserveAspectRatio="none"
-        className="absolute bottom-0 left-0 w-full h-full"
+        className="w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
         {/* ── 1. Grand Alpine Peaks (Back Mountain Range — Varied Majestic Topography) ── */}
@@ -742,6 +740,663 @@ function MountainScene({ period }: { period: TimePeriod }) {
           50% { transform: translate(7px, -3.5px); }
         }
       `}</style>
+    </>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   2. SKILLS BIOME: THE OBSERVATORY RIDGE
+   High-altitude Research Station, Radio Arrays & Telescope Dome
+───────────────────────────────────────────── */
+function ObservatoryScene({ period }: { period: TimePeriod }) {
+  const c = MOUNTAIN_COLORS[period];
+  if (!c) return null;
+
+  const isLit = period === "night" || period === "dawn";
+  const isNight = period === "night";
+
+  return (
+    <svg
+      viewBox="0 0 1440 340"
+      preserveAspectRatio="none"
+      className="w-full h-full"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* ── 1. Far Mountain Ridges ── */}
+      <path
+        fill={c.back}
+        d="M0,340 L0,220 L60,180 L130,195 L220,130 L290,170 L380,120 L470,165
+           L560,95 L650,140 L740,110 L830,160 L920,80 L1010,135 L1080,75
+           L1170,125 L1260,65 L1350,120 L1440,90 L1440,340 Z"
+      />
+
+      {/* ── 2. Mid Mountains - Observatory sits on THIS ridge's crest ── */}
+      <path
+        fill={c.mid}
+        d="M0,340 L0,260 L80,225 L170,245 L260,190 L350,225 L440,175
+           L530,205 L620,165 L710,200 L800,158 L890,195 L980,160
+           L1070,185 L1160,148 L1250,175 L1340,148 L1440,162 L1440,340 Z"
+      />
+
+      {/* ── 3. Observatory Dome sitting ON the mid ridge crest at ~x=620 ── */}
+      <g transform="translate(600, 126)">
+        {/* Rock base / foundation on the ridge */}
+        <polygon points="-14,42 74,42 62,34 -2,34" fill={c.back} opacity={0.65} />
+        {/* Observatory cylinder base */}
+        <rect x="0" y="18" width="60" height="18" fill={c.tree} rx="2" />
+        {/* Collar ring */}
+        <rect x="-4" y="16" width="68" height="4" fill={c.mid} rx="1" />
+        {/* Geodesic Dome */}
+        <path d="M 0,18 A 30,26 0 0,1 60,18 Z" fill={c.tree} />
+        {/* Dome shutter slit */}
+        <path d="M 25,2 L 35,2 L 35,18 L 25,18 Z" fill={c.back} opacity={0.75} />
+        {/* Optical Telescope Laser */}
+        {isLit && (
+          <g>
+            <rect x="27" y="3" width="6" height="13" fill="#67e8f9" opacity={0.9} style={{ filter: "drop-shadow(0 0 8px #22d3ee)" }} />
+            <line x1="30" y1="3" x2="30" y2="-55" stroke="#38bdf8" strokeWidth="1.2" opacity={0.6} strokeDasharray="3,2" />
+          </g>
+        )}
+      </g>
+
+      {/* ── 4. Radio Spire Tower on the right ridge crest ~x=920, y=80 ── */}
+      <g transform="translate(912, 38)">
+        {/* Rock base */}
+        <polygon points="-8,48 28,48 22,41 -2,41" fill={c.back} opacity={0.55} />
+        {/* Lattice tower legs */}
+        <line x1="0" y1="85" x2="10" y2="15" stroke={c.tree} strokeWidth="1.6" />
+        <line x1="20" y1="85" x2="10" y2="15" stroke={c.tree} strokeWidth="1.6" />
+        <line x1="10" y1="15" x2="10" y2="0" stroke={c.tree} strokeWidth="1.8" />
+        {/* Cross struts */}
+        <line x1="3" y1="70" x2="17" y2="70" stroke={c.tree} strokeWidth="0.8" />
+        <line x1="5" y1="50" x2="15" y2="50" stroke={c.tree} strokeWidth="0.8" />
+        <line x1="7" y1="30" x2="13" y2="30" stroke={c.tree} strokeWidth="0.8" />
+        {/* Guy wires */}
+        <line x1="10" y1="28" x2="-35" y2="85" stroke={c.back} strokeWidth="0.7" opacity={0.5} />
+        <line x1="10" y1="28" x2="55" y2="85" stroke={c.back} strokeWidth="0.7" opacity={0.5} />
+        {/* Warning Beacon */}
+        <circle cx="10" cy="0" r="2.5" fill="#ef4444" style={{ animation: "beaconPulse 1.8s ease-in-out infinite", filter: "drop-shadow(0 0 6px #ef4444)" }} />
+      </g>
+
+      {/* ── 5. Radio Dish Antenna Array (Left Ridge at ~x=260, y=190) ── */}
+      <g transform="translate(248, 152)">
+        <g>
+          <line x1="15" y1="30" x2="15" y2="15" stroke={c.tree} strokeWidth="2" />
+          <path d="M 0,15 Q 15,2 30,15" stroke={c.tree} strokeWidth="3" fill="none" strokeLinecap="round" />
+          <line x1="15" y1="8" x2="15" y2="1" stroke={c.front} strokeWidth="1.2" />
+          <circle cx="15" cy="1" r="1.5" fill={isLit ? "#38bdf8" : c.front} />
+        </g>
+        <g transform="translate(55, -8)">
+          <line x1="12" y1="28" x2="12" y2="13" stroke={c.tree} strokeWidth="1.8" />
+          <path d="M 0,13 Q 12,2 24,13" stroke={c.tree} strokeWidth="2.5" fill="none" strokeLinecap="round" />
+          <line x1="12" y1="7" x2="12" y2="0" stroke={c.front} strokeWidth="1" />
+          <circle cx="12" cy="0" r="1.2" fill={isLit ? "#38bdf8" : c.front} />
+        </g>
+        <g transform="translate(106, 6)">
+          <line x1="14" y1="26" x2="14" y2="12" stroke={c.tree} strokeWidth="1.8" />
+          <path d="M 0,12 Q 14,2 28,12" stroke={c.tree} strokeWidth="2.5" fill="none" strokeLinecap="round" />
+          <line x1="14" y1="6" x2="14" y2="1" stroke={c.front} strokeWidth="1" />
+        </g>
+      </g>
+
+      {/* Transmission Cable Lines Across Col */}
+      <path d="M 360,200 Q 520,245 680,215 Q 840,245 1000,210" stroke={c.back} strokeWidth="0.9" fill="none" opacity={0.45} />
+
+      {/* ── 6. Research Station / Server Outpost on plateau ── */}
+      <g transform="translate(720, 238)">
+        <rect x="0" y="6" width="48" height="18" fill={c.front} rx="1" />
+        <rect x="4" y="2" width="40" height="4" fill={c.mid} rx="1" />
+        <circle cx="36" cy="1" r="4" fill={c.tree} />
+        <line x1="12" y1="2" x2="12" y2="-8" stroke={c.tree} strokeWidth="1.2" />
+        <circle cx="12" cy="-8" r="1" fill={isLit ? "#10b981" : c.tree} />
+        {isLit ? (
+          <g>
+            <rect x="6" y="10" width="8" height="8" rx="0.5" fill="#38bdf8" style={{ filter: "drop-shadow(0 0 5px rgba(56,189,248,0.8))" }} />
+            <rect x="18" y="10" width="8" height="8" rx="0.5" fill="#fde047" style={{ filter: "drop-shadow(0 0 5px rgba(253,224,71,0.8))" }} />
+            <rect x="30" y="10" width="8" height="8" rx="0.5" fill="#38bdf8" style={{ filter: "drop-shadow(0 0 5px rgba(56,189,248,0.8))" }} />
+          </g>
+        ) : (
+          <g opacity={0.35}>
+            <rect x="6" y="10" width="8" height="8" rx="0.5" fill={c.mid} />
+            <rect x="18" y="10" width="8" height="8" rx="0.5" fill={c.mid} />
+            <rect x="30" y="10" width="8" height="8" rx="0.5" fill={c.mid} />
+          </g>
+        )}
+      </g>
+
+      {/* ── 7. Pine trees LEFT cluster — foreground, grounded at bottom ── */}
+      <g fill={c.tree}>
+        <polygon points="25,340 55,265 85,340" />
+        <polygon points="38,316 55,250 72,316" />
+        <polygon points="80,340 108,270 136,340" />
+        <polygon points="92,312 108,255 124,312" />
+        <polygon points="130,340 158,268 186,340" />
+        <polygon points="143,314 158,256 173,314" />
+        {/* Trunks */}
+        <rect x="52" y="312" width="6" height="28" fill={c.mid} opacity={0.65} />
+        <rect x="105" y="314" width="6" height="26" fill={c.mid} opacity={0.65} />
+        <rect x="155" y="316" width="6" height="24" fill={c.mid} opacity={0.65} />
+      </g>
+
+      {/* ── 8. Pine trees RIGHT cluster — foreground, grounded at bottom ── */}
+      <g fill={c.tree}>
+        <polygon points="1268,340 1295,264 1322,340" />
+        <polygon points="1280,314 1295,250 1310,314" />
+        <polygon points="1316,340 1342,268 1368,340" />
+        <polygon points="1328,312 1342,256 1356,312" />
+        <polygon points="1372,340 1397,272 1422,340" />
+        <polygon points="1384,316 1397,260 1410,316" />
+        {/* Trunks */}
+        <rect x="1292" y="312" width="6" height="28" fill={c.mid} opacity={0.65} />
+        <rect x="1339" y="314" width="6" height="26" fill={c.mid} opacity={0.65} />
+        <rect x="1394" y="318" width="6" height="22" fill={c.mid} opacity={0.65} />
+      </g>
+
+      {/* Night Fireflies */}
+      {isNight && (
+        <g>
+          <circle cx="280" cy="265" r="1.5" fill="#38bdf8" opacity={0.85} style={{ filter: "drop-shadow(0 0 4px #38bdf8)" }} />
+          <circle cx="340" cy="255" r="1.8" fill="#a7f3d0" opacity={0.9} style={{ filter: "drop-shadow(0 0 5px #a7f3d0)" }} />
+          <circle cx="710" cy="268" r="1.4" fill="#fef08a" opacity={0.75} style={{ filter: "drop-shadow(0 0 4px #fef08a)" }} />
+          <circle cx="1200" cy="260" r="1.6" fill="#38bdf8" opacity={0.85} style={{ filter: "drop-shadow(0 0 5px #38bdf8)" }} />
+        </g>
+      )}
+
+      {/* ── 9. Front Hills ── */}
+      <path
+        fill={c.front}
+        d="M0,340 L0,295 Q140,272 280,288 Q420,304 560,280
+           Q700,268 840,280 Q980,294 1120,272
+           Q1260,260 1440,285 L1440,340 Z"
+      />
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   3. PORTFOLIO BIOME: THE GRAND CANYON VIADUCT
+   Monumental Multi-Arch Viaduct, Gorge River & Natural Cliff Detail
+───────────────────────────────────────────── */
+function ViaductGorgeScene({ period }: { period: TimePeriod }) {
+  const c = MOUNTAIN_COLORS[period];
+  if (!c) return null;
+
+  const isLit = period === "night" || period === "dawn";
+
+  // Pier x-positions for 8 piers (span = 110px per bay, pier width = 18px)
+  const pierXs = [248, 358, 468, 578, 688, 798, 908, 1018, 1128];
+
+  return (
+    <svg
+      viewBox="0 0 1440 340"
+      preserveAspectRatio="none"
+      className="w-full h-full"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        {/* Clip arch openings per span — actual SVG clip paths */}
+        <clipPath id="archClip">
+          <rect x="0" y="0" width="1440" height="340" />
+        </clipPath>
+      </defs>
+
+      {/* ── 1. Distant plateau / canyon rim (back) ── */}
+      <path
+        fill={c.back}
+        d="M0,340 L0,100 L55,100 L80,118 L130,98 L180,115 L230,88 L280,102
+           L330,82 L360,108 L390,180 L420,205 L500,200 L580,205 L660,200
+           L740,205 L820,200 L900,205 L980,200 L1060,205 L1100,180
+           L1130,108 L1160,88 L1210,105 L1260,90 L1310,112 L1360,95 L1440,100 L1440,340 Z"
+      />
+
+      {/* Layered cliff face detail — natural vertical strata */}
+      <g fill={c.mid} opacity={0.5}>
+        {/* Left cliff face */}
+        <polygon points="55,100 80,118 82,240 50,240" />
+        <polygon points="130,98 180,115 182,240 128,240" />
+        <polygon points="230,88 280,102 282,205 228,205" />
+        {/* Right cliff face */}
+        <polygon points="1160,88 1210,105 1208,240 1162,240" />
+        <polygon points="1260,90 1310,112 1312,240 1258,240" />
+        <polygon points="1360,95 1440,100 1440,240 1358,240" />
+      </g>
+
+      {/* Cliff ledge detail stripes */}
+      <g stroke={c.front} strokeWidth="1" opacity={0.25}>
+        <line x1="0" y1="145" x2="240" y2="145" />
+        <line x1="0" y1="168" x2="190" y2="168" />
+        <line x1="1200" y1="140" x2="1440" y2="140" />
+        <line x1="1250" y1="162" x2="1440" y2="162" />
+      </g>
+
+      {/* ── 2. Canyon Gorge Floor — visible river ── */}
+      {/* Deep gorge shadow */}
+      <path
+        fill={c.back}
+        opacity={0.55}
+        d="M 300,340 L 300,220 Q 720,235 1140,220 L 1140,340 Z"
+      />
+      {/* River channel */}
+      <path
+        fill={c.mid}
+        opacity={0.55}
+        d="M 310,340 L 310,260 Q 450,250 590,255 Q 720,258 860,252
+           Q 1000,248 1130,258 L 1130,340 Z"
+      />
+      {/* River shimmer highlights */}
+      <g stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" strokeLinecap="round">
+        <line x1="360" y1="285" x2="500" y2="280" />
+        <line x1="540" y1="278" x2="700" y2="275" />
+        <line x1="740" y1="275" x2="900" y2="278" />
+        <line x1="940" y1="280" x2="1080" y2="285" />
+        <line x1="400" y1="305" x2="560" y2="300" />
+        <line x1="620" y1="298" x2="820" y2="298" />
+        <line x1="860" y1="300" x2="1040" y2="305" />
+      </g>
+
+      {/* Small waterfall on left cliff */}
+      <path
+        d="M 230,145 Q 225,180 228,220 Q 226,240 230,265"
+        stroke="rgba(255,255,255,0.35)"
+        strokeWidth="2.5"
+        fill="none"
+        strokeLinecap="round"
+      />
+      <path
+        d="M 234,150 Q 229,185 232,225 Q 230,245 234,268"
+        stroke="rgba(255,255,255,0.2)"
+        strokeWidth="1.5"
+        fill="none"
+        strokeLinecap="round"
+      />
+
+      {/* ── 3. Viaduct — pier legs ── */}
+      <g fill={c.mid}>
+        {pierXs.map((px) => (
+          <rect key={px} x={px} y={170} width={18} height={120} rx="1" />
+        ))}
+      </g>
+
+      {/* Pier cap stones */}
+      <g fill={c.tree} opacity={0.7}>
+        {pierXs.map((px) => (
+          <rect key={px} x={px - 2} y={168} width={22} height={4} rx="1" />
+        ))}
+      </g>
+
+      {/* Arch soffit between piers (drawn as curved underside openings) */}
+      <g fill="none" stroke={c.back} strokeWidth="2" opacity={0.6}>
+        {pierXs.slice(0, -1).map((px, i) => {
+          const nx = pierXs[i + 1];
+          const mx = (px + 18 + nx) / 2;
+          const archBot = 228;
+          return (
+            <path
+              key={i}
+              d={`M ${px + 18},170 Q ${mx},${archBot} ${nx},170`}
+            />
+          );
+        })}
+      </g>
+
+      {/* Viaduct deck — top rail and beam */}
+      <rect x="230" y="162" width="980" height="8" fill={c.mid} />
+      <rect x="230" y="160" width="980" height="3" fill={c.tree} />
+      {/* Parapet railing */}
+      <rect x="230" y="155" width="980" height="5" fill={c.front} opacity={0.7} rx="1" />
+      {/* Railing posts */}
+      {Array.from({ length: 28 }, (_, i) => 230 + i * 35).map((rx) => (
+        <rect key={rx} x={rx} y={148} width="3" height="12" fill={c.tree} opacity={0.6} />
+      ))}
+
+      {/* Viaduct street lamps when lit */}
+      {isLit && (
+        <g>
+          {pierXs.map((px) => (
+            <g key={px}>
+              <line x1={px + 9} y1={160} x2={px + 9} y2={150} stroke={c.tree} strokeWidth="1.2" />
+              <circle cx={px + 9} cy={149} r="2.2" fill="#fde047" style={{ filter: "drop-shadow(0 0 5px #fde047)" }} />
+            </g>
+          ))}
+        </g>
+      )}
+
+      {/* ── 4. Cliff-top structures: Survey tower left plateau ── */}
+      <g transform="translate(158, 200)">
+        {/* Small guard tower */}
+        <polygon points="14,0 0,8 28,8" fill={c.mid} />
+        <rect x="2" y="8" width="24" height="14" fill={c.front} />
+        <rect x="0" y="8" width="28" height="3" fill={c.tree} opacity={0.5} />
+        {isLit ? (
+          <rect x="7" y="11" width="6" height="6" fill="#fde047" rx="0.5" style={{ filter: "drop-shadow(0 0 5px #fde047)" }} />
+        ) : (
+          <rect x="7" y="11" width="6" height="6" fill={c.mid} rx="0.5" opacity={0.3} />
+        )}
+      </g>
+
+      {/* Right plateau: rock arch formation */}
+      <g transform="translate(1220, 168)">
+        <ellipse cx="30" cy="18" rx="30" ry="18" fill={c.back} opacity={0.7} />
+        <ellipse cx="30" cy="22" rx="18" ry="12" fill={c.mid} opacity={0.4} />
+      </g>
+
+      {/* ── 5. Cliffside Foreground Terraces + pine trees ── */}
+      {/* Left cliff terrace */}
+      <path
+        fill={c.front}
+        d="M0,340 L0,255 L60,240 L120,250 L185,235 L240,258 L300,265 L300,340 Z"
+      />
+      {/* Right cliff terrace */}
+      <path
+        fill={c.front}
+        d="M1440,340 L1440,255 L1380,240 L1320,250 L1255,235 L1200,258 L1140,265 L1140,340 Z"
+      />
+
+      {/* Left pine trees on terrace */}
+      <g fill={c.tree}>
+        <polygon points="30,340 58,268 86,340" />
+        <polygon points="42,316 58,252 74,316" />
+        <polygon points="78,340 106,272 134,340" />
+        <polygon points="90,316 106,256 122,316" />
+        <polygon points="130,340 154,278 178,340" />
+        {/* Trunks */}
+        <rect x="55" y="314" width="6" height="26" fill={c.mid} opacity={0.7} />
+        <rect x="103" y="318" width="6" height="22" fill={c.mid} opacity={0.7} />
+        <rect x="151" y="320" width="6" height="20" fill={c.mid} opacity={0.7} />
+      </g>
+
+      {/* Right pine trees on terrace */}
+      <g fill={c.tree}>
+        <polygon points="1268,340 1294,272 1320,340" />
+        <polygon points="1280,316 1294,256 1308,316" />
+        <polygon points="1314,340 1340,278 1366,340" />
+        <polygon points="1326,316 1340,262 1354,316" />
+        <polygon points="1364,340 1388,274 1412,340" />
+        {/* Trunks */}
+        <rect x="1291" y="314" width="6" height="26" fill={c.mid} opacity={0.7} />
+        <rect x="1337" y="318" width="6" height="22" fill={c.mid} opacity={0.7} />
+        <rect x="1385" y="320" width="6" height="20" fill={c.mid} opacity={0.7} />
+      </g>
+
+      {/* ── 6. Bottom foreground strip ── */}
+      <path
+        fill={c.front}
+        opacity={0.85}
+        d="M0,340 L0,310 Q360,300 720,308 Q1080,316 1440,308 L1440,340 Z"
+      />
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   4. CONTACT BIOME: COASTAL SHORE & LIGHTHOUSE
+   Ocean Promontory, Stone Lighthouse, Harbor Pier & Rocky Shore
+───────────────────────────────────────────── */
+function LighthouseShoreScene({ period }: { period: TimePeriod }) {
+  const c = MOUNTAIN_COLORS[period];
+  if (!c) return null;
+
+  const isLit = period === "night" || period === "dawn" || period === "sunset";
+
+  return (
+    <svg
+      viewBox="0 0 1440 340"
+      preserveAspectRatio="none"
+      className="w-full h-full"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="lhBeamGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+          <stop offset="0%" stopColor="#fef08a" stopOpacity="0.85" />
+          <stop offset="30%" stopColor="#fde047" stopOpacity="0.45" />
+          <stop offset="70%" stopColor="#fef08a" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor={c.mid} stopOpacity="0.5" />
+          <stop offset="100%" stopColor={c.mid} stopOpacity="0.25" />
+        </linearGradient>
+      </defs>
+
+      {/* ── 1. Distant sea horizon & sea stacks (back) ── */}
+      <path
+        fill={c.back}
+        d="M0,340 L0,245 L80,242 L130,220 L155,242 L200,242 L230,208
+           L258,242 L360,244 L600,244 L900,244 L1060,218 L1200,190
+           L1320,168 L1440,158 L1440,340 Z"
+      />
+
+      {/* Distant island/rock silhouettes */}
+      <ellipse cx="420" cy="244" rx="40" ry="8" fill={c.back} opacity={0.7} />
+      <ellipse cx="680" cy="246" rx="25" ry="6" fill={c.back} opacity={0.6} />
+      <ellipse cx="820" cy="244" rx="18" ry="5" fill={c.back} opacity={0.55} />
+
+      {/* ── 2. Rocky Promontory Cape (right mid-layer) ── */}
+      <path
+        fill={c.mid}
+        d="M 920,340 L 920,268 Q 1020,222 1140,205 L 1280,188 L 1440,178 L 1440,340 Z"
+      />
+      {/* Cliff face detail on promontory */}
+      <g fill={c.back} opacity={0.35}>
+        <polygon points="960,268 980,240 1000,268" />
+        <polygon points="1020,250 1045,218 1070,250" />
+        <polygon points="1090,235 1110,210 1130,235" />
+      </g>
+
+      {/* ── 3. Sweeping Beacon Light Beam ── */}
+      {isLit && (
+        <g transform="translate(1190, 118)">
+          <g style={{ animation: "lighthouseBeam 7s ease-in-out infinite", transformOrigin: "0 0" }}>
+            <polygon points="0,0 -500,-140 -465,-45" fill="url(#lhBeamGrad)" />
+          </g>
+          <circle cx="0" cy="0" r="4.5" fill="#ffffff" style={{ filter: "drop-shadow(0 0 12px #fde047)" }} />
+          <circle cx="0" cy="0" r="8" fill="#fef08a" opacity={0.65} style={{ filter: "drop-shadow(0 0 20px #f59e0b)" }} />
+        </g>
+      )}
+
+      {/* ── 4. Tall Stone Lighthouse on promontory ── */}
+      <g transform="translate(1176, 108)">
+        {/* Tapered tower body */}
+        <polygon points="5,95 21,95 18,20 8,20" fill={c.tree} />
+        {/* Masonry band details */}
+        <polygon points="6,78 20,78 19,64 7,64" fill={c.mid} opacity={0.55} />
+        <polygon points="7,50 19,50 18,35 8,35" fill={c.mid} opacity={0.55} />
+        {/* Gallery deck balcony */}
+        <rect x="4" y="18" width="18" height="3" fill={c.front} rx="0.5" />
+        <line x1="4" y1="17" x2="22" y2="17" stroke={c.mid} strokeWidth="0.8" />
+        {/* Lantern room */}
+        <rect x="7" y="8" width="12" height="10" fill={isLit ? "#fef08a" : c.front} rx="0.5" />
+        <rect x="9" y="9" width="8" height="8" fill={isLit ? "#ffffff" : c.tree} rx="0.5" />
+        {/* Conical roof */}
+        <polygon points="13,0 5,8 21,8" fill={c.front} />
+        <line x1="13" y1="0" x2="13" y2="-5" stroke={c.front} strokeWidth="1.2" />
+        {/* Keeper's cottage beside tower */}
+        <g transform="translate(25, 75)">
+          <polygon points="13,0 0,9 26,9" fill={c.mid} />
+          <rect x="1" y="9" width="24" height="12" fill={c.front} />
+          {isLit ? (
+            <rect x="5" y="11" width="6" height="6" fill="#fde047" rx="0.5" style={{ filter: "drop-shadow(0 0 5px #fde047)" }} />
+          ) : (
+            <rect x="5" y="11" width="6" height="6" fill={c.mid} rx="0.5" opacity={0.3} />
+          )}
+        </g>
+      </g>
+
+      {/* ── 5. Ocean water ── */}
+      <path
+        d="M 0,250 Q 400,246 800,250 Q 1050,252 1180,270 L 1180,340 L 0,340 Z"
+        fill="url(#oceanGrad)"
+      />
+      {/* Wave shimmer lines */}
+      <g stroke="rgba(255,255,255,0.5)" strokeWidth="1.1" strokeLinecap="round">
+        <line x1="60" y1="262" x2="210" y2="258" />
+        <line x1="260" y1="265" x2="440" y2="261" />
+        <line x1="500" y1="263" x2="740" y2="259" />
+        <line x1="780" y1="261" x2="900" y2="265" />
+        <line x1="120" y1="280" x2="320" y2="276" />
+        <line x1="380" y1="278" x2="640" y2="274" />
+        <line x1="680" y1="276" x2="870" y2="280" />
+        <line x1="160" y1="298" x2="380" y2="294" />
+        <line x1="440" y1="292" x2="680" y2="296" />
+      </g>
+
+      {/* Ocean buoy */}
+      <g transform="translate(560, 270)">
+        <polygon points="5,0 0,10 10,10" fill={c.tree} />
+        <circle cx="5" cy="-1" r="2" fill="#ef4444" style={{ animation: "beaconPulse 2s ease-in-out infinite", filter: "drop-shadow(0 0 5px #ef4444)" }} />
+      </g>
+      {/* Second buoy */}
+      <g transform="translate(760, 265)">
+        <polygon points="4,0 0,8 8,8" fill={c.tree} opacity={0.7} />
+        <circle cx="4" cy="-1" r="1.5" fill="#ef4444" opacity={0.7} style={{ animation: "beaconPulse 2.6s ease-in-out infinite", filter: "drop-shadow(0 0 4px #ef4444)" }} />
+      </g>
+
+      {/* ── 6. Wooden Harbor Pier / Wharf (Left) ── */}
+      <g transform="translate(60, 258)">
+        <rect x="0" y="8" width="240" height="6" fill={c.front} rx="1" />
+        <rect x="0" y="6" width="240" height="2" fill={c.tree} />
+        {[20, 60, 100, 140, 180, 215].map((px) => (
+          <g key={px}>
+            <rect x={px} y={14} width="5" height="50" fill={c.tree} />
+            <line x1={px} y1={18} x2={px + 32} y2={46} stroke={c.mid} strokeWidth="0.8" opacity={0.4} />
+          </g>
+        ))}
+        {/* Bollards */}
+        <rect x="200" y="1" width="6" height="7" fill={c.tree} rx="1" />
+        <rect x="125" y="1" width="6" height="7" fill={c.tree} rx="1" />
+        {/* Pierhead lantern */}
+        <g transform="translate(232, 0)">
+          <line x1="0" y1="6" x2="0" y2="-12" stroke={c.tree} strokeWidth="1.2" />
+          <line x1="0" y1="-12" x2="9" y2="-12" stroke={c.tree} strokeWidth="1.2" />
+          {isLit ? (
+            <circle cx="9" cy="-9" r="3" fill="#f59e0b" style={{ filter: "drop-shadow(0 0 7px #f59e0b)" }} />
+          ) : (
+            <circle cx="9" cy="-9" r="2" fill={c.tree} />
+          )}
+        </g>
+        {/* Small boat tied at pier */}
+        <path d="M 50,14 Q 90,10 130,14 L 125,22 L 55,22 Z" fill={c.mid} opacity={0.75} />
+        <line x1="90" y1="10" x2="90" y2="2" stroke={c.tree} strokeWidth="1.2" />
+      </g>
+
+      {/* ── 7. Pine trees grounded LEFT shore (properly anchored) ── */}
+      <g fill={c.tree}>
+        {/* Main pine cluster — touching shore/ground */}
+        <polygon points="300,340 330,268 360,340" />
+        <polygon points="313,316 330,252 347,316" />
+        <polygon points="352,340 380,270 408,340" />
+        <polygon points="365,316 380,256 395,316" />
+        <polygon points="400,340 425,274 450,340" />
+        <polygon points="413,318 425,262 437,318" />
+        {/* Trunks */}
+        <rect x="327" y="314" width="6" height="26" fill={c.mid} opacity={0.7} />
+        <rect x="377" y="316" width="6" height="24" fill={c.mid} opacity={0.7} />
+        <rect x="422" y="318" width="6" height="22" fill={c.mid} opacity={0.7} />
+      </g>
+
+      {/* ── 8. Shore rocks LEFT foreground ── */}
+      <g fill={c.front}>
+        <ellipse cx="42" cy="312" rx="38" ry="18" />
+        <ellipse cx="95" cy="320" rx="28" ry="14" />
+        <ellipse cx="148" cy="316" rx="20" ry="10" />
+        <ellipse cx="200" cy="322" rx="24" ry="12" />
+        {/* Smaller pebble rocks */}
+        <ellipse cx="68" cy="324" rx="14" ry="7" />
+        <ellipse cx="175" cy="328" rx="12" ry="6" />
+      </g>
+
+      {/* ── 9. Seabirds silhouettes ── */}
+      <g fill="none" stroke={c.tree} strokeWidth="1.2" strokeLinecap="round" opacity={0.7}>
+        {/* Bird 1 */}
+        <path d="M 350,195 Q 358,191 366,195" />
+        <path d="M 366,195 Q 374,191 382,195" />
+        {/* Bird 2 */}
+        <path d="M 500,178 Q 506,174 512,178" />
+        <path d="M 512,178 Q 518,174 524,178" />
+        {/* Bird 3 */}
+        <path d="M 620,188 Q 627,184 634,188" />
+        <path d="M 634,188 Q 641,184 648,188" />
+        {/* Bird 4 - small */}
+        <path d="M 740,200 Q 745,197 750,200" />
+        <path d="M 750,200 Q 755,197 760,200" />
+        {/* Bird 5 */}
+        <path d="M 440,210 Q 446,207 452,210" />
+        <path d="M 452,210 Q 458,207 464,210" />
+      </g>
+
+      {/* ── 10. Foreground shore silhouette ── */}
+      <path
+        fill={c.front}
+        d="M0,340 L0,298 Q120,288 240,296 Q380,304 520,292
+           Q660,282 800,292 Q940,302 1080,290 Q1220,280 1440,292 L1440,340 Z"
+      />
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   DYNAMIC BIOME SWITCHER — CINEMATIC SLIDE TRANSITION
+   Biomes slide left/right like a horizontal panorama pan
+   Order: about(0) → skills(1) → portfolio(2) → contact(3)
+───────────────────────────────────────────── */
+const BIOME_ORDER = ["about", "skills", "portfolio", "contact"] as const;
+type BiomeName = (typeof BIOME_ORDER)[number];
+
+function DynamicBiomeScene({ period }: { period: TimePeriod }) {
+  const location = useLocation();
+  const path = location.pathname;
+
+  const activeBiome: BiomeName = path.startsWith("/skills")
+    ? "skills"
+    : path.startsWith("/portfolio")
+    ? "portfolio"
+    : path.startsWith("/contact")
+    ? "contact"
+    : "about";
+
+  const activeIdx = BIOME_ORDER.indexOf(activeBiome);
+
+  // Compute per-biome transform: active = center, earlier = left, later = right
+  // Inactive scenes slide 60% off-screen in their direction
+  function biomeStyle(name: BiomeName): CSSProperties {
+    const idx = BIOME_ORDER.indexOf(name);
+    const isActive = name === activeBiome;
+    const offset = (idx - activeIdx) * 60; // percent units
+    return {
+      opacity: isActive ? 1 : 0,
+      transform: isActive
+        ? "translateX(0%) scale(1)"
+        : `translateX(${offset}%) scale(0.98)`,
+      transition: "opacity 850ms cubic-bezier(0.4, 0, 0.2, 1), transform 850ms cubic-bezier(0.4, 0, 0.2, 1)",
+      willChange: "opacity, transform",
+      pointerEvents: "none" as const,
+    };
+  }
+
+  return (
+    <div
+      className="absolute bottom-0 left-0 right-0 w-full pointer-events-none overflow-hidden"
+      style={{ height: "40vh", minHeight: 190 }}
+    >
+      {/* ── 1. About Scene: Alpine Valley ── */}
+      <div className="absolute inset-0 w-full h-full" style={biomeStyle("about")}>
+        <MountainScene period={period} />
+      </div>
+
+      {/* ── 2. Skills Scene: Tech Observatory Ridge ── */}
+      <div className="absolute inset-0 w-full h-full" style={biomeStyle("skills")}>
+        <ObservatoryScene period={period} />
+      </div>
+
+      {/* ── 3. Portfolio Scene: Grand Canyon Viaduct ── */}
+      <div className="absolute inset-0 w-full h-full" style={biomeStyle("portfolio")}>
+        <ViaductGorgeScene period={period} />
+      </div>
+
+      {/* ── 4. Contact Scene: Coastal Shore & Lighthouse ── */}
+      <div className="absolute inset-0 w-full h-full" style={biomeStyle("contact")}>
+        <LighthouseShoreScene period={period} />
+      </div>
     </div>
   );
 }
@@ -1493,8 +2148,8 @@ export function AmbientSkyBackground() {
         {/* ── Sun / Moon in the sky (behind mountains) ── */}
         <CelestialBody period={period} moonPhase={moonPhase} weather={weather} />
 
-        {/* Mountains & trees silhouette — all periods */}
-        {hasMountains && <MountainScene period={period} />}
+        {/* Dynamic Biome Landscapes — distinct scenery per tab with 1000ms organic cross-fade */}
+        {hasMountains && <DynamicBiomeScene period={period} />}
 
         {/* Rain & Snow overlays */}
         {weather === "rain" && <RainCanvas />}

@@ -349,3 +349,27 @@ body {
   50% { transform: translateY(-8px) translateX(2px) scale(1.25); opacity: 0.35; }
   100% { transform: translateY(-16px) translateX(5px) scale(1.6); opacity: 0; }
 }
+@keyframes lighthouseBeam {
+  0% {
+    transform: rotate(-35deg);
+    opacity: 0.55;
+  }
+  50% {
+    transform: rotate(35deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: rotate(-35deg);
+    opacity: 0.55;
+  }
+}
+@keyframes beaconPulse {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
