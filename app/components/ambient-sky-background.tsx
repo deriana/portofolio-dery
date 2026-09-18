@@ -224,7 +224,7 @@ function RusticFence({
 function SoaringBird({
   x,
   y,
-  scale = 1,
+  scale = 0.5,
   opacity = 0.75,
   color,
 }: {
@@ -235,87 +235,13 @@ function SoaringBird({
   color: string;
 }) {
   return (
-    <g
-      transform={`translate(${x}, ${y}) scale(${scale})`}
-      opacity={opacity}
-      style={{ animation: "birdGlide 7s ease-in-out infinite" }}
-    >
-      <path
-        d="M 0,6 Q 7,-1 14,5 Q 21,-1 28,6 Q 19,4 14,8 Q 9,4 0,6 Z"
-        fill={color}
-      />
-    </g>
-  );
-}
-
-function MountainDeer({
-  x,
-  y,
-  scale = 0.85,
-  flip = false,
-  grazing = false,
-  color,
-}: {
-  x: number;
-  y: number;
-  scale?: number;
-  flip?: boolean;
-  grazing?: boolean;
-  color: string;
-}) {
-  return (
-    <g
-      transform={`translate(${x}, ${y}) scale(${flip ? -scale : scale}, ${scale})`}
-      style={{
-        animation: grazing ? "deerGraze 6s ease-in-out infinite" : "deerAlert 8s ease-in-out infinite",
-        transformOrigin: "bottom center",
-      }}
-    >
-      {grazing ? (
-        /* Grazing deer: head lowered gracefully to the alpine grass */
-        <g fill={color}>
-          <ellipse cx="14" cy="11" rx="8.5" ry="5.5" />
-          <path d="M 5.5,11 Q 5,6.5 8,7.5 Q 15,6.5 21,9.5 L 24,17 L 22.5,19 Q 19,13 14,14 Q 8,15 5.5,11 Z" />
-          <path d="M 19,9 Q 23,13 25,18 L 22.5,20 L 17.5,13 Z" />
-          <ellipse cx="24.5" cy="19" rx="2.5" ry="1.8" transform="rotate(30 24.5 19)" />
-          <rect x="7" y="14" width="1.6" height="8" rx="0.5" />
-          <rect x="9.5" y="14" width="1.4" height="8" rx="0.5" />
-          <rect x="18.5" y="14" width="1.5" height="7.5" rx="0.5" />
-          <rect x="20.5" y="14" width="1.4" height="7.5" rx="0.5" />
-          <path d="M 5.5,8 Q 3.5,7 4.5,10 Z" />
-          <path d="M 22.5,15.5 L 24.5,13.5 L 23.5,16 Z" />
-        </g>
-      ) : (
-        /* Standing stag: noble upright posture with branched antlers */
-        <g>
-          <path
-            d="M 6,12 Q 5,7.5 9,8 Q 15,7.5 19,8.5 Q 21,11 20,14 Q 15,16 9,15 Q 5.5,14.5 6,12 Z"
-            fill={color}
-          />
-          <path
-            d="M 16,8.5 Q 18,3 20,1.5 Q 22,2 23,4 Q 21,6 18.5,10 Z"
-            fill={color}
-          />
-          <ellipse cx="22" cy="3.2" rx="2.2" ry="1.5" fill={color} />
-          <path d="M 19,2.5 L 17.5,0.5 L 19,1.5 Z" fill={color} />
-          {/* Antlers */}
-          <path
-            d="M 19.5,1.5 L 19.5,-4 M 19.5,-2 L 17.5,-4 M 19.5,-3 L 21,-5.5 M 19.5,-1 L 22,-2.5"
-            stroke={color}
-            strokeWidth="1.1"
-            strokeLinecap="round"
-          />
-          {/* Slender legs */}
-          <path
-            d="M 8,14.5 L 7,22 M 9.8,14.5 L 9.2,22 M 17,14 L 17.5,22 M 19,14 L 19.5,22"
-            stroke={color}
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          {/* Tail */}
-          <path d="M 6,9 Q 3.8,9 5,11.5 Z" fill={color} />
-        </g>
-      )}
+    <g transform={`translate(${x}, ${y}) scale(${scale})`} opacity={opacity}>
+      <g style={{ animation: "birdGlide 7s ease-in-out infinite" }}>
+        <path
+          d="M 0,6 Q 7,-1 14,5 Q 21,-1 28,6 Q 19,4 14,8 Q 9,4 0,6 Z"
+          fill={color}
+        />
+      </g>
     </g>
   );
 }
@@ -652,31 +578,7 @@ function MountainScene({ period }: { period: TimePeriod }) {
           <FarmBarn x={275} y={258} c={c} />
         )}
 
-        {/* ── 8. Handcrafted Wildlife (Mountain Deer Silhouettes) ── */}
-        {/* Dawn: Peaceful deer grazing on dewy meadow */}
-        {period === "dawn" && (
-          <MountainDeer x={740} y={266} scale={0.85} grazing={true} color={c.tree} />
-        )}
-
-        {/* Day: Pair of deer in alpine meadow (one alert, one grazing) */}
-        {period === "day" && (
-          <g>
-            <MountainDeer x={730} y={264} scale={0.88} grazing={false} color={c.tree} />
-            <MountainDeer x={765} y={268} scale={0.78} flip={true} grazing={true} color={c.tree} />
-          </g>
-        )}
-
-        {/* Sunset: Noble stag standing on rocky ledge overlooking valley */}
-        {period === "sunset" && (
-          <MountainDeer x={1130} y={248} scale={0.92} grazing={false} color={c.tree} />
-        )}
-
-        {/* Night: Stag resting on mountain cliff under moonlight */}
-        {period === "night" && (
-          <MountainDeer x={1130} y={250} scale={0.88} grazing={false} color={c.tree} />
-        )}
-
-        {/* ── 9. Pine trees (right cluster) ── */}
+        {/* ── 8. Pine trees (right cluster) ── */}
         <g fill={c.tree}>
           <polygon points="1260,280 1285,220 1310,280" />
           <polygon points="1270,253 1285,200 1300,253" />
@@ -691,7 +593,7 @@ function MountainScene({ period }: { period: TimePeriod }) {
           <rect x="1374" y="278" width="8" height="20" />
         </g>
 
-        {/* ── 10. Night Fireflies ── */}
+        {/* ── 9. Night Fireflies ── */}
         {period === "night" && (
           <g>
             <circle cx="280" cy="272" r="1.5" fill="#fef08a" opacity={0.85} style={{ filter: "drop-shadow(0 0 4px #fef08a)" }} />
@@ -702,7 +604,7 @@ function MountainScene({ period }: { period: TimePeriod }) {
           </g>
         )}
 
-        {/* ── 13. Front hills (ground silhouette) ── */}
+        {/* ── 10. Front hills (ground silhouette) ── */}
         <path
           fill={c.front}
           d="M0,340 L0,295 Q120,268 240,284 Q360,302 480,278
@@ -718,14 +620,6 @@ function MountainScene({ period }: { period: TimePeriod }) {
         @keyframes birdGlide {
           0%, 100% { transform: translate(0, 0); }
           50% { transform: translate(7px, -3.5px); }
-        }
-        @keyframes deerAlert {
-          0%, 100% { transform: scale(1); }
-          45%, 55% { transform: scale(1.02); }
-        }
-        @keyframes deerGraze {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(0.8px); }
         }
       `}</style>
     </div>
