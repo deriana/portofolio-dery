@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { WebLayout } from "@/components/layouts/web-layout";
 import { PageLayout } from "@/components/page-layout";
 import { SkillIcon } from "@/components/skill-icon";
+import { SpotlightCard } from "@/components/ui/spotlight-card";
 import data from "@/data/skills.json";
 import type { SkillsJson, ArchitectureStudy } from "@/types/props";
 import { Zap } from "lucide-react";
@@ -22,46 +23,60 @@ export function Skills() {
   // Core daily drivers highlighted
   const coreStacks = [
     {
-      name: "Laravel",
-      version: "v11",
-      role: "Enterprise Backend",
-      icon: "/tech_stack_icons/laravel.svg",
-      highlight: "REST API, Eloquent ORM, Queue Workers, MVC Architecture",
-    },
-    {
       name: "Golang",
-      version: "v1.23",
+      version: "v1.23 High Perf",
       role: "High Concurrency",
       icon: "/tech_stack_icons/golang.svg",
-      highlight: "Goroutines, Fiber Engine, Low Memory, High Throughput",
+      highlight: "Goroutines, Fiber Engine, Low Latency gRPC, High Throughput Microservices",
     },
     {
-      name: "PHP",
-      version: "v8.3",
-      role: "Core Web Engine",
-      icon: "/tech_stack_icons/php.svg",
-      highlight: "Object-Oriented, Native Core, Enterprise Reliability",
+      name: "Java",
+      version: "Java 21 LTS",
+      role: "Enterprise Backend",
+      icon: "/tech_stack_icons/java.svg",
+      highlight: "Spring Boot Microservices, Virtual Threads (Project Loom), ACID Transactions",
     },
     {
-      name: "React.js",
-      version: "v19",
-      role: "Modern Frontend",
+      name: "Laravel",
+      version: "v11 Enterprise",
+      role: "Full Web Architecture",
+      icon: "/tech_stack_icons/laravel.svg",
+      highlight: "REST API, Eloquent ORM Optimization, Queue Workers, MVC Engine",
+    },
+    {
+      name: "React & React Native",
+      version: "Modern UI / Mobile",
+      role: "Frontend & Cross-Platform",
       icon: "/tech_stack_icons/react.svg",
-      highlight: "Component Architecture, Virtual DOM, Reactive State",
+      highlight: "Reactive Component Architecture, Cross-Platform Mobile Apps, Next.js",
+    },
+    {
+      name: "Kubernetes & K8s",
+      version: "Cluster Orchestration",
+      role: "Cloud-Native DevOps",
+      icon: "/tech_stack_icons/kubernetes.svg",
+      highlight: "Cluster Pod Orchestration, Service Mesh, Automated Rolling Deployments",
+    },
+    {
+      name: "Redis",
+      version: "v7.4 In-Memory",
+      role: "Distributed Caching",
+      icon: "/tech_stack_icons/redis.svg",
+      highlight: "Cache-Aside Clustering, Idempotency Locks, Pub/Sub Message Brokering",
     },
     {
       name: "PostgreSQL",
-      version: "v16",
-      role: "Relational ACID",
+      version: "v16 Relational",
+      role: "ACID Ledger DB",
       icon: "/tech_stack_icons/postgresql.svg",
-      highlight: "JSONB indexing, Complex Queries, High Consistency",
+      highlight: "JSONB Indexing, Complex Financial Queries, Zero Data Loss Integrity",
     },
     {
       name: "Docker",
-      version: "Containers",
-      role: "DevOps Standard",
+      version: "Container Engine",
+      role: "Containerization",
       icon: "/tech_stack_icons/docker.svg",
-      highlight: "Containerization, Multi-Stage Builds, CI/CD Readiness",
+      highlight: "Multi-Stage Dockerfile Builds, Isolated Environments, CI/CD Pipeline",
     },
   ];
 
@@ -93,11 +108,12 @@ export function Skills() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {coreStacks.map((core) => (
-              <div
+              <SpotlightCard
                 key={core.name}
-                className="rounded-2xl border border-border/70 bg-card p-4 sm:p-5 shadow-sm hover:border-primary/40 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between"
+                spotlightColor="rgba(59, 130, 246, 0.18)"
+                className="rounded-2xl border border-border/70 bg-card p-4 sm:p-5 shadow-sm hover:border-primary/50 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -115,7 +131,7 @@ export function Skills() {
                     {core.highlight}
                   </p>
                 </div>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
         </section>

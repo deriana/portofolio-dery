@@ -1,5 +1,6 @@
 import { WebLayout } from "@/components/layouts/web-layout";
 import { PageLayout } from "@/components/page-layout";
+import { InteractiveTerminal } from "@/components/interactive-terminal";
 import { Link } from "react-router";
 import {
   Briefcase,
@@ -22,39 +23,42 @@ const experiences = [
     company: "Asqi",
     role: "Backend & Microservices Engineer",
     type: "Contract / Full-Time",
-    duration: "1 Year",
-    period: "2024 – 2025",
+    duration: "1 Tahun (Upcoming)",
+    period: "2026 – 2027",
     color: "from-violet-500/20 to-indigo-500/10",
     accent: "violet",
+    statusBadge: "Upcoming",
     metrics: ["High-Throughput gRPC & REST", "Distributed Microservices", "Docker & K8s Cluster Deployments"],
     description:
-      "Architected distributed microservices powered by Go and Java with high-speed inter-service communication via gRPC alongside external REST APIs. Implemented Redis for low-latency distributed caching and message brokering. Orchestrated containerized workloads using Docker and automated cluster deployments on Kubernetes (K8s). Developed modern web dashboards with React and cross-platform mobile client interfaces with React Native.",
+      "Arsitektur layanan microservices berkecepatan tinggi dengan Go dan Java, mengimplementasikan gRPC Protocol Buffers untuk inter-service communication dan RESTful API publik. Mengintegrasikan Redis cluster untuk distributed caching serta kontrol konkurensi. Mengotomatisasi deployment kontainerisasi dengan Docker dan Kubernetes (K8s).",
     skills: ["Go", "Java", "React", "React Native", "Microservices", "Kubernetes", "Docker", "Redis", "gRPC", "REST API"],
   },
   {
     company: "Asqi",
     role: "Backend Developer Intern",
     type: "Internship",
-    duration: "3 Months",
-    period: "2023 – 2024",
+    duration: "3 Bulan",
+    period: "2026",
     color: "from-blue-500/15 to-cyan-500/10",
     accent: "blue",
+    statusBadge: "Completed",
     metrics: ["Microservice Endpoints", "gRPC Protobuf Contracts", "Dockerized Dev Environments"],
     description:
-      "Contributed to core backend microservice development in Go and Java. Assisted in implementing gRPC protocol buffer definitions, public RESTful endpoints, Redis caching layers, and containerized local development workflows with Docker.",
-    skills: ["Go", "Java", "Docker", "gRPC", "REST API", "Redis", "Postman", "Git"],
+      "Berkontribusi dalam pengembangan endpoint microservice backend menggunakan Go dan Java. Membantu perancangan kontrak schema gRPC Protobuf, optimasi query basis data, redis cache layer, serta standardisasi environment pengembangan lokal dengan Docker.",
+    skills: ["Go", "Java", "Docker", "gRPC", "REST API", "Redis", "PostgreSQL", "Git"],
   },
   {
     company: "Mobilus Interactive",
     role: "Backend Developer (Laravel Full)",
-    type: "Apprenticeship",
-    duration: "6 Months",
-    period: "2023",
+    type: "PKL / Apprenticeship",
+    duration: "6 Bulan",
+    period: "2025",
     color: "from-emerald-500/15 to-teal-500/10",
     accent: "emerald",
-    metrics: ["Full Laravel Web Architecture", "Eloquent ORM Optimization", "RESTful API Integration"],
+    statusBadge: "Completed",
+    metrics: ["Full Laravel Architecture", "Eloquent ORM Optimization", "RESTful API Integration"],
     description:
-      "Engineered full-lifecycle web applications and backend systems built entirely on Laravel. Designed 3NF normalized database schemas, implemented secure RESTful API endpoints with authentication middleware, managed background queues, and adhered to rigorous team Git branching workflows.",
+      "Mengembangkan arsitektur backend dan aplikasi web komprehensif fullstack berbasis Laravel. Merancang skema relasional database normalisasi 3NF, membangun REST API terproteksi middleware otentikasi, manajemen background queue worker, serta alur Git branching tim.",
     skills: ["Laravel", "PHP", "MySQL", "REST API", "Blade", "Database Design", "Linux", "Git"],
   },
 ];
@@ -218,6 +222,9 @@ export function About() {
             </div>
           </section>
 
+          {/* ── INTERACTIVE SYSTEM TERMINAL ── */}
+          <InteractiveTerminal />
+
           {/* ── EXPERIENCE TIMELINE ── */}
           <section className="space-y-3">
             <div className="flex items-center gap-3">
@@ -249,6 +256,15 @@ export function About() {
                             <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/20">
                               {exp.type}
                             </span>
+                            {exp.statusBadge === "Upcoming" && (
+                              <span className="inline-flex items-center gap-1.5 text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 shadow-xs">
+                                <span className="relative flex h-1.5 w-1.5">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-500" />
+                                </span>
+                                Upcoming
+                              </span>
+                            )}
                           </div>
                           <p className="text-xs font-bold text-primary/80 mt-0.5">{exp.company}</p>
                         </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { SpotlightCard } from "@/components/ui/spotlight-card";
 import type { PortfolioCardProps } from "@/types/props";
 import { ArrowUpRight, Maximize2 } from "lucide-react";
 import { LazyImage } from "./lazy-image";
@@ -10,7 +11,8 @@ export const PortfolioCard = ({ item }: PortfolioCardProps) => {
 
   return (
     <>
-      <Card className="border border-border/70 bg-card text-card-foreground shadow-sm hover:shadow-md hover:border-primary/40 hover:-translate-y-1 transition-all duration-200 rounded-2xl overflow-hidden hover-target flex flex-col justify-between h-full">
+      <SpotlightCard className="rounded-2xl h-full" spotlightColor="rgba(59, 130, 246, 0.16)">
+        <Card className="border border-border/70 bg-card text-card-foreground shadow-sm hover:shadow-md hover:border-primary/50 hover:-translate-y-1 transition-all duration-200 rounded-2xl overflow-hidden hover-target flex flex-col justify-between h-full">
         <div>
           <div className="p-3 pb-0">
             <div className="group/img relative w-full h-48 sm:h-52 bg-muted/30 rounded-xl overflow-hidden border border-border/40">
@@ -67,16 +69,17 @@ export const PortfolioCard = ({ item }: PortfolioCardProps) => {
           </CardContent>
         </div>
 
-        <div className="flex justify-between items-center text-xs text-muted-foreground px-4 pb-4 pt-1 border-t border-border/30">
-          <span className="text-[11px] text-muted-foreground font-medium">
+        <div className="flex justify-between items-center text-xs text-muted-foreground px-4 pb-4 pt-2.5 border-t border-border/30">
+          <span className="text-[11px] text-muted-foreground font-medium truncate">
             {item.client || "Showcase"}
           </span>
-          <span className="inline-flex items-center gap-1 text-xs text-primary font-semibold">
+          <span className="inline-flex items-center gap-1 text-xs text-primary font-semibold shrink-0 ml-2">
             <span>Detail</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </span>
         </div>
       </Card>
+      </SpotlightCard>
 
       <Lightbox
         isOpen={isPhotoLightboxOpen}
