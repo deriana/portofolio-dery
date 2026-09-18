@@ -52,6 +52,21 @@ export function SkyThemeProvider({ children }: { children: React.ReactNode }) {
     return () => clearInterval(timer);
   }, []);
 
+  // Randomize atmospheric conditions upon initial site entry
+  useEffect(() => {
+    const PERIODS: TimePeriod[] = ["dawn", "day", "sunset", "night"];
+    const WEATHERS: WeatherType[] = ["clear", "rain", "snow"];
+    const PHASES: MoonPhase[] = ["crescent", "quarter", "gibbous", "full"];
+
+    const rPeriod = PERIODS[Math.floor(Math.random() * PERIODS.length)];
+    const rWeather = WEATHERS[Math.floor(Math.random() * WEATHERS.length)];
+    const rPhase = PHASES[Math.floor(Math.random() * PHASES.length)];
+
+    setForcedPeriod(rPeriod);
+    setForcedWeather(rWeather);
+    setForcedMoonPhase(rPhase);
+  }, []);
+
   const period: TimePeriod = forcedPeriod === "auto" ? getTimePeriod(hour) : forcedPeriod;
   const weather: WeatherType = forcedWeather === "auto" ? "clear" : forcedWeather;
   const moonPhase: MoonPhase =
