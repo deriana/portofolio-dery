@@ -25,7 +25,7 @@ export function ContactForm() {
       <div className="space-y-2 text-center md:text-left">
         <h2 className="text-2xl font-bold">Let’s Collaborate</h2>
         <p className="text-muted-foreground text-sm">
-          Feel free to reach out for collaborations, questions, or just to say hi 👋
+          Feel free to reach out for collaborations, questions, or general inquiries.
         </p>
       </div>
 

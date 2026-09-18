@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  Sun, Sunset, Moon, Sunrise, Cloud, CloudRain, Snowflake, Shuffle,
+  Sun, Sunset, Moon, Sunrise, Cloud, CloudRain, Snowflake, Shuffle, X,
 } from "lucide-react";
 import {
   useSkyTheme,
@@ -99,7 +99,7 @@ type MountainPalette = { back: string; mid: string; front: string; tree: string 
 function HouseSVG({
   x,
   y,
-  scale = 1.9,
+  scale = 1.35,
   isLit,
   c,
 }: {
@@ -182,7 +182,7 @@ function HouseSVG({
 function AnimalShelterSVG({
   x,
   y,
-  scale = 1.6,
+  scale = 1.0,
   isNight,
   c,
 }: {
@@ -214,7 +214,7 @@ function AnimalShelterSVG({
 function RoosterSVG({
   x,
   y,
-  scale = 0.95,
+  scale = 0.38,
   c,
 }: {
   x: number;
@@ -269,7 +269,7 @@ function RoosterSVG({
 function FarmBarnSVG({
   x,
   y,
-  scale = 1.35,
+  scale = 1.05,
   c,
 }: {
   x: number;
@@ -297,7 +297,7 @@ function FarmBarnSVG({
 function FarmGoatSVG({
   x,
   y,
-  scale = 0.08,
+  scale = 0.026,
   flip = false,
   animated = false,
   c,
@@ -326,7 +326,7 @@ function FarmGoatSVG({
 function LionSVG({
   x,
   y,
-  scale = 0.125,
+  scale = 0.042,
   isNight,
   c,
 }: {
@@ -365,7 +365,7 @@ function LionSVG({
 function FlyingBirdSVG({
   x,
   y,
-  scale = 0.08,
+  scale = 0.038,
   opacity = 0.72,
   c,
 }: {
@@ -403,7 +403,7 @@ function MountainScene({ period }: { period: TimePeriod }) {
   return (
     <div
       className="absolute bottom-0 left-0 right-0 w-full pointer-events-none"
-      style={{ height: "38vh", minHeight: 180 }}
+      style={{ height: "40vh", minHeight: 190 }}
     >
       <svg
         viewBox="0 0 1440 340"
@@ -411,43 +411,49 @@ function MountainScene({ period }: { period: TimePeriod }) {
         className="absolute bottom-0 left-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* ── 1. Back mountains (tallest, atmospheric silhouette) ── */}
+        {/* ── 1. Grand Alpine Peaks (Back Mountain Range) ── */}
         <path
           fill={c.back}
-          d="M0,340 L0,220 L80,180 L160,200 L260,140 L340,160 L420,120
-             L500,145 L580,105 L660,130 L740,90 L820,118 L900,80
-             L980,110 L1060,75 L1140,100 L1220,65 L1300,95 L1380,60
-             L1440,85 L1440,340 Z"
+          d="M0,340 L0,220 L60,165 L130,195 L220,120 L310,165 L410,95
+             L490,135 L580,75 L670,120 L770,55 L860,110 L950,48
+             L1040,95 L1130,58 L1220,95 L1310,45 L1390,75 L1440,65 L1440,340 Z"
         />
 
-        {/* ── 2. Mid mountains ── */}
+        {/* Highlighted sharp ridge facets on the back peaks */}
+        <g stroke={c.mid} strokeWidth="1" opacity={0.35}>
+          <line x1="770" y1="55" x2="790" y2="155" />
+          <line x1="950" y1="48" x2="975" y2="140" />
+          <line x1="1130" y1="58" x2="1155" y2="150" />
+          <line x1="1310" y1="45" x2="1330" y2="130" />
+        </g>
+
+        {/* ── 2. Mid Mountain Crags & Rugged Ridges ── */}
         <path
           fill={c.mid}
-          d="M0,340 L0,260 L60,240 L120,250 L200,200 L280,220 L360,180
-             L440,205 L520,165 L600,190 L680,155 L760,175 L840,145
-             L920,170 L1000,135 L1080,165 L1160,130 L1240,155 L1320,120
-             L1380,145 L1440,130 L1440,340 Z"
+          d="M0,340 L0,250 L75,210 L160,230 L250,175 L340,205 L440,158
+             L530,185 L620,140 L710,170 L800,128 L890,160 L980,122
+             L1070,152 L1160,115 L1250,148 L1330,110 L1440,132 L1440,340 Z"
         />
 
         {/* ── 3. Soaring Birds across Sky (from bird.svg) ── */}
         {period === "dawn" && (
           <g>
-            <FlyingBirdSVG x={480} y={92} scale={0.08} opacity={0.7} c={c} />
-            <FlyingBirdSVG x={540} y={76} scale={0.065} opacity={0.55} c={c} />
+            <FlyingBirdSVG x={480} y={92} scale={0.038} opacity={0.7} c={c} />
+            <FlyingBirdSVG x={540} y={76} scale={0.032} opacity={0.55} c={c} />
           </g>
         )}
         {period === "day" && (
           <g>
-            <FlyingBirdSVG x={430} y={68} scale={0.085} opacity={0.75} c={c} />
-            <FlyingBirdSVG x={590} y={54} scale={0.065} opacity={0.6} c={c} />
-            <FlyingBirdSVG x={660} y={82} scale={0.075} opacity={0.7} c={c} />
+            <FlyingBirdSVG x={430} y={68} scale={0.04} opacity={0.75} c={c} />
+            <FlyingBirdSVG x={590} y={54} scale={0.032} opacity={0.6} c={c} />
+            <FlyingBirdSVG x={660} y={82} scale={0.036} opacity={0.7} c={c} />
           </g>
         )}
         {period === "sunset" && (
           <g>
-            <FlyingBirdSVG x={490} y={85} scale={0.08} opacity={0.8} c={c} />
-            <FlyingBirdSVG x={550} y={72} scale={0.065} opacity={0.65} c={c} />
-            <FlyingBirdSVG x={595} y={92} scale={0.07} opacity={0.75} c={c} />
+            <FlyingBirdSVG x={490} y={85} scale={0.038} opacity={0.8} c={c} />
+            <FlyingBirdSVG x={550} y={72} scale={0.032} opacity={0.65} c={c} />
+            <FlyingBirdSVG x={595} y={92} scale={0.035} opacity={0.75} c={c} />
           </g>
         )}
 
@@ -468,39 +474,39 @@ function MountainScene({ period }: { period: TimePeriod }) {
 
         {/* ── 5. Farm Barn (day & sunset) ── */}
         {(period === "day" || period === "sunset") && (
-          <FarmBarnSVG x={345} y={242} scale={1.35} c={c} />
+          <FarmBarnSVG x={340} y={250} scale={1.05} c={c} />
         )}
 
         {/* ── 6. Cozy Hillside House (home-1.svg) ── */}
-        <HouseSVG x={205} y={238} scale={1.9} isLit={isHouseLit} c={c} />
+        <HouseSVG x={210} y={248} scale={1.35} isLit={isHouseLit} c={c} />
 
         {/* ── 7. Animal Shelter (animal-shelter.svg) ── */}
         {period !== "sunset" && (
-          <AnimalShelterSVG x={268} y={254} scale={1.6} isNight={period === "night"} c={c} />
+          <AnimalShelterSVG x={262} y={262} scale={1.0} isNight={period === "night"} c={c} />
         )}
 
         {/* ── 8. Rooster Crowing at Dawn (animal-chicken-rooster.svg) ── */}
         {period === "dawn" && (
-          <RoosterSVG x={168} y={242} scale={0.95} c={c} />
+          <RoosterSVG x={185} y={256} scale={0.38} c={c} />
         )}
 
         {/* ── 9. Farm Goats Grazing / Moving (animal-domestic-farm.svg) ── */}
         {period === "dawn" && (
-          <FarmGoatSVG x={730} y={248} scale={0.075} animated={false} c={c} />
+          <FarmGoatSVG x={735} y={262} scale={0.026} animated={false} c={c} />
         )}
         {period === "day" && (
           <g>
-            <FarmGoatSVG x={740} y={244} scale={0.08} animated={true} c={c} />
-            <FarmGoatSVG x={805} y={252} scale={0.055} flip={true} animated={false} c={c} />
+            <FarmGoatSVG x={735} y={262} scale={0.026} animated={true} c={c} />
+            <FarmGoatSVG x={765} y={266} scale={0.02} flip={true} animated={false} c={c} />
           </g>
         )}
         {period === "sunset" && (
-          <FarmGoatSVG x={635} y={250} scale={0.075} flip={true} animated={true} c={c} />
+          <FarmGoatSVG x={640} y={264} scale={0.026} flip={true} animated={true} c={c} />
         )}
 
-        {/* ── 10. Noble Lion overlooking the realm (animal-leo-lion.svg) ── */}
+        {/* ── 10. Noble Lion on Rocky Cliff (animal-leo-lion.svg) ── */}
         {(period === "sunset" || period === "night") && (
-          <LionSVG x={1120} y={208} scale={0.125} isNight={period === "night"} c={c} />
+          <LionSVG x={1140} y={240} scale={0.042} isNight={period === "night"} c={c} />
         )}
 
         {/* ── 11. Pine trees (right cluster) ── */}
@@ -532,185 +538,260 @@ function MountainScene({ period }: { period: TimePeriod }) {
         {/* ── 13. Front hills (ground silhouette) ── */}
         <path
           fill={c.front}
-          d="M0,340 L0,295 Q120,265 240,285 Q360,305 480,280
-             Q600,258 720,275 Q840,292 960,272
-             Q1080,255 1200,278 Q1320,300 1440,285 L1440,340 Z"
+          d="M0,340 L0,295 Q120,268 240,284 Q360,302 480,278
+             Q600,262 720,276 Q840,290 960,270
+             Q1080,256 1200,276 Q1320,296 1440,284 L1440,340 Z"
         />
       </svg>
     </div>
   );
 }
 
-
 /* ─────────────────────────────────────────────
-   CELESTIAL BODY  (sun / moon in the sky)
-   With 4 Moon Phases (crescent, quarter, gibbous, full)
+   MOON VISUAL COMPONENT
+   4 distinct vector moon phases with pure paths
 ───────────────────────────────────────────── */
-function CelestialBody({ period, moonPhase }: { period: TimePeriod; moonPhase: MoonPhase }) {
-  const config: Record<TimePeriod, { top: string; left: string; size: number }> = {
-    night:  { top: "11%", left: "72%", size: 84  },
-    dawn:   { top: "54%", left: "50%", size: 104 },
-    day:    { top: "9%",  left: "65%", size: 104 },
-    sunset: { top: "52%", left: "38%", size: 118 },
-  };
-  const { top, left, size } = config[period];
-
+function MoonVisual({
+  moonPhase,
+  size,
+  isTwilight = false,
+}: {
+  moonPhase: MoonPhase;
+  size: number;
+  isTwilight?: boolean;
+}) {
   return (
     <div
-      className="absolute pointer-events-none select-none"
       style={{
-        top,
-        left,
-        transform: "translate(-50%, -50%)",
         width: size,
         height: size,
-        transition: "top 2.4s ease, left 2.4s ease, opacity 2s ease",
+        filter: isTwilight
+          ? "drop-shadow(0 0 10px rgba(224, 231, 255, 0.75)) drop-shadow(0 0 22px rgba(165, 180, 252, 0.35))"
+          : "drop-shadow(0 0 16px rgba(199, 210, 254, 0.85)) drop-shadow(0 0 32px rgba(129, 140, 248, 0.4))",
       }}
     >
+      <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
+        {/* Outer subtle halo */}
+        <circle cx="50" cy="50" r="44" fill={isTwilight ? "rgba(199,210,254,0.08)" : "rgba(199,210,254,0.06)"} />
+
+        {/* Crescent Phase */}
+        {moonPhase === "crescent" && (
+          <>
+            <path d="M 50,14 A 36,36 0 0,0 50,86 Q 74,50 50,14 Z" fill="#e8eeff" />
+            <circle cx="34" cy="50" r="3.2" fill="rgba(165,180,252,0.4)" />
+            <circle cx="41" cy="36" r="2.4" fill="rgba(165,180,252,0.35)" />
+            <circle cx="39" cy="65" r="2.8" fill="rgba(165,180,252,0.35)" />
+            <circle cx="30" cy="60" r="1.8" fill="rgba(165,180,252,0.3)" />
+          </>
+        )}
+
+        {/* Quarter / Half Moon Phase */}
+        {moonPhase === "quarter" && (
+          <>
+            <path d="M 50,14 A 36,36 0 0,0 50,86 L 50,14 Z" fill="#e8eeff" />
+            <circle cx="35" cy="50" r="3.5" fill="rgba(165,180,252,0.35)" />
+            <circle cx="41" cy="35" r="3" fill="rgba(165,180,252,0.3)" />
+            <circle cx="37" cy="66" r="2.8" fill="rgba(165,180,252,0.3)" />
+            <circle cx="28" cy="54" r="2" fill="rgba(165,180,252,0.25)" />
+          </>
+        )}
+
+        {/* Gibbous (3/4) Phase */}
+        {moonPhase === "gibbous" && (
+          <>
+            <path d="M 50,14 A 36,36 0 0,0 50,86 Q 26,50 50,14 Z" fill="#e8eeff" />
+            <circle cx="42" cy="48" r="4" fill="rgba(165,180,252,0.35)" />
+            <circle cx="52" cy="34" r="3.5" fill="rgba(165,180,252,0.3)" />
+            <circle cx="48" cy="65" r="3.2" fill="rgba(165,180,252,0.3)" />
+            <circle cx="33" cy="52" r="2.5" fill="rgba(165,180,252,0.25)" />
+          </>
+        )}
+
+        {/* Full Moon Phase */}
+        {moonPhase === "full" && (
+          <>
+            <circle cx="50" cy="50" r="36" fill="#f0f4ff" />
+            <circle cx="42" cy="40" r="7" fill="rgba(165,180,252,0.32)" />
+            <circle cx="58" cy="44" r="6" fill="rgba(165,180,252,0.28)" />
+            <circle cx="48" cy="62" r="8" fill="rgba(165,180,252,0.30)" />
+            <circle cx="35" cy="56" r="4.5" fill="rgba(165,180,252,0.25)" />
+            <circle cx="62" cy="58" r="5" fill="rgba(165,180,252,0.22)" />
+            <circle cx="53" cy="28" r="3.5" fill="rgba(165,180,252,0.2)" />
+          </>
+        )}
+      </svg>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   CELESTIAL BODIES (Sun & Moon)
+   Time-driven natural positioning:
+   - Dawn:   Sun rising low in the east (right horizon)
+   - Day:    Sun blazing high in the middle sky
+   - Sunset: Sinking sun low on west horizon (left), PLUS twilight moon rising on east (right)
+   - Night:  Luminous moon high in the starry sky
+───────────────────────────────────────────── */
+function CelestialBody({ period, moonPhase }: { period: TimePeriod; moonPhase: MoonPhase }) {
+  return (
+    <>
+      {/* ── Moon at Night ── */}
       {period === "night" && (
         <div
+          className="absolute pointer-events-none select-none"
           style={{
-            width: size,
-            height: size,
-            filter: "drop-shadow(0 0 16px rgba(199, 210, 254, 0.85)) drop-shadow(0 0 32px rgba(129, 140, 248, 0.4))",
+            top: "16%",
+            left: "70%",
+            transform: "translate(-50%, -50%)",
+            width: 84,
+            height: 84,
+            transition: "all 2.4s ease",
           }}
         >
-          <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
-            {/* Outer haze halo */}
-            <circle cx="50" cy="50" r="44" fill="rgba(199,210,254,0.06)" />
-
-            {/* Crescent Phase */}
-            {moonPhase === "crescent" && (
-              <>
-                <path d="M 50,14 A 36,36 0 0,0 50,86 Q 74,50 50,14 Z" fill="#e8eeff" />
-                <circle cx="34" cy="50" r="3.2" fill="rgba(165,180,252,0.4)" />
-                <circle cx="41" cy="36" r="2.4" fill="rgba(165,180,252,0.35)" />
-                <circle cx="39" cy="65" r="2.8" fill="rgba(165,180,252,0.35)" />
-                <circle cx="30" cy="60" r="1.8" fill="rgba(165,180,252,0.3)" />
-              </>
-            )}
-
-            {/* Quarter / Half Moon Phase */}
-            {moonPhase === "quarter" && (
-              <>
-                <path d="M 50,14 A 36,36 0 0,0 50,86 L 50,14 Z" fill="#e8eeff" />
-                <circle cx="35" cy="50" r="3.5" fill="rgba(165,180,252,0.35)" />
-                <circle cx="41" cy="35" r="3" fill="rgba(165,180,252,0.3)" />
-                <circle cx="37" cy="66" r="2.8" fill="rgba(165,180,252,0.3)" />
-                <circle cx="28" cy="54" r="2" fill="rgba(165,180,252,0.25)" />
-              </>
-            )}
-
-            {/* Gibbous (3/4) Phase */}
-            {moonPhase === "gibbous" && (
-              <>
-                <path d="M 50,14 A 36,36 0 0,0 50,86 Q 26,50 50,14 Z" fill="#e8eeff" />
-                <circle cx="42" cy="48" r="4" fill="rgba(165,180,252,0.35)" />
-                <circle cx="52" cy="34" r="3.5" fill="rgba(165,180,252,0.3)" />
-                <circle cx="48" cy="65" r="3.2" fill="rgba(165,180,252,0.3)" />
-                <circle cx="33" cy="52" r="2.5" fill="rgba(165,180,252,0.25)" />
-              </>
-            )}
-
-            {/* Full Moon Phase */}
-            {moonPhase === "full" && (
-              <>
-                <circle cx="50" cy="50" r="36" fill="#f0f4ff" />
-                <circle cx="42" cy="40" r="7" fill="rgba(165,180,252,0.32)" />
-                <circle cx="58" cy="44" r="6" fill="rgba(165,180,252,0.28)" />
-                <circle cx="48" cy="62" r="8" fill="rgba(165,180,252,0.30)" />
-                <circle cx="35" cy="56" r="4.5" fill="rgba(165,180,252,0.25)" />
-                <circle cx="62" cy="58" r="5" fill="rgba(165,180,252,0.22)" />
-                <circle cx="53" cy="28" r="3.5" fill="rgba(165,180,252,0.2)" />
-              </>
-            )}
-          </svg>
+          <MoonVisual moonPhase={moonPhase} size={84} />
         </div>
       )}
 
-      {period === "dawn" && (
-        <div
-          style={{
-            width: size,
-            height: size,
-            filter: "drop-shadow(0 0 20px rgba(251, 146, 60, 0.9)) drop-shadow(0 0 40px rgba(244, 63, 94, 0.45))",
-          }}
-        >
-          <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="cb-dawn-grad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%"   stopColor="#fff7ed" />
-                <stop offset="45%"  stopColor="#fdba74" />
-                <stop offset="80%"  stopColor="#f97316" />
-                <stop offset="100%" stopColor="#e11d48" />
-              </radialGradient>
-            </defs>
-            <circle cx="50" cy="50" r="48" fill="rgba(253,186,116,0.18)" />
-            <circle cx="50" cy="50" r="38" fill="rgba(244,114,182,0.22)" />
-            <circle cx="50" cy="50" r="24" fill="url(#cb-dawn-grad)" />
-          </svg>
-        </div>
-      )}
-
-      {period === "day" && (
-        <div
-          style={{
-            width: size,
-            height: size,
-            filter: "drop-shadow(0 0 22px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 44px rgba(245, 158, 11, 0.55))",
-          }}
-        >
-          <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="cb-sun-grad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%"   stopColor="#ffffff" />
-                <stop offset="35%"  stopColor="#fef08a" />
-                <stop offset="70%"  stopColor="#fbbf24" />
-                <stop offset="100%" stopColor="#f59e0b" />
-              </radialGradient>
-            </defs>
-            <circle cx="50" cy="50" r="48" fill="rgba(253,224,71,0.14)" />
-            <circle cx="50" cy="50" r="38" fill="rgba(251,191,36,0.22)" />
-            {Array.from({ length: 12 }, (_, i) => {
-              const a = (Math.PI / 6) * i;
-              return (
-                <line
-                  key={i}
-                  x1={50 + 26 * Math.cos(a)} y1={50 + 26 * Math.sin(a)}
-                  x2={50 + 42 * Math.cos(a)} y2={50 + 42 * Math.sin(a)}
-                  stroke="rgba(253,224,71,0.75)" strokeWidth="2.5" strokeLinecap="round"
-                />
-              );
-            })}
-            <circle cx="50" cy="50" r="22" fill="url(#cb-sun-grad)" />
-          </svg>
-        </div>
-      )}
-
+      {/* ── Twilight Moon at Sunset (Menjelang Maghrib) ── */}
       {period === "sunset" && (
         <div
+          className="absolute pointer-events-none select-none"
           style={{
-            width: size,
-            height: size,
-            filter: "drop-shadow(0 0 24px rgba(239, 68, 68, 0.95)) drop-shadow(0 0 50px rgba(249, 115, 22, 0.55))",
+            top: "22%",
+            left: "76%",
+            transform: "translate(-50%, -50%)",
+            width: 68,
+            height: 68,
+            opacity: 0.82,
+            transition: "all 2.4s ease",
           }}
         >
-          <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="cb-set-grad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%"   stopColor="#fff7ed" />
-                <stop offset="35%"  stopColor="#fca5a5" />
-                <stop offset="70%"  stopColor="#ef4444" />
-                <stop offset="100%" stopColor="#b91c1c" />
-              </radialGradient>
-            </defs>
-            <circle cx="50" cy="50" r="48" fill="rgba(248,113,113,0.18)" />
-            <circle cx="50" cy="50" r="38" fill="rgba(239,68,68,0.25)" />
-            <circle cx="50" cy="50" r="25" fill="url(#cb-set-grad)" />
-          </svg>
+          <MoonVisual moonPhase={moonPhase} size={68} isTwilight />
         </div>
       )}
-    </div>
+
+      {/* ── Sinking Sun at Sunset (Menjelang Maghrib di Barat Bawah) ── */}
+      {period === "sunset" && (
+        <div
+          className="absolute pointer-events-none select-none"
+          style={{
+            top: "66%",
+            left: "22%",
+            transform: "translate(-50%, -50%)",
+            width: 102,
+            height: 102,
+            transition: "all 2.4s ease",
+          }}
+        >
+          <div
+            style={{
+              width: 102,
+              height: 102,
+              filter: "drop-shadow(0 0 24px rgba(239, 68, 68, 0.95)) drop-shadow(0 0 50px rgba(249, 115, 22, 0.55))",
+            }}
+          >
+            <svg viewBox="0 0 100 100" width={102} height={102} xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="cb-set-grad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"   stopColor="#fff7ed" />
+                  <stop offset="35%"  stopColor="#fca5a5" />
+                  <stop offset="70%"  stopColor="#ef4444" />
+                  <stop offset="100%" stopColor="#b91c1c" />
+                </radialGradient>
+              </defs>
+              <circle cx="50" cy="50" r="48" fill="rgba(248,113,113,0.18)" />
+              <circle cx="50" cy="50" r="38" fill="rgba(239,68,68,0.25)" />
+              <circle cx="50" cy="50" r="25" fill="url(#cb-set-grad)" />
+            </svg>
+          </div>
+        </div>
+      )}
+
+      {/* ── Rising Sun at Dawn (Terbit Rendah di Timur) ── */}
+      {period === "dawn" && (
+        <div
+          className="absolute pointer-events-none select-none"
+          style={{
+            top: "62%",
+            left: "78%",
+            transform: "translate(-50%, -50%)",
+            width: 94,
+            height: 94,
+            transition: "all 2.4s ease",
+          }}
+        >
+          <div
+            style={{
+              width: 94,
+              height: 94,
+              filter: "drop-shadow(0 0 20px rgba(251, 146, 60, 0.9)) drop-shadow(0 0 40px rgba(244, 63, 94, 0.45))",
+            }}
+          >
+            <svg viewBox="0 0 100 100" width={94} height={94} xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="cb-dawn-grad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"   stopColor="#fff7ed" />
+                  <stop offset="45%"  stopColor="#fdba74" />
+                  <stop offset="80%"  stopColor="#f97316" />
+                  <stop offset="100%" stopColor="#e11d48" />
+                </radialGradient>
+              </defs>
+              <circle cx="50" cy="50" r="48" fill="rgba(253,186,116,0.18)" />
+              <circle cx="50" cy="50" r="38" fill="rgba(244,114,182,0.22)" />
+              <circle cx="50" cy="50" r="24" fill="url(#cb-dawn-grad)" />
+            </svg>
+          </div>
+        </div>
+      )}
+
+      {/* ── Blazing Sun at Day (Tinggi di Tengah Langit) ── */}
+      {period === "day" && (
+        <div
+          className="absolute pointer-events-none select-none"
+          style={{
+            top: "14%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 104,
+            height: 104,
+            transition: "all 2.4s ease",
+          }}
+        >
+          <div
+            style={{
+              width: 104,
+              height: 104,
+              filter: "drop-shadow(0 0 22px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 44px rgba(245, 158, 11, 0.55))",
+            }}
+          >
+            <svg viewBox="0 0 100 100" width={104} height={104} xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="cb-sun-grad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"   stopColor="#ffffff" />
+                  <stop offset="35%"  stopColor="#fef08a" />
+                  <stop offset="70%"  stopColor="#fbbf24" />
+                  <stop offset="100%" stopColor="#f59e0b" />
+                </radialGradient>
+              </defs>
+              <circle cx="50" cy="50" r="48" fill="rgba(253,224,71,0.14)" />
+              <circle cx="50" cy="50" r="38" fill="rgba(251,191,36,0.22)" />
+              {Array.from({ length: 12 }, (_, i) => {
+                const a = (Math.PI / 6) * i;
+                return (
+                  <line
+                    key={i}
+                    x1={50 + 26 * Math.cos(a)} y1={50 + 26 * Math.sin(a)}
+                    x2={50 + 42 * Math.cos(a)} y2={50 + 42 * Math.sin(a)}
+                    stroke="rgba(253,224,71,0.75)" strokeWidth="2.5" strokeLinecap="round"
+                  />
+                );
+              })}
+              <circle cx="50" cy="50" r="22" fill="url(#cb-sun-grad)" />
+            </svg>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -975,7 +1056,9 @@ function SimulationModal({
             <h3 className="font-bold text-sm text-foreground">Simulasi Suasana Langit</h3>
             <p className="text-[11px] text-muted-foreground">Uji tema waktu, cuaca & fase bulan</p>
           </div>
-          <button onClick={onClose} className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors text-sm cursor-pointer">✕</button>
+          <button onClick={onClose} className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors text-sm cursor-pointer" aria-label="Close">
+            <X className="w-4 h-4" />
+          </button>
         </div>
 
         <div className="space-y-1.5">

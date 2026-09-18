@@ -26,7 +26,7 @@ const experiences = [
     period: "2024 – 2025",
     color: "from-violet-500/20 to-indigo-500/10",
     accent: "violet",
-    metrics: ["⚡ -45% API Latency", "⚡ Query Indexing & Schema Tuning", "⚡ Async Queue Worker Pipeline"],
+    metrics: ["-45% API Latency", "Query Indexing & Schema Tuning", "Async Queue Worker Pipeline"],
     description:
       "Architected enterprise-grade RESTful backend services and streamlined relational database structures. Slashed average response latencies by 45% through aggressive query optimization and index tuning, while orchestrating high-volume background tasks with asynchronous queue workers.",
     skills: ["Laravel", "PHP", "MySQL", "Redis", "REST APIs", "Microservices", "Docker", "Git"],
@@ -39,7 +39,7 @@ const experiences = [
     period: "2023 – 2024",
     color: "from-blue-500/15 to-cyan-500/10",
     accent: "blue",
-    metrics: ["⚡ -30% Bug Defect Rate", "⚡ Postman Test Automation", "⚡ Clean Modular Architecture"],
+    metrics: ["-30% Bug Defect Rate", "Postman Test Automation", "Clean Modular Architecture"],
     description:
       "Engineered core backend business logic and third-party API integrations. Developed comprehensive Postman endpoint verification suites that decreased production staging defect rates by 30% prior to release cycles.",
     skills: ["Laravel", "PHP", "MySQL", "Postman", "Git"],
@@ -52,7 +52,7 @@ const experiences = [
     period: "2023",
     color: "from-emerald-500/15 to-teal-500/10",
     accent: "emerald",
-    metrics: ["⚡ 3NF Normalized Schemas", "⚡ Secure CRUD Services", "⚡ Git Team Workflows"],
+    metrics: ["3NF Normalized Schemas", "Secure CRUD Services", "Git Team Workflows"],
     description:
       "Designed normalized relational database schemas (3NF) and built resilient CRUD endpoints. Contributed to production web backends adhering to rigorous team Git branching and code review standards.",
     skills: ["PHP", "Database Design", "REST API", "Linux", "Git"],
