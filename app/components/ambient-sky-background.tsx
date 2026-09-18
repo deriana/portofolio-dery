@@ -6,6 +6,7 @@ import {
   useSkyTheme,
   type TimePeriod,
   type WeatherType,
+  type MoonPhase,
 } from "./sky-theme-context";
 
 /* ─────────────────────────────────────────────
@@ -41,6 +42,15 @@ const PERIOD_OPTIONS: PeriodOption[] = [
   { id: "day",    label: "Siang Cerah",       sub: "06:00 – 15:00",   icon: Sun     },
   { id: "sunset", label: "Sore / Senja",      sub: "15:00 – 19:00",   icon: Sunset  },
   { id: "night",  label: "Malam Kosmik",      sub: "19:00 – 04:00",   icon: Moon    },
+];
+
+interface MoonPhaseOption { id: MoonPhase | "auto"; label: string; sub: string; }
+const MOON_PHASE_OPTIONS: MoonPhaseOption[] = [
+  { id: "auto",     label: "Auto Kalender", sub: "Ikuti siklus tanggal" },
+  { id: "crescent", label: "Bulan Sabit",   sub: "Crescent moon" },
+  { id: "quarter",  label: "Bulan Separuh", sub: "Half / quarter" },
+  { id: "gibbous",  label: "Bulan Cembung", sub: "Waxing gibbous" },
+  { id: "full",     label: "Bulan Purnama", sub: "Full luminous moon" },
 ];
 
 /* ─────────────────────────────────────────────
@@ -90,6 +100,16 @@ function MountainScene({ period }: { period: TimePeriod }) {
         className="absolute bottom-0 left-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
+        {/* ── Flock of birds soaring across the sky (dawn, day, sunset) ── */}
+        {period !== "night" && (
+          <g fill={c.mid} opacity={0.65}>
+            <path d="M 520,110 Q 528,103 536,110 Q 544,103 552,110 Q 544,106 536,112 Q 528,106 520,110 Z" />
+            <path d="M 548,96 Q 554,90 560,96 Q 566,90 572,96 Q 566,93 560,98 Q 554,93 548,96 Z" />
+            <path d="M 570,115 Q 575,110 580,115 Q 585,110 590,115 Q 585,112 580,117 Q 575,112 570,115 Z" />
+            <path d="M 598,102 Q 603,98 608,102 Q 613,98 618,102 Q 613,100 608,104 Q 603,100 598,102 Z" />
+          </g>
+        )}
+
         {/* ── Back mountains (tallest, lightest silhouette) ── */}
         <path
           fill={c.back}
@@ -110,18 +130,62 @@ function MountainScene({ period }: { period: TimePeriod }) {
 
         {/* ── Pine trees (left cluster) ── */}
         <g fill={c.tree}>
-          {/* tree 1 */}
           <polygon points="30,270 55,210 80,270" />
           <polygon points="40,240 55,190 70,240" />
           <rect x="51" y="270" width="8" height="20" />
-          {/* tree 2 */}
+
           <polygon points="75,275 105,205 135,275" />
           <polygon points="86,245 105,180 124,245" />
           <rect x="101" y="275" width="10" height="20" />
-          {/* tree 3 */}
+
           <polygon points="140,280 162,228 185,280" />
           <polygon points="150,255 162,210 175,255" />
           <rect x="158" y="280" width="8" height="18" />
+        </g>
+
+        {/* ── Cozy Hillside Cabin with glowing warm window ── */}
+        <g>
+          {/* Cabin body */}
+          <rect x="220" y="260" width="36" height="24" rx="2" fill={c.front} />
+          {/* Pitched roof */}
+          <polygon points="214,262 238,244 262,262" fill={c.tree} />
+          {/* Chimney */}
+          <rect x="250" y="247" width="5" height="12" fill={c.tree} />
+          {/* Warm glowing window (fireside glow) */}
+          <rect
+            x="227" y="267" width="10" height="10" rx="1.5"
+            fill="#fde047"
+            opacity={period === "day" ? 0.35 : 0.95}
+            style={{ filter: "drop-shadow(0 0 6px rgba(253, 224, 71, 0.9))" }}
+          />
+          {/* Window pane divider */}
+          <line x1="232" y1="267" x2="232" y2="277" stroke={c.front} strokeWidth="1" />
+          <line x1="227" y1="272" x2="237" y2="272" stroke={c.front} strokeWidth="1" />
+          {/* Door */}
+          <rect x="243" y="269" width="8" height="15" fill={c.mid} />
+        </g>
+
+        {/* ── Wild Deer Silhouette on hill crest ── */}
+        <g fill={c.tree}>
+          {/* Body */}
+          <ellipse cx="1165" cy="263" rx="11" ry="6" />
+          {/* Neck & Head */}
+          <path d="M 1173,261 L 1179,247 L 1184,246 L 1186,250 L 1179,263 Z" />
+          <circle cx="1185" cy="248" r="2.2" />
+          {/* Ears */}
+          <path d="M 1178,247 L 1174,242 L 1178,244 Z" />
+          {/* Antlers */}
+          <path
+            d="M 1181,246 L 1180,235 M 1180,240 L 1185,238 M 1183,246 L 1187,236 M 1185,241 L 1190,240"
+            stroke={c.tree} strokeWidth="1.8" strokeLinecap="round"
+          />
+          {/* 4 Legs */}
+          <line x1="1158" y1="266" x2="1156" y2="284" stroke={c.tree} strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="1163" y1="266" x2="1162" y2="285" stroke={c.tree} strokeWidth="2" strokeLinecap="round" />
+          <line x1="1171" y1="266" x2="1173" y2="284" stroke={c.tree} strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="1175" y1="266" x2="1177" y2="282" stroke={c.tree} strokeWidth="2" strokeLinecap="round" />
+          {/* Tail */}
+          <path d="M 1154,261 L 1150,264 L 1154,266 Z" />
         </g>
 
         {/* ── Pine trees (right cluster) ── */}
@@ -139,6 +203,17 @@ function MountainScene({ period }: { period: TimePeriod }) {
           <rect x="1374" y="278" width="8" height="20" />
         </g>
 
+        {/* ── Night Fireflies ── */}
+        {period === "night" && (
+          <g>
+            <circle cx="280" cy="272" r="1.5" fill="#fef08a" opacity="0.8" style={{ filter: "drop-shadow(0 0 4px #fef08a)" }} />
+            <circle cx="310" cy="260" r="1.8" fill="#a7f3d0" opacity="0.9" style={{ filter: "drop-shadow(0 0 5px #a7f3d0)" }} />
+            <circle cx="210" cy="278" r="1.4" fill="#fef08a" opacity="0.75" style={{ filter: "drop-shadow(0 0 4px #fef08a)" }} />
+            <circle cx="1135" cy="264" r="1.6" fill="#fef08a" opacity="0.85" style={{ filter: "drop-shadow(0 0 5px #fef08a)" }} />
+            <circle cx="1215" cy="268" r="1.3" fill="#a7f3d0" opacity="0.7" style={{ filter: "drop-shadow(0 0 4px #a7f3d0)" }} />
+          </g>
+        )}
+
         {/* ── Front hills (ground silhouette) ── */}
         <path
           fill={c.front}
@@ -153,10 +228,9 @@ function MountainScene({ period }: { period: TimePeriod }) {
 
 /* ─────────────────────────────────────────────
    CELESTIAL BODY  (sun / moon in the sky)
-   Rendered with clean SVG paths + native CSS
-   drop-shadow (NO buggy SVG filters or masks)
+   With 4 Moon Phases (crescent, quarter, gibbous, full)
 ───────────────────────────────────────────── */
-function CelestialBody({ period }: { period: TimePeriod }) {
+function CelestialBody({ period, moonPhase }: { period: TimePeriod; moonPhase: MoonPhase }) {
   const config: Record<TimePeriod, { top: string; left: string; size: number }> = {
     night:  { top: "11%", left: "72%", size: 84  },
     dawn:   { top: "54%", left: "50%", size: 104 },
@@ -188,16 +262,52 @@ function CelestialBody({ period }: { period: TimePeriod }) {
           <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
             {/* Outer haze halo */}
             <circle cx="50" cy="50" r="44" fill="rgba(199,210,254,0.06)" />
-            {/* Pure crescent path — zero mask, zero filter */}
-            <path
-              d="M 50,14 A 36,36 0 0,0 50,86 Q 74,50 50,14 Z"
-              fill="#e8eeff"
-            />
-            {/* Subtle craters directly on crescent */}
-            <circle cx="34" cy="50" r="3.2" fill="rgba(165,180,252,0.4)" />
-            <circle cx="41" cy="36" r="2.4" fill="rgba(165,180,252,0.35)" />
-            <circle cx="39" cy="65" r="2.8" fill="rgba(165,180,252,0.35)" />
-            <circle cx="30" cy="60" r="1.8" fill="rgba(165,180,252,0.3)" />
+
+            {/* Crescent Phase */}
+            {moonPhase === "crescent" && (
+              <>
+                <path d="M 50,14 A 36,36 0 0,0 50,86 Q 74,50 50,14 Z" fill="#e8eeff" />
+                <circle cx="34" cy="50" r="3.2" fill="rgba(165,180,252,0.4)" />
+                <circle cx="41" cy="36" r="2.4" fill="rgba(165,180,252,0.35)" />
+                <circle cx="39" cy="65" r="2.8" fill="rgba(165,180,252,0.35)" />
+                <circle cx="30" cy="60" r="1.8" fill="rgba(165,180,252,0.3)" />
+              </>
+            )}
+
+            {/* Quarter / Half Moon Phase */}
+            {moonPhase === "quarter" && (
+              <>
+                <path d="M 50,14 A 36,36 0 0,0 50,86 L 50,14 Z" fill="#e8eeff" />
+                <circle cx="35" cy="50" r="3.5" fill="rgba(165,180,252,0.35)" />
+                <circle cx="41" cy="35" r="3" fill="rgba(165,180,252,0.3)" />
+                <circle cx="37" cy="66" r="2.8" fill="rgba(165,180,252,0.3)" />
+                <circle cx="28" cy="54" r="2" fill="rgba(165,180,252,0.25)" />
+              </>
+            )}
+
+            {/* Gibbous (3/4) Phase */}
+            {moonPhase === "gibbous" && (
+              <>
+                <path d="M 50,14 A 36,36 0 0,0 50,86 Q 26,50 50,14 Z" fill="#e8eeff" />
+                <circle cx="42" cy="48" r="4" fill="rgba(165,180,252,0.35)" />
+                <circle cx="52" cy="34" r="3.5" fill="rgba(165,180,252,0.3)" />
+                <circle cx="48" cy="65" r="3.2" fill="rgba(165,180,252,0.3)" />
+                <circle cx="33" cy="52" r="2.5" fill="rgba(165,180,252,0.25)" />
+              </>
+            )}
+
+            {/* Full Moon Phase */}
+            {moonPhase === "full" && (
+              <>
+                <circle cx="50" cy="50" r="36" fill="#f0f4ff" />
+                <circle cx="42" cy="40" r="7" fill="rgba(165,180,252,0.32)" />
+                <circle cx="58" cy="44" r="6" fill="rgba(165,180,252,0.28)" />
+                <circle cx="48" cy="62" r="8" fill="rgba(165,180,252,0.30)" />
+                <circle cx="35" cy="56" r="4.5" fill="rgba(165,180,252,0.25)" />
+                <circle cx="62" cy="58" r="5" fill="rgba(165,180,252,0.22)" />
+                <circle cx="53" cy="28" r="3.5" fill="rgba(165,180,252,0.2)" />
+              </>
+            )}
           </svg>
         </div>
       )}
@@ -219,10 +329,8 @@ function CelestialBody({ period }: { period: TimePeriod }) {
                 <stop offset="100%" stopColor="#e11d48" />
               </radialGradient>
             </defs>
-            {/* Morning halos */}
             <circle cx="50" cy="50" r="48" fill="rgba(253,186,116,0.18)" />
             <circle cx="50" cy="50" r="38" fill="rgba(244,114,182,0.22)" />
-            {/* Rising sun disc */}
             <circle cx="50" cy="50" r="24" fill="url(#cb-dawn-grad)" />
           </svg>
         </div>
@@ -245,10 +353,8 @@ function CelestialBody({ period }: { period: TimePeriod }) {
                 <stop offset="100%" stopColor="#f59e0b" />
               </radialGradient>
             </defs>
-            {/* Corona halos */}
             <circle cx="50" cy="50" r="48" fill="rgba(253,224,71,0.14)" />
             <circle cx="50" cy="50" r="38" fill="rgba(251,191,36,0.22)" />
-            {/* Rays */}
             {Array.from({ length: 12 }, (_, i) => {
               const a = (Math.PI / 6) * i;
               return (
@@ -260,7 +366,6 @@ function CelestialBody({ period }: { period: TimePeriod }) {
                 />
               );
             })}
-            {/* Sun disc */}
             <circle cx="50" cy="50" r="22" fill="url(#cb-sun-grad)" />
           </svg>
         </div>
@@ -283,10 +388,8 @@ function CelestialBody({ period }: { period: TimePeriod }) {
                 <stop offset="100%" stopColor="#b91c1c" />
               </radialGradient>
             </defs>
-            {/* Deep crimson sunset halos */}
             <circle cx="50" cy="50" r="48" fill="rgba(248,113,113,0.18)" />
             <circle cx="50" cy="50" r="38" fill="rgba(239,68,68,0.25)" />
-            {/* Sunset disc */}
             <circle cx="50" cy="50" r="25" fill="url(#cb-set-grad)" />
           </svg>
         </div>
@@ -529,21 +632,32 @@ function AuroraBands() {
 /* ─────────────────────────────────────────────
    SIMULATION MODAL
 ───────────────────────────────────────────── */
-interface SimModalProps {
+interface SimulationModalProps {
   forcedPeriod: TimePeriod | "auto";
   forcedWeather: WeatherType | "auto";
+  forcedMoonPhase: MoonPhase | "auto";
   onChangePeriod: (p: TimePeriod | "auto") => void;
   onChangeWeather: (w: WeatherType | "auto") => void;
+  onChangeMoonPhase: (m: MoonPhase | "auto") => void;
   onClose: () => void;
 }
-function SimulationModal({ forcedPeriod, forcedWeather, onChangePeriod, onChangeWeather, onClose }: SimModalProps) {
+
+function SimulationModal({
+  forcedPeriod,
+  forcedWeather,
+  forcedMoonPhase,
+  onChangePeriod,
+  onChangeWeather,
+  onChangeMoonPhase,
+  onClose,
+}: SimulationModalProps) {
   return (
-    <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm" onClick={onClose}>
-      <div className="relative w-full max-w-sm bg-card/95 backdrop-blur-xl border border-border rounded-3xl shadow-2xl p-6 space-y-5" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm pointer-events-auto" onClick={onClose}>
+      <div className="bg-card text-card-foreground border border-border/80 rounded-2xl shadow-2xl p-5 w-full max-w-sm space-y-4 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-base font-bold text-foreground">Simulasi Suasana</h3>
-            <p className="text-xs text-muted-foreground">Preview waktu & cuaca secara manual</p>
+            <h3 className="font-bold text-sm text-foreground">Simulasi Suasana Langit</h3>
+            <p className="text-[11px] text-muted-foreground">Uji tema waktu, cuaca & fase bulan</p>
           </div>
           <button onClick={onClose} className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors text-sm cursor-pointer">✕</button>
         </div>
@@ -581,21 +695,51 @@ function SimulationModal({ forcedPeriod, forcedWeather, onChangePeriod, onChange
           </div>
         </div>
 
+        {/* Moon Phase Selector */}
+        <div className="space-y-2 pt-2 border-t border-border/60">
+          <div className="flex items-center justify-between">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Fase Bulan (Malam)</p>
+            {forcedMoonPhase !== "auto" && <button onClick={() => onChangeMoonPhase("auto")} className="text-[10px] text-primary hover:underline cursor-pointer">Reset</button>}
+          </div>
+          <div className="grid grid-cols-2 gap-1.5">
+            {MOON_PHASE_OPTIONS.map((opt) => {
+              const isActive = forcedMoonPhase === opt.id;
+              return (
+                <button
+                  key={opt.id}
+                  onClick={() => onChangeMoonPhase(opt.id)}
+                  className={`px-2.5 py-1.5 rounded-xl text-left text-xs transition-all cursor-pointer ${
+                    isActive
+                      ? "bg-primary text-primary-foreground font-semibold shadow-xs"
+                      : "bg-muted/60 text-foreground/80 hover:bg-muted"
+                  }`}
+                >
+                  <p className="font-bold text-[11px] leading-tight">{opt.label}</p>
+                  <p className="text-[9px] opacity-75">{opt.sub}</p>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Randomize Button */}
         <div className="pt-2 border-t border-border/60">
           <button
             onClick={() => {
               const periods: TimePeriod[] = ["dawn", "day", "sunset", "night"];
               const weathers: WeatherType[] = ["clear", "rain", "snow", "overcast"];
+              const phases: MoonPhase[] = ["crescent", "quarter", "gibbous", "full"];
               const randP = periods[Math.floor(Math.random() * periods.length)];
               const randW = weathers[Math.floor(Math.random() * weathers.length)];
+              const randM = phases[Math.floor(Math.random() * phases.length)];
               onChangePeriod(randP);
               onChangeWeather(randW);
+              onChangeMoonPhase(randM);
             }}
             className="w-full flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold bg-primary/10 text-primary hover:bg-primary/20 border border-primary/25 shadow-sm transition-all cursor-pointer"
           >
             <Shuffle className="w-3.5 h-3.5" />
-            <span>Acak Suasana & Cuaca (Random)</span>
+            <span>Acak Suasana, Cuaca & Bulan (Random)</span>
           </button>
         </div>
       </div>
@@ -607,7 +751,17 @@ function SimulationModal({ forcedPeriod, forcedWeather, onChangePeriod, onChange
    MAIN COMPONENT
 ───────────────────────────────────────────── */
 export function AmbientSkyBackground() {
-  const { period, weather, forcedPeriod, forcedWeather, setForcedPeriod, setForcedWeather } = useSkyTheme();
+  const {
+    period,
+    weather,
+    moonPhase,
+    forcedPeriod,
+    forcedWeather,
+    forcedMoonPhase,
+    setForcedPeriod,
+    setForcedWeather,
+    setForcedMoonPhase,
+  } = useSkyTheme();
   const [modalOpen, setModalOpen] = useState(false);
   const isNight = period === "night";
   const hasMountains = true; // all periods have mountains
@@ -657,7 +811,7 @@ export function AmbientSkyBackground() {
         )}
 
         {/* ── Sun / Moon in the sky (behind mountains) ── */}
-        <CelestialBody period={period} />
+        <CelestialBody period={period} moonPhase={moonPhase} />
 
         {/* Mountains & trees silhouette — all periods */}
         {hasMountains && <MountainScene period={period} />}
@@ -689,8 +843,10 @@ export function AmbientSkyBackground() {
         <SimulationModal
           forcedPeriod={forcedPeriod}
           forcedWeather={forcedWeather}
+          forcedMoonPhase={forcedMoonPhase}
           onChangePeriod={setForcedPeriod}
           onChangeWeather={setForcedWeather}
+          onChangeMoonPhase={setForcedMoonPhase}
           onClose={() => setModalOpen(false)}
         />
       )}

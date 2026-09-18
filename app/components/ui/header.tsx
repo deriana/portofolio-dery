@@ -16,7 +16,7 @@ export function Header() {
         pathIcon="profile-opt.webp"
         name="Deryana Maruf"
         email="deryana.maruf@gmail.com"
-        bio="Backend Engineer berfokus pada arsitektur server, RESTful API performa tinggi, dan keandalan database. Berpengalaman membangun sistem produksi skala enterprise dengan Laravel & Go."
+        bio="Backend Developer & DevOps Engineer with a Linux-first mindset. Specializing in high-performance services with Java, Go, Node.js, and Laravel, alongside modern frontend (React/Next/Vue), Python for AI/ML models, and container orchestration with Docker & Kubernetes."
       />
 
       <Navigation items={navItems} />

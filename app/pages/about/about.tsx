@@ -12,70 +12,98 @@ import {
   Zap,
   Users,
   Server,
-  Database,
-  GitBranch,
   Terminal,
+  Cpu,
+  Boxes,
 } from "lucide-react";
 
 const experiences = [
   {
     company: "Asqi",
     role: "Backend Developer",
-    type: "Karyawan Magang",
-    duration: "1 Tahun",
+    type: "Contract / Full-Time",
+    duration: "1 Year",
     period: "2024 – 2025",
     color: "from-violet-500/20 to-indigo-500/10",
     accent: "violet",
-    metrics: ["Response Time -45%", "Indexing & Query Refactor", "Queue Worker Automation"],
+    metrics: ["⚡ -45% API Latency", "⚡ Query Indexing & Schema Tuning", "⚡ Async Queue Worker Pipeline"],
     description:
-      "Bertanggung jawab atas perancangan arsitektur RESTful API skala produksi dan integrasi database relasional. Berhasil memangkas waktu respons API rata-rata hingga 45% lewat optimasi query dan index tuning, serta mengotomasi background processing dengan asynchronous queue workers.",
-    skills: ["Laravel", "PHP", "MySQL", "RESTful API", "Microservices", "Git"],
+      "Architected enterprise-grade RESTful backend services and streamlined relational database structures. Slashed average response latencies by 45% through aggressive query optimization and index tuning, while orchestrating high-volume background tasks with asynchronous queue workers.",
+    skills: ["Laravel", "PHP", "MySQL", "Redis", "REST APIs", "Microservices", "Docker", "Git"],
   },
   {
     company: "Asqi",
     role: "Backend Developer",
-    type: "Magang",
-    duration: "3 Bulan",
+    type: "Internship",
+    duration: "3 Months",
     period: "2023 – 2024",
     color: "from-blue-500/15 to-cyan-500/10",
     accent: "blue",
-    metrics: ["Defect Rate -30%", "Postman API Suite", "Business Logic Isolation"],
+    metrics: ["⚡ -30% Bug Defect Rate", "⚡ Postman Test Automation", "⚡ Clean Modular Architecture"],
     description:
-      "Mengembangkan modul backend fitur baru, menangani logic bisnis kompleks, dan melakukan debugging berkala. Mengimplementasikan pengujian endpoint komprehensif dengan Postman yang menekan tingkat defect bug sebelum fase rilis.",
+      "Engineered core backend business logic and third-party API integrations. Developed comprehensive Postman endpoint verification suites that decreased production staging defect rates by 30% prior to release cycles.",
     skills: ["Laravel", "PHP", "MySQL", "Postman", "Git"],
   },
   {
     company: "Mobilus Interactive",
     role: "Backend Developer",
-    type: "PKL",
-    duration: "6 Bulan",
+    type: "Apprenticeship",
+    duration: "6 Months",
     period: "2023",
     color: "from-emerald-500/15 to-teal-500/10",
     accent: "emerald",
-    metrics: ["Schema Normalization (3NF)", "CRUD Optimization", "Git Flow Standard"],
+    metrics: ["⚡ 3NF Normalized Schemas", "⚡ Secure CRUD Services", "⚡ Git Team Workflows"],
     description:
-      "Praktik kerja lapangan dengan fokus pada rekayasa backend web, perancangan skema database relasional ternormalisasi, implementasi endpoint API yang aman, dan penerapan kolaborasi Git team.",
-    skills: ["PHP", "Database Design", "REST API", "Git"],
+      "Designed normalized relational database schemas (3NF) and built resilient CRUD endpoints. Contributed to production web backends adhering to rigorous team Git branching and code review standards.",
+    skills: ["PHP", "Database Design", "REST API", "Linux", "Git"],
   },
 ];
 
 const stats = [
-  { label: "Pengalaman", value: "1 Thn 9 Bln", icon: Briefcase },
-  { label: "Spesialisasi", value: "Backend Dev", icon: Code2 },
-  { label: "Proyek",       value: "8+ Produksi", icon: FolderGit2 },
+  { label: "Experience", value: "2+ Years", icon: Briefcase },
+  { label: "Core Focus", value: "Backend & DevOps", icon: Code2 },
+  { label: "Shipped Apps", value: "8+ In Production", icon: FolderGit2 },
 ];
 
 const specialties = [
-  { icon: Server,    label: "API Architecture",      desc: "REST, microservices, high-throughput systems" },
-  { icon: Database,  label: "Database Engineering",   desc: "MySQL, PostgreSQL, query optimization, ACID" },
-  { icon: Terminal,  label: "Laravel & Go",           desc: "Enterprise MVC, goroutines, Fiber engine" },
-  { icon: GitBranch, label: "Git & Collaboration",    desc: "Branching strategy, code review, CI flow" },
+  {
+    icon: Server,
+    label: "Backend & Concurrency",
+    desc: "Java, Go, Node.js, and Laravel. Scalable microservices, RESTful & gRPC APIs, clean architecture, sub-100ms response times.",
+  },
+  {
+    icon: Terminal,
+    label: "DevOps & Linux Cloud",
+    desc: "Linux power user, Docker containerization, Kubernetes orchestration, server hardening, and automated CI/CD pipelines.",
+  },
+  {
+    icon: Boxes,
+    label: "Modern Frontend",
+    desc: "React, Next.js, and Vue. Responsive client-side applications, SSR/SSG workflows, and seamless fullstack API integration.",
+  },
+  {
+    icon: Cpu,
+    label: "Data Science & AI/ML",
+    desc: "Python for data analysis pipelines, custom LLM fine-tuning, automated workflow agents, and model inference services.",
+  },
 ];
 
 const principles = [
-  { icon: Zap,        title: "Kinerja & Efisiensi",     desc: "Kode bersih dengan waktu respon minimal dan memori optimal." },
-  { icon: ShieldCheck, title: "Integritas & Keamanan",  desc: "Validasi ketat, transaksi ACID, dan proteksi menyeluruh." },
-  { icon: Users,      title: "Kolaborasi & Adaptasi",   desc: "Git workflow aktif, komunikasi lintas tim, dan growth mindset." },
+  {
+    icon: Zap,
+    title: "High Performance & Efficiency",
+    desc: "Crafting lean, memory-conscious code engineered to withstand high concurrent loads with minimal latency.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "System Integrity & Security",
+    desc: "Enforcing ACID compliance, defensive error boundaries, strict input sanitization, and automated test coverage.",
+  },
+  {
+    icon: Users,
+    title: "Agile Collaboration & Continuous Learning",
+    desc: "Thriving in fast-paced environments with structured Git flows, transparent documentation, and cloud-native practices.",
+  },
 ];
 
 export function About() {
@@ -103,25 +131,26 @@ export function About() {
                   </div>
                 </div>
 
-                {/* Text */}
+                {/* Bio Details */}
                 <div className="flex-1 min-w-0 text-center sm:text-left space-y-3">
                   <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary/80 mb-1">
-                      Backend Developer
+                    <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary mb-1">
+                      Backend Developer & DevOps Engineer
                     </p>
                     <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
                       Deryana Maruf
                     </h1>
-                    <p className="text-sm text-muted-foreground font-medium mt-0.5">
-                      Software Engineer · Bandung, Indonesia
+                    <p className="text-xs sm:text-sm text-muted-foreground font-medium mt-0.5">
+                      Linux Power User · Based in Bandung, Indonesia · Open to Global Remote Roles
                     </p>
                   </div>
 
-                  <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">
-                    Backend developer dengan pengalaman nyata membangun sistem enterprise —
-                    mulai dari platform ekspor UMKM teh, HRIS biometrik Face ID, sistem rumah sakit
-                    SIMRS, hingga logistik perkebunan. Spesialis Laravel, Go, dan arsitektur database
-                    yang handal.
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-xl">
+                    I engineer reliable backend systems, high-throughput APIs, and cloud-native Linux environments.
+                    My primary stack centers on <strong className="text-foreground font-semibold">Java, Go, Node.js, and Laravel</strong>,
+                    paired with modern frontend delivery in <strong className="text-foreground font-semibold">React, Next.js, and Vue</strong>.
+                    I leverage <strong className="text-foreground font-semibold">Python</strong> for data science & ML workflows,
+                    and automate containerized infrastructure with <strong className="text-foreground font-semibold">Docker & Kubernetes</strong>.
                   </p>
 
                   <div className="flex flex-wrap gap-2.5 justify-center sm:justify-start pt-1">
@@ -129,7 +158,7 @@ export function About() {
                       to="/portfolio"
                       className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-xs font-bold shadow hover:opacity-90 hover:scale-[1.02] transition-all cursor-pointer"
                     >
-                      <span>Lihat Portofolio</span>
+                      <span>Explore Portfolio</span>
                       <ArrowRight className="w-3 h-3" />
                     </Link>
                     <Link
@@ -137,7 +166,7 @@ export function About() {
                       className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-border/80 bg-muted/40 text-foreground text-xs font-bold hover:bg-muted transition-colors cursor-pointer"
                     >
                       <Mail className="w-3 h-3 text-primary" />
-                      <span>Hubungi Saya</span>
+                      <span>Get In Touch</span>
                     </Link>
                   </div>
                 </div>
@@ -151,7 +180,7 @@ export function About() {
                     <div key={s.label} className="text-center">
                       <Icon className="w-4 h-4 text-primary mx-auto mb-1 opacity-70" />
                       <p className="text-base sm:text-lg font-extrabold text-foreground leading-tight">{s.value}</p>
-                      <p className="text-[10px] text-muted-foreground font-medium">{s.label}</p>
+                      <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">{s.label}</p>
                     </div>
                   );
                 })}
@@ -159,7 +188,7 @@ export function About() {
             </div>
           </section>
 
-          {/* ── SPECIALTIES GRID ── */}
+          {/* ── CORE EXPERTISE ── */}
           <section className="space-y-3">
             <div className="flex items-center gap-3">
               <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20">
@@ -168,19 +197,21 @@ export function About() {
               <div className="h-px flex-1 bg-border/60" />
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {specialties.map((sp) => {
                 const Icon = sp.icon;
                 return (
                   <div
                     key={sp.label}
-                    className="rounded-2xl border border-border/60 bg-card/70 backdrop-blur-sm p-4 hover:border-primary/40 hover:-translate-y-1 transition-all duration-200 shadow-sm group"
+                    className="rounded-2xl border border-border/60 bg-card/70 backdrop-blur-sm p-4 hover:border-primary/40 hover:-translate-y-1 transition-all duration-200 shadow-sm group flex flex-col justify-between"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center mb-2.5 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="w-4 h-4 text-primary" />
+                    <div>
+                      <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center mb-2.5 group-hover:bg-primary/20 transition-colors">
+                        <Icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <p className="text-xs font-bold text-foreground">{sp.label}</p>
                     </div>
-                    <p className="text-xs font-bold text-foreground">{sp.label}</p>
-                    <p className="text-[10px] text-muted-foreground mt-0.5 leading-relaxed">{sp.desc}</p>
+                    <p className="text-[11px] text-muted-foreground mt-1.5 leading-relaxed">{sp.desc}</p>
                   </div>
                 );
               })}
@@ -191,17 +222,17 @@ export function About() {
           <section className="space-y-3">
             <div className="flex items-center gap-3">
               <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20">
-                Pengalaman Kerja
+                Work Experience
               </span>
               <div className="h-px flex-1 bg-border/60" />
-              <span className="text-[10px] text-muted-foreground font-semibold">3 Riwayat</span>
+              <span className="text-[10px] text-muted-foreground font-semibold">3 Positions</span>
             </div>
 
             <div className="relative">
               {/* Timeline line */}
               <div className="absolute left-5 top-5 bottom-5 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent hidden sm:block" />
 
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 {experiences.map((exp, i) => (
                   <div
                     key={i}
@@ -211,7 +242,7 @@ export function About() {
                     <div className="absolute left-3.5 top-5 w-3 h-3 rounded-full border-2 border-primary bg-background hidden sm:block" />
 
                     <div className={`rounded-2xl border border-border/60 bg-gradient-to-br ${exp.color} bg-card/80 backdrop-blur-sm p-5 hover:border-primary/40 transition-all duration-200 shadow-sm`}>
-                      <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+                      <div className="flex flex-wrap items-start justify-between gap-2 mb-2.5">
                         <div>
                           <div className="flex items-center gap-2 flex-wrap">
                             <h3 className="text-sm font-extrabold text-foreground">{exp.role}</h3>
@@ -230,14 +261,15 @@ export function About() {
 
                       <p className="text-xs text-muted-foreground leading-relaxed">{exp.description}</p>
 
+                      {/* Measurable Technical Metrics */}
                       {exp.metrics && exp.metrics.length > 0 && (
                         <div className="flex flex-wrap gap-1.5 mt-3 pt-2.5 border-t border-border/25">
                           {exp.metrics.map((m) => (
                             <span
                               key={m}
-                              className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/25 shadow-xs"
+                              className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/25 shadow-xs"
                             >
-                              ⚡ {m}
+                              {m}
                             </span>
                           ))}
                         </div>

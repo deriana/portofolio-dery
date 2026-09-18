@@ -2,23 +2,30 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 export type TimePeriod = "dawn" | "day" | "sunset" | "night";
 export type WeatherType = "clear" | "rain" | "snow" | "fog" | "overcast";
+export type MoonPhase = "crescent" | "quarter" | "gibbous" | "full";
 
 interface SkyThemeCtx {
   period: TimePeriod;
   weather: WeatherType;
+  moonPhase: MoonPhase;
   forcedPeriod: TimePeriod | "auto";
   forcedWeather: WeatherType | "auto";
+  forcedMoonPhase: MoonPhase | "auto";
   setForcedPeriod: (p: TimePeriod | "auto") => void;
   setForcedWeather: (w: WeatherType | "auto") => void;
+  setForcedMoonPhase: (m: MoonPhase | "auto") => void;
 }
 
 export const SkyThemeContext = createContext<SkyThemeCtx>({
   period: "day",
   weather: "clear",
+  moonPhase: "crescent",
   forcedPeriod: "auto",
   forcedWeather: "auto",
+  forcedMoonPhase: "auto",
   setForcedPeriod: () => {},
   setForcedWeather: () => {},
+  setForcedMoonPhase: () => {},
 });
 
 export function useSkyTheme() {
@@ -32,10 +39,13 @@ function getTimePeriod(hour: number): TimePeriod {
   return "night";
 }
 
+const PHASES: MoonPhase[] = ["crescent", "quarter", "gibbous", "full"];
+
 export function SkyThemeProvider({ children }: { children: React.ReactNode }) {
   const [hour, setHour] = useState(() => new Date().getHours());
   const [forcedPeriod, setForcedPeriod] = useState<TimePeriod | "auto">("auto");
   const [forcedWeather, setForcedWeather] = useState<WeatherType | "auto">("auto");
+  const [forcedMoonPhase, setForcedMoonPhase] = useState<MoonPhase | "auto">("auto");
 
   useEffect(() => {
     const timer = setInterval(() => setHour(new Date().getHours()), 60_000);
@@ -44,8 +54,12 @@ export function SkyThemeProvider({ children }: { children: React.ReactNode }) {
 
   const period: TimePeriod = forcedPeriod === "auto" ? getTimePeriod(hour) : forcedPeriod;
   const weather: WeatherType = forcedWeather === "auto" ? "clear" : forcedWeather;
+  const moonPhase: MoonPhase =
+    forcedMoonPhase === "auto"
+      ? PHASES[Math.floor((new Date().getDate() / 7) % 4)] || "crescent"
+      : forcedMoonPhase;
 
-  // Inject data-period attribute on <html> so CSS vars can respond
+  // Inject data-period and data-weather attributes on <html>
   useEffect(() => {
     document.documentElement.setAttribute("data-period", period);
     document.documentElement.setAttribute("data-weather", weather);
@@ -53,7 +67,17 @@ export function SkyThemeProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <SkyThemeContext.Provider
-      value={{ period, weather, forcedPeriod, forcedWeather, setForcedPeriod, setForcedWeather }}
+      value={{
+        period,
+        weather,
+        moonPhase,
+        forcedPeriod,
+        forcedWeather,
+        forcedMoonPhase,
+        setForcedPeriod,
+        setForcedWeather,
+        setForcedMoonPhase,
+      }}
     >
       {children}
     </SkyThemeContext.Provider>

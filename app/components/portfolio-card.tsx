@@ -8,17 +8,23 @@ export const PortfolioCard = ({ item }: PortfolioCardProps) => {
     <Card className="border border-border/70 bg-card text-card-foreground shadow-sm hover:shadow-md hover:border-primary/40 hover:-translate-y-1 transition-all duration-200 rounded-2xl overflow-hidden hover-target flex flex-col justify-between h-full">
       <div>
         <div className="p-3 pb-0">
-          <div className="relative w-full h-48 sm:h-52 bg-muted/30 rounded-xl overflow-hidden border border-border/40">
+          <div className="group/img relative w-full h-48 sm:h-52 bg-muted/30 rounded-xl overflow-hidden border border-border/40 cursor-pointer">
             <LazyImage
               src={item.image}
               alt={item.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover/img:scale-105"
             />
             {item.category && (
-              <span className="absolute top-2.5 left-2.5 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-background/90 text-foreground border border-border/60 shadow-sm">
+              <span className="absolute top-2.5 left-2.5 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-background/90 backdrop-blur-sm text-foreground border border-border/60 shadow-sm">
                 {item.category}
               </span>
             )}
+            {/* Quick view indicator on photo */}
+            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
+              <span className="px-3 py-1 rounded-full bg-black/60 text-white text-[11px] font-semibold border border-white/20 backdrop-blur-sm shadow-md">
+                View Project Details
+              </span>
+            </div>
           </div>
         </div>
 
