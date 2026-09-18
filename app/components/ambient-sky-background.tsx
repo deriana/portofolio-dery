@@ -265,78 +265,153 @@ function MountainWaterfall({
     ? "#fed7aa"
     : isDawn
     ? "#fed7aa"
-    : "#e0f2fe";
+    : "#7dd3fc";
 
   const foamColor = isNight
-    ? "#dbeafe"
+    ? "#e0f2fe"
     : isSunset
     ? "#ffedd5"
     : "#ffffff";
 
+  const wfGradId = `wf-grad-${period}`;
+
   return (
     <g transform={`translate(${x}, ${y})`}>
+      <defs>
+        <linearGradient id={wfGradId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor={waterColor} stopOpacity={0.7} />
+          <stop offset="45%" stopColor={foamColor} stopOpacity={0.88} />
+          <stop offset="100%" stopColor={waterColor} stopOpacity={0.95} />
+        </linearGradient>
+      </defs>
+
       {/* Dark mountain gorge ravine where water carves through rock */}
       <path
-        d="M -3,-2 Q -6,35 -8,65 Q -9,95 -12,128 L 16,128 Q 13,95 11,65 Q 9,35 7,-2 Z"
-        fill="#050811"
-        opacity={0.6}
+        d="M -5,-4 Q -8,35 -10,65 Q -12,98 -15,134 L 18,134 Q 15,98 13,65 Q 11,35 9,-4 Z"
+        fill="#030712"
+        opacity={0.75}
       />
 
-      {/* Rock shelf dividing cascades */}
-      <rect x="-6" y="58" width="16" height="4" rx="1.5" fill="#0f172a" opacity={0.8} />
-
-      {/* Tier 1 Cascade */}
+      {/* ── Tier 1 Cascade (y=0 to y=58) ── */}
       <path
-        d="M -1,0 Q -2,30 -4,58 L 7,58 Q 5,30 4,0 Z"
-        fill={waterColor}
-        opacity={0.85}
+        d="M -2,0 Q -4,30 -6,58 L 8,58 Q 6,30 5,0 Z"
+        fill={`url(#${wfGradId})`}
+        opacity={0.88}
       />
+      {/* Fast primary cascade streams */}
       <path
-        d="M 1,0 L -1,58 M 3,0 L 2,58 M -2,10 L -3,55"
+        d="M 0,0 L -2,58 M 3,0 L 2,58 M 5,0 L 4,58"
         stroke={foamColor}
         strokeWidth="1.2"
         strokeLinecap="round"
-        strokeDasharray="6 4"
-        style={{ animation: "waterfallStream 0.8s linear infinite" }}
+        strokeDasharray="14 10"
+        style={{ animation: "waterfallStream 0.6s linear infinite" }}
       />
-      <ellipse cx="1" cy="59" rx="8" ry="2.2" fill={foamColor} opacity={0.85} />
-
-      {/* Tier 2 Plunge */}
+      {/* Interlaced secondary currents */}
       <path
-        d="M -4,60 Q -6,92 -8,126 L 9,126 Q 8,92 6,60 Z"
-        fill={waterColor}
-        opacity={0.9}
-      />
-      <path
-        d="M -1,60 L -4,126 M 2,60 L 0,126 M 5,60 L 4,126 M -3,70 L -6,122"
-        stroke={foamColor}
+        d="M -1,5 L -4,55 M 2,5 L 1,55 M 4,10 L 3,55"
+        stroke={waterColor}
         strokeWidth="1.4"
         strokeLinecap="round"
-        strokeDasharray="7 5"
-        style={{ animation: "waterfallStream 0.7s linear infinite" }}
+        strokeDasharray="10 8"
+        style={{ animation: "waterfallStreamAlt 0.45s linear infinite" }}
       />
 
-      {/* Foaming plunge pool */}
-      <ellipse
-        cx="0"
-        cy="126"
-        rx="14"
-        ry="3.5"
-        fill={foamColor}
-        opacity={0.92}
-        style={{ filter: "drop-shadow(0 0 6px rgba(255,255,255,0.85))" }}
-      />
-      {/* Rising misty spray */}
+      {/* Rock shelf dividing cascades */}
+      <rect x="-8" y="57" width="18" height="5" rx="2" fill="#090d16" opacity={0.9} />
       <ellipse
         cx="1"
-        cy="120"
-        rx="18"
-        ry="6"
+        cy="58"
+        rx="9"
+        ry="2.2"
+        fill={foamColor}
+        opacity={0.9}
+        style={{ filter: "drop-shadow(0 0 4px rgba(255,255,255,0.8))" }}
+      />
+
+      {/* ── Tier 2 Plunge (y=60 to y=134) ── */}
+      <path
+        d="M -6,60 Q -8,95 -11,134 L 13,134 Q 11,95 8,60 Z"
+        fill={`url(#${wfGradId})`}
+        opacity={0.92}
+      />
+      {/* Core rushing foam torrents */}
+      <path
+        d="M -2,60 L -5,134 M 1,60 L -1,134 M 4,60 L 3,134 M 7,60 L 7,134"
+        stroke={foamColor}
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeDasharray="14 10"
+        style={{ animation: "waterfallStream 0.5s linear infinite" }}
+      />
+      {/* Alternating core currents */}
+      <path
+        d="M -4,65 L -8,130 M 0,65 L -3,130 M 3,65 L 1,130 M 6,65 L 5,130"
+        stroke={waterColor}
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        strokeDasharray="10 8"
+        style={{ animation: "waterfallStreamAlt 0.38s linear infinite" }}
+      />
+
+      {/* ── Plunge Pool Splash & Expanding Water Rings ── */}
+      {/* Outer ripple ring 1 */}
+      <g transform="translate(1, 134)">
+        <ellipse
+          cx="0"
+          cy="0"
+          rx="18"
+          ry="4.5"
+          fill="none"
+          stroke={foamColor}
+          strokeWidth="1.2"
+          style={{
+            animation: "waterfallSplash 1.6s ease-out infinite",
+            transformBox: "fill-box",
+            transformOrigin: "center",
+          }}
+        />
+      </g>
+      {/* Outer ripple ring 2 (staggered) */}
+      <g transform="translate(1, 134)">
+        <ellipse
+          cx="0"
+          cy="0"
+          rx="18"
+          ry="4.5"
+          fill="none"
+          stroke={foamColor}
+          strokeWidth="1.0"
+          style={{
+            animation: "waterfallSplash 1.6s ease-out infinite 0.8s",
+            transformBox: "fill-box",
+            transformOrigin: "center",
+          }}
+        />
+      </g>
+
+      {/* Foaming plunge pool basin */}
+      <ellipse
+        cx="1"
+        cy="133"
+        rx="16"
+        ry="4"
+        fill={foamColor}
+        opacity={0.95}
+        style={{ filter: "drop-shadow(0 0 8px rgba(255,255,255,0.9))" }}
+      />
+
+      {/* Rising fine mist spray */}
+      <ellipse
+        cx="1"
+        cy="124"
+        rx="24"
+        ry="8"
         fill={isNight ? "#93c5fd" : "#ffffff"}
-        opacity={0.35}
+        opacity={0.3}
         style={{
-          filter: "blur(4px)",
-          animation: "waterfallMist 2.5s ease-in-out infinite alternate",
+          filter: "blur(6px)",
+          animation: "waterfallMist 3s ease-in-out infinite alternate",
         }}
       />
     </g>
