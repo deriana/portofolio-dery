@@ -574,18 +574,18 @@ function MoonVisual({
         {/* Outer subtle halo */}
         <circle cx="50" cy="50" r="44" fill={isTwilight ? "rgba(199,210,254,0.08)" : "rgba(199,210,254,0.06)"} />
 
-        {/* Crescent Phase */}
+        {/* Crescent Phase (Sabit) */}
         {moonPhase === "crescent" && (
           <>
-            <path d="M 50,14 A 36,36 0 0,0 50,86 Q 74,50 50,14 Z" fill="#e8eeff" />
-            <circle cx="34" cy="50" r="3.2" fill="rgba(165,180,252,0.4)" />
-            <circle cx="41" cy="36" r="2.4" fill="rgba(165,180,252,0.35)" />
-            <circle cx="39" cy="65" r="2.8" fill="rgba(165,180,252,0.35)" />
-            <circle cx="30" cy="60" r="1.8" fill="rgba(165,180,252,0.3)" />
+            <path d="M 50,14 A 36,36 0 0,0 50,86 Q 26,50 50,14 Z" fill="#e8eeff" />
+            <circle cx="26" cy="50" r="3.2" fill="rgba(165,180,252,0.4)" />
+            <circle cx="32" cy="36" r="2.4" fill="rgba(165,180,252,0.35)" />
+            <circle cx="30" cy="64" r="2.8" fill="rgba(165,180,252,0.35)" />
+            <circle cx="21" cy="58" r="1.8" fill="rgba(165,180,252,0.3)" />
           </>
         )}
 
-        {/* Quarter / Half Moon Phase */}
+        {/* Quarter / Half Moon Phase (Separuh) */}
         {moonPhase === "quarter" && (
           <>
             <path d="M 50,14 A 36,36 0 0,0 50,86 L 50,14 Z" fill="#e8eeff" />
@@ -596,10 +596,10 @@ function MoonVisual({
           </>
         )}
 
-        {/* Gibbous (3/4) Phase */}
+        {/* Gibbous (3/4) Phase (Cembung) */}
         {moonPhase === "gibbous" && (
           <>
-            <path d="M 50,14 A 36,36 0 0,0 50,86 Q 26,50 50,14 Z" fill="#e8eeff" />
+            <path d="M 50,14 A 36,36 0 0,0 50,86 Q 74,50 50,14 Z" fill="#e8eeff" />
             <circle cx="42" cy="48" r="4" fill="rgba(165,180,252,0.35)" />
             <circle cx="52" cy="34" r="3.5" fill="rgba(165,180,252,0.3)" />
             <circle cx="48" cy="65" r="3.2" fill="rgba(165,180,252,0.3)" />

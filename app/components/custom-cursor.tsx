@@ -1,32 +1,80 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
-import { useSkyTheme, type TimePeriod } from "./sky-theme-context";
+import { useSkyTheme, type TimePeriod, type MoonPhase } from "./sky-theme-context";
+
+interface CursorProps {
+  opacity: number;
+  moonPhase?: MoonPhase;
+}
 
 /* ─────────────────────────────────────────────
-   NIGHT: Full moon crescent (blue-white glow)
-   Pure vector path + native CSS drop-shadow
+   NIGHT: Moon cursor adapting to background moon phase:
+   - crescent (sabit)
+   - quarter (separuh)
+   - gibbous (cembung)
+   - full (purnama)
 ───────────────────────────────────────────── */
-function MoonCursor({ opacity }: { opacity: number }) {
+function MoonCursor({ opacity, moonPhase = "crescent" }: CursorProps) {
   return (
     <div
       style={{
         position: "absolute",
         inset: 0,
         opacity,
-        transition: "opacity 0.5s ease",
+        transition: "opacity 0.4s ease",
         filter: "drop-shadow(0 0 6px rgba(199, 210, 254, 0.9))",
       }}
     >
       <svg viewBox="0 0 44 44" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
         {/* Soft outer aura */}
         <circle cx="22" cy="22" r="18" fill="rgba(199,210,254,0.08)" />
-        {/* Pure crescent path — zero mask, zero filter */}
-        <path d="M 22,7 A 15,15 0 0,0 22,37 Q 32,22 22,7 Z" fill="#dde6ff" />
-        {/* Subtle craters */}
-        <circle cx="15" cy="22" r="1.4" fill="rgba(147,160,220,0.4)" />
-        <circle cx="18" cy="16" r="1.1" fill="rgba(147,160,220,0.35)" />
-        <circle cx="17" cy="28" r="1.2" fill="rgba(147,160,220,0.35)" />
-        {/* Small stars nearby */}
+
+        {/* Crescent Phase (Bulan Sabit) */}
+        {moonPhase === "crescent" && (
+          <g className="transition-all duration-300">
+            <path d="M 22,7 A 15,15 0 0,0 22,37 Q 10,22 22,7 Z" fill="#dde6ff" />
+            <circle cx="12" cy="22" r="1.3" fill="rgba(147,160,220,0.4)" />
+            <circle cx="15" cy="16" r="1.1" fill="rgba(147,160,220,0.35)" />
+            <circle cx="14" cy="28" r="1.1" fill="rgba(147,160,220,0.35)" />
+          </g>
+        )}
+
+        {/* Quarter Phase (Bulan Separuh) */}
+        {moonPhase === "quarter" && (
+          <g className="transition-all duration-300">
+            <path d="M 22,7 A 15,15 0 0,0 22,37 L 22,7 Z" fill="#dde6ff" />
+            <circle cx="15" cy="22" r="1.5" fill="rgba(147,160,220,0.4)" />
+            <circle cx="17" cy="15" r="1.2" fill="rgba(147,160,220,0.35)" />
+            <circle cx="16" cy="29" r="1.2" fill="rgba(147,160,220,0.35)" />
+            <circle cx="11" cy="25" r="1.0" fill="rgba(147,160,220,0.3)" />
+          </g>
+        )}
+
+        {/* Gibbous Phase (Bulan Cembung / Tiga Perempat) */}
+        {moonPhase === "gibbous" && (
+          <g className="transition-all duration-300">
+            <path d="M 22,7 A 15,15 0 0,0 22,37 Q 31,22 22,7 Z" fill="#dde6ff" />
+            <circle cx="18" cy="21" r="1.6" fill="rgba(147,160,220,0.4)" />
+            <circle cx="23" cy="15" r="1.4" fill="rgba(147,160,220,0.35)" />
+            <circle cx="21" cy="28" r="1.4" fill="rgba(147,160,220,0.35)" />
+            <circle cx="13" cy="23" r="1.2" fill="rgba(147,160,220,0.3)" />
+          </g>
+        )}
+
+        {/* Full Moon Phase (Bulan Purnama) */}
+        {moonPhase === "full" && (
+          <g className="transition-all duration-300">
+            <circle cx="22" cy="22" r="15" fill="#eef3ff" />
+            <circle cx="18" cy="18" r="2.8" fill="rgba(147,160,220,0.35)" />
+            <circle cx="25" cy="20" r="2.4" fill="rgba(147,160,220,0.32)" />
+            <circle cx="21" cy="27" r="3.0" fill="rgba(147,160,220,0.32)" />
+            <circle cx="15" cy="25" r="1.8" fill="rgba(147,160,220,0.28)" />
+            <circle cx="27" cy="26" r="1.9" fill="rgba(147,160,220,0.25)" />
+            <circle cx="23" cy="13" r="1.4" fill="rgba(147,160,220,0.22)" />
+          </g>
+        )}
+
+        {/* Ambient twinkling stars */}
         <circle cx="36" cy="10" r="1.2" fill="rgba(199,210,254,0.8)" />
         <circle cx="8"  cy="8"  r="0.9" fill="rgba(199,210,254,0.6)" />
         <circle cx="37" cy="31" r="0.8" fill="rgba(199,210,254,0.6)" />
@@ -152,7 +200,7 @@ function EmberCursor({ opacity }: { opacity: number }) {
 /* ─────────────────────────────────────────────
    CURSOR SHAPE MAP
 ───────────────────────────────────────────── */
-const CURSOR_SHAPES: Record<TimePeriod, React.ElementType<{ opacity: number }>> = {
+const CURSOR_SHAPES: Record<TimePeriod, React.ElementType<CursorProps>> = {
   night:  MoonCursor,
   dawn:   DawnCursor,
   day:    SunCursor,
@@ -164,7 +212,7 @@ const CURSOR_SHAPES: Record<TimePeriod, React.ElementType<{ opacity: number }>> 
 ───────────────────────────────────────────── */
 export function CustomCursor() {
   const location = useLocation();
-  const { period } = useSkyTheme();
+  const { period, moonPhase } = useSkyTheme();
   const wrapRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(true);
   const [activePeriod, setActivePeriod] = useState<TimePeriod>(period);
@@ -225,8 +273,8 @@ export function CustomCursor() {
         animation: "cursorPulse 2.6s ease-in-out infinite",
       }} />
 
-      {PrevShape && <PrevShape opacity={0} />}
-      <ActiveShape opacity={1} />
+      {PrevShape && <PrevShape opacity={0} moonPhase={moonPhase} />}
+      <ActiveShape opacity={1} moonPhase={moonPhase} />
 
       <style>{`
         @keyframes cursorPulse {

@@ -2,6 +2,7 @@ import { AmbientSkyBackground } from "../ambient-sky-background";
 import { CustomCursor } from "../custom-cursor";
 import { ScrollToTop } from "../scroll-top";
 import { Header } from "../ui/header";
+import { DigitalClock } from "../ui/digital-clock";
 
 interface WebLayoutProps {
   children: React.ReactNode;
@@ -13,6 +14,7 @@ export function WebLayout({ children }: WebLayoutProps) {
       {/* Ambient sky background — fixed, z-0 */}
       <AmbientSkyBackground />
 
+      <DigitalClock />
       <CustomCursor />
 
       <div className="relative z-10 w-full flex flex-col items-center">
