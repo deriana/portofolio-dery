@@ -20,42 +20,42 @@ import {
 const experiences = [
   {
     company: "Asqi",
-    role: "Backend Developer",
+    role: "Backend & Microservices Engineer",
     type: "Contract / Full-Time",
     duration: "1 Year",
     period: "2024 – 2025",
     color: "from-violet-500/20 to-indigo-500/10",
     accent: "violet",
-    metrics: ["-45% API Latency", "Query Indexing & Schema Tuning", "Async Queue Worker Pipeline"],
+    metrics: ["High-Throughput gRPC & REST", "Distributed Microservices", "Docker & K8s Cluster Deployments"],
     description:
-      "Architected enterprise-grade RESTful backend services and streamlined relational database structures. Slashed average response latencies by 45% through aggressive query optimization and index tuning, while orchestrating high-volume background tasks with asynchronous queue workers.",
-    skills: ["Laravel", "PHP", "MySQL", "Redis", "REST APIs", "Microservices", "Docker", "Git"],
+      "Architected distributed microservices powered by Go and Java with high-speed inter-service communication via gRPC alongside external REST APIs. Implemented Redis for low-latency distributed caching and message brokering. Orchestrated containerized workloads using Docker and automated cluster deployments on Kubernetes (K8s). Developed modern web dashboards with React and cross-platform mobile client interfaces with React Native.",
+    skills: ["Go", "Java", "React", "React Native", "Microservices", "Kubernetes", "Docker", "Redis", "gRPC", "REST API"],
   },
   {
     company: "Asqi",
-    role: "Backend Developer",
+    role: "Backend Developer Intern",
     type: "Internship",
     duration: "3 Months",
     period: "2023 – 2024",
     color: "from-blue-500/15 to-cyan-500/10",
     accent: "blue",
-    metrics: ["-30% Bug Defect Rate", "Postman Test Automation", "Clean Modular Architecture"],
+    metrics: ["Microservice Endpoints", "gRPC Protobuf Contracts", "Dockerized Dev Environments"],
     description:
-      "Engineered core backend business logic and third-party API integrations. Developed comprehensive Postman endpoint verification suites that decreased production staging defect rates by 30% prior to release cycles.",
-    skills: ["Laravel", "PHP", "MySQL", "Postman", "Git"],
+      "Contributed to core backend microservice development in Go and Java. Assisted in implementing gRPC protocol buffer definitions, public RESTful endpoints, Redis caching layers, and containerized local development workflows with Docker.",
+    skills: ["Go", "Java", "Docker", "gRPC", "REST API", "Redis", "Postman", "Git"],
   },
   {
     company: "Mobilus Interactive",
-    role: "Backend Developer",
+    role: "Backend Developer (Laravel Full)",
     type: "Apprenticeship",
     duration: "6 Months",
     period: "2023",
     color: "from-emerald-500/15 to-teal-500/10",
     accent: "emerald",
-    metrics: ["3NF Normalized Schemas", "Secure CRUD Services", "Git Team Workflows"],
+    metrics: ["Full Laravel Web Architecture", "Eloquent ORM Optimization", "RESTful API Integration"],
     description:
-      "Designed normalized relational database schemas (3NF) and built resilient CRUD endpoints. Contributed to production web backends adhering to rigorous team Git branching and code review standards.",
-    skills: ["PHP", "Database Design", "REST API", "Linux", "Git"],
+      "Engineered full-lifecycle web applications and backend systems built entirely on Laravel. Designed 3NF normalized database schemas, implemented secure RESTful API endpoints with authentication middleware, managed background queues, and adhered to rigorous team Git branching workflows.",
+    skills: ["Laravel", "PHP", "MySQL", "REST API", "Blade", "Database Design", "Linux", "Git"],
   },
 ];
 
@@ -69,17 +69,17 @@ const specialties = [
   {
     icon: Server,
     label: "Backend & Concurrency",
-    desc: "Java, Go, Node.js, and Laravel. Scalable microservices, RESTful & gRPC APIs, clean architecture, sub-100ms response times.",
+    desc: "Java, Go, Node.js, and Laravel. Scalable microservices, RESTful & gRPC APIs, Redis caching, sub-100ms response times.",
   },
   {
     icon: Terminal,
-    label: "DevOps & Linux Cloud",
-    desc: "Linux power user, Docker containerization, Kubernetes orchestration, server hardening, and automated CI/CD pipelines.",
+    label: "DevOps & Cloud Orchestration",
+    desc: "Linux power user, Docker containerization, Kubernetes (K8s) orchestration, server hardening, and CI/CD pipelines.",
   },
   {
     icon: Boxes,
-    label: "Modern Frontend",
-    desc: "React, Next.js, and Vue. Responsive client-side applications, SSR/SSG workflows, and seamless fullstack API integration.",
+    label: "Modern Frontend & Mobile",
+    desc: "React, React Native, Next.js, and Vue. Responsive client-side applications, cross-platform mobile apps, and fullstack API integrations.",
   },
   {
     icon: Cpu,
@@ -225,7 +225,7 @@ export function About() {
                 Work Experience
               </span>
               <div className="h-px flex-1 bg-border/60" />
-              <span className="text-[10px] text-muted-foreground font-semibold">3 Positions</span>
+              <span className="text-[10px] text-muted-foreground font-semibold">{experiences.length} Positions</span>
             </div>
 
             <div className="relative">
