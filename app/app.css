@@ -187,22 +187,75 @@ body {
   --ring: #ea580c;
 }
 
-/* Weather mutes — tint cards when fog/overcast */
-[data-weather="fog"] {
-  --card: rgba(170, 185, 200, 0.45);
-  --muted: rgba(160, 175, 190, 0.4);
+/* ──────────────────────────────────────────────
+   PERIOD + WEATHER THEME REFINEMENTS
+────────────────────────────────────────────── */
+/* Day + Overcast: Crisp, high-contrast frosted white glass with deep slate text */
+[data-period="day"][data-weather="overcast"] {
+  --background: #e2e8f0;
+  --foreground: #091728;
+  --card: rgba(255, 255, 255, 0.94);
+  --card-foreground: #091728;
+  --popover: #ffffff;
+  --popover-foreground: #091728;
+  --muted: #e2e8f0;
+  --muted-foreground: #334155;
+  --border: rgba(148, 163, 184, 0.45);
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #1e293b;
+  --ring: #3b82f6;
 }
-[data-weather="overcast"] {
-  --card: rgba(50, 55, 70, 0.78);
+
+/* Day + Rain: Crisp white glass with blue slate accents */
+[data-period="day"][data-weather="rain"] {
+  --card: rgba(255, 255, 255, 0.92);
+  --card-foreground: #091728;
+  --foreground: #091728;
+  --muted-foreground: #334155;
+  --primary: #0284c7;
+  --border: rgba(56, 189, 248, 0.35);
+  --ring: #0ea5e9;
 }
-[data-weather="rain"] {
+
+/* Day + Fog: Soft frosted white glass with clean slate contrast */
+[data-period="day"][data-weather="fog"] {
+  --card: rgba(255, 255, 255, 0.90);
+  --card-foreground: #091728;
+  --foreground: #091728;
+  --muted-foreground: #475569;
+  --border: rgba(148, 163, 184, 0.35);
+}
+
+/* Dark Periods + Overcast */
+[data-period="night"][data-weather="overcast"] {
+  --card: rgba(12, 16, 28, 0.88);
+  --card-foreground: #dce3f5;
+  --border: rgba(99, 102, 241, 0.2);
+}
+[data-period="sunset"][data-weather="overcast"] {
+  --card: rgba(28, 14, 32, 0.88);
+  --card-foreground: #fce8d0;
+  --border: rgba(249, 115, 22, 0.2);
+}
+[data-period="dawn"][data-weather="overcast"] {
+  --card: rgba(28, 14, 26, 0.88);
+  --card-foreground: #ffffff;
+  --border: rgba(251, 146, 60, 0.25);
+}
+
+/* Night / Dark Weather Highlights */
+[data-period="night"][data-weather="rain"],
+[data-period="sunset"][data-weather="rain"],
+[data-period="dawn"][data-weather="rain"] {
   --primary: #38bdf8;
   --ring: #0ea5e9;
 }
 [data-weather="snow"] {
   --primary: #7dd3fc;
   --ring: #38bdf8;
-  --border: rgba(186, 230, 253, 0.22);
+  --border: rgba(186, 230, 253, 0.25);
 }
 
 /* ──────────────────────────────────────────────
@@ -260,13 +313,13 @@ body {
   100% { transform: translateX(30px); opacity: 0.65; }
 }
 
-@keyframes waterfallStream {
-  0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: -24px; }
-}
-@keyframes waterfallStreamAlt {
-  0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: -18px; }
+@keyframes waterfallGlisten {
+  0%, 100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.98;
+  }
 }
 @keyframes waterfallSplash {
   0% { transform: scale(0.5); opacity: 0.85; }

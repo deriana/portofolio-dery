@@ -62,7 +62,7 @@ const experiences = [
 const stats = [
   { label: "Experience", value: "2+ Years", icon: Briefcase },
   { label: "Core Focus", value: "Backend & DevOps", icon: Code2 },
-  { label: "Shipped Apps", value: "8+ In Production", icon: FolderGit2 },
+  { label: "Shipped Apps", value: "10+ In Production", icon: FolderGit2 },
 ];
 
 const specialties = [

@@ -19,13 +19,30 @@ const SKY_GRADIENTS: Record<TimePeriod, string> = {
   night:  "linear-gradient(to bottom, #020510 0%, #0a0c1e 50%, #0f1428 100%)",
 };
 
-const WEATHER_OVERLAY: Record<WeatherType, string> = {
-  clear:    "transparent",
-  rain:     "rgba(30,40,60,0.5)",
-  snow:     "rgba(180,210,245,0.18)",
-  fog:      "rgba(180,195,210,0.22)",
-  overcast: "rgba(50,55,70,0.55)",
-};
+function getWeatherOverlay(weather: WeatherType, period: TimePeriod): string {
+  if (weather === "clear") return "transparent";
+  if (weather === "overcast") {
+    return period === "day"
+      ? "rgba(148, 163, 184, 0.40)" // Soft cool silvery slate mist for daytime
+      : period === "sunset"
+      ? "rgba(55, 30, 48, 0.60)"   // Dusky twilight overcast
+      : period === "dawn"
+      ? "rgba(45, 25, 45, 0.55)"   // Morning rose-gray overcast
+      : "rgba(15, 20, 35, 0.68)";  // Night overcast
+  }
+  if (weather === "rain") {
+    return period === "day"
+      ? "rgba(70, 85, 110, 0.45)"
+      : "rgba(20, 28, 45, 0.62)";
+  }
+  if (weather === "snow") return "rgba(180, 210, 245, 0.18)";
+  if (weather === "fog") {
+    return period === "day"
+      ? "rgba(203, 213, 225, 0.38)"
+      : "rgba(148, 163, 184, 0.22)";
+  }
+  return "transparent";
+}
 
 interface WeatherOption { id: WeatherType; label: string; icon: React.ElementType; }
 const WEATHER_OPTIONS: WeatherOption[] = [
@@ -260,11 +277,11 @@ function MountainWaterfall({
   const isDawn = period === "dawn";
 
   const waterColor = isNight
-    ? "#93c5fd"
-    : isSunset
-    ? "#fed7aa"
+    ? "#38bdf8"
     : isDawn
-    ? "#fed7aa"
+    ? "#fda4af"
+    : isSunset
+    ? "#fb923c"
     : "#7dd3fc";
 
   const foamColor = isNight
@@ -273,117 +290,131 @@ function MountainWaterfall({
     ? "#ffedd5"
     : "#ffffff";
 
+  const deepWaterColor = isNight
+    ? "#0369a1"
+    : isDawn
+    ? "#be123c"
+    : isSunset
+    ? "#c2410c"
+    : "#0284c7";
+
   const wfGradId = `wf-grad-${period}`;
+  const wfVeilGradId = `wf-veil-${period}`;
 
   return (
     <g transform={`translate(${x}, ${y})`}>
       <defs>
         <linearGradient id={wfGradId} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor={waterColor} stopOpacity={0.7} />
-          <stop offset="45%" stopColor={foamColor} stopOpacity={0.88} />
-          <stop offset="100%" stopColor={waterColor} stopOpacity={0.95} />
+          <stop offset="0%" stopColor={deepWaterColor} stopOpacity={0.85} />
+          <stop offset="25%" stopColor={waterColor} stopOpacity={0.9} />
+          <stop offset="50%" stopColor={foamColor} stopOpacity={0.95} />
+          <stop offset="85%" stopColor={waterColor} stopOpacity={0.9} />
+          <stop offset="100%" stopColor={foamColor} stopOpacity={1} />
+        </linearGradient>
+
+        <linearGradient id={wfVeilGradId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor={foamColor} stopOpacity={0.3} />
+          <stop offset="45%" stopColor={foamColor} stopOpacity={0.85} />
+          <stop offset="100%" stopColor={foamColor} stopOpacity={0.95} />
         </linearGradient>
       </defs>
 
-      {/* Dark mountain gorge ravine where water carves through rock */}
+      {/* ── 1. Deep Rock Gorge Cleft (Dark rugged crevasse behind water) ── */}
       <path
-        d="M -5,-4 Q -8,35 -10,65 Q -12,98 -15,134 L 18,134 Q 15,98 13,65 Q 11,35 9,-4 Z"
-        fill="#030712"
-        opacity={0.75}
+        d="M -9,-6 Q -13,25 -15,55 Q -19,95 -22,135 L 24,135 Q 20,95 17,55 Q 15,25 12,-6 Z"
+        fill="#020409"
+        opacity={0.85}
       />
 
-      {/* ── Tier 1 Cascade (y=0 to y=58) ── */}
+      {/* Jagged rock ledges flanking the cascade */}
       <path
-        d="M -2,0 Q -4,30 -6,58 L 8,58 Q 6,30 5,0 Z"
+        d="M -13,20 L -6,22 L -8,38 L -15,35 Z M 11,18 L 18,21 L 15,36 L 9,33 Z"
+        fill="#080c18"
+      />
+      <path
+        d="M -17,80 L -9,82 L -13,105 L -20,102 Z M 13,78 L 21,81 L 17,104 L 10,101 Z"
+        fill="#080c18"
+      />
+
+      {/* ── 2. Upper Cascading Chute (y=-4 to y=52) ── */}
+      {/* Upper water base */}
+      <path
+        d="M -4,-4 Q -6,24 -8,52 L 10,52 Q 8,24 6,-4 Z"
         fill={`url(#${wfGradId})`}
-        opacity={0.88}
       />
-      {/* Fast primary cascade streams */}
+      {/* Upper fluid veil shimmer — pure opacity glisten, zero movement */}
       <path
-        d="M 0,0 L -2,58 M 3,0 L 2,58 M 5,0 L 4,58"
-        stroke={foamColor}
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeDasharray="14 10"
-        style={{ animation: "waterfallStream 0.6s linear infinite" }}
+        d="M -2,-4 Q -5,22 -6,52 L 8,52 Q 6,22 4,-4 Z"
+        fill={`url(#${wfVeilGradId})`}
+        style={{ animation: "waterfallGlisten 2.6s ease-in-out infinite" }}
       />
-      {/* Interlaced secondary currents */}
-      <path
-        d="M -1,5 L -4,55 M 2,5 L 1,55 M 4,10 L 3,55"
-        stroke={waterColor}
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeDasharray="10 8"
-        style={{ animation: "waterfallStreamAlt 0.45s linear infinite" }}
-      />
+      {/* Crest foam at lip */}
+      <ellipse cx="1" cy="-3" rx="6" ry="1.8" fill={foamColor} opacity={0.95} />
 
-      {/* Rock shelf dividing cascades */}
-      <rect x="-8" y="57" width="18" height="5" rx="2" fill="#090d16" opacity={0.9} />
+      {/* ── 3. Middle Rock Shelf & Breaking Cataract (y=50 to y=60) ── */}
+      <path
+        d="M -12,50 L 14,50 L 12,57 L -10,56 Z"
+        fill="#050812"
+        opacity={0.95}
+      />
+      {/* Shelf whitewater froth — completely stationary */}
       <ellipse
         cx="1"
-        cy="58"
-        rx="9"
-        ry="2.2"
+        cy="52"
+        rx="13"
+        ry="3.2"
         fill={foamColor}
-        opacity={0.9}
-        style={{ filter: "drop-shadow(0 0 4px rgba(255,255,255,0.8))" }}
+        style={{ filter: "drop-shadow(0 0 4px rgba(255,255,255,0.7))" }}
       />
+      <ellipse cx="-5" cy="53" rx="5.5" ry="2" fill={foamColor} opacity={0.9} />
+      <ellipse cx="7" cy="53" rx="6" ry="2" fill={foamColor} opacity={0.9} />
 
-      {/* ── Tier 2 Plunge (y=60 to y=134) ── */}
+      {/* ── 4. Lower Plunge Veil (y=54 to y=134) — Graceful Expanding Water Sheet ── */}
+      {/* Broad curtain of rushing water */}
       <path
-        d="M -6,60 Q -8,95 -11,134 L 13,134 Q 11,95 8,60 Z"
+        d="M -8,54 Q -12,92 -18,134 L 20,134 Q 15,92 10,54 Z"
         fill={`url(#${wfGradId})`}
-        opacity={0.92}
       />
-      {/* Core rushing foam torrents */}
+      {/* Inner sheen ribbons — pure opacity glisten, NO transform/wobble */}
       <path
-        d="M -2,60 L -5,134 M 1,60 L -1,134 M 4,60 L 3,134 M 7,60 L 7,134"
-        stroke={foamColor}
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeDasharray="14 10"
-        style={{ animation: "waterfallStream 0.5s linear infinite" }}
+        d="M -5,55 Q -9,94 -14,134 L 16,134 Q 12,94 7,55 Z"
+        fill={`url(#${wfVeilGradId})`}
+        style={{ animation: "waterfallGlisten 2.2s ease-in-out infinite" }}
       />
-      {/* Alternating core currents */}
       <path
-        d="M -4,65 L -8,130 M 0,65 L -3,130 M 3,65 L 1,130 M 6,65 L 5,130"
-        stroke={waterColor}
-        strokeWidth="1.3"
-        strokeLinecap="round"
-        strokeDasharray="10 8"
-        style={{ animation: "waterfallStreamAlt 0.38s linear infinite" }}
+        d="M -2,56 Q -5,95 -8,134 L 10,134 Q 7,95 4,56 Z"
+        fill={foamColor}
+        opacity={0.65}
+        style={{ animation: "waterfallGlisten 2.2s ease-in-out infinite 1.1s" }}
       />
 
-      {/* ── Plunge Pool Splash & Expanding Water Rings ── */}
-      {/* Outer ripple ring 1 */}
+      {/* ── 5. Plunge Pool Splash, Concentric Expanding Rings & Mist ── */}
+      {/* Concentric expanding ripples */}
       <g transform="translate(1, 134)">
         <ellipse
           cx="0"
           cy="0"
-          rx="18"
-          ry="4.5"
+          rx="22"
+          ry="5.5"
           fill="none"
           stroke={foamColor}
           strokeWidth="1.2"
           style={{
-            animation: "waterfallSplash 1.6s ease-out infinite",
+            animation: "waterfallSplash 1.8s ease-out infinite",
             transformBox: "fill-box",
             transformOrigin: "center",
           }}
         />
-      </g>
-      {/* Outer ripple ring 2 (staggered) */}
-      <g transform="translate(1, 134)">
         <ellipse
           cx="0"
           cy="0"
-          rx="18"
-          ry="4.5"
+          rx="22"
+          ry="5.5"
           fill="none"
           stroke={foamColor}
           strokeWidth="1.0"
           style={{
-            animation: "waterfallSplash 1.6s ease-out infinite 0.8s",
+            animation: "waterfallSplash 1.8s ease-out infinite 0.9s",
             transformBox: "fill-box",
             transformOrigin: "center",
           }}
@@ -394,24 +425,26 @@ function MountainWaterfall({
       <ellipse
         cx="1"
         cy="133"
-        rx="16"
-        ry="4"
+        rx="20"
+        ry="5"
         fill={foamColor}
         opacity={0.95}
-        style={{ filter: "drop-shadow(0 0 8px rgba(255,255,255,0.9))" }}
+        style={{ filter: "drop-shadow(0 0 10px rgba(255,255,255,0.9))" }}
       />
+      <ellipse cx="-6" cy="134" rx="10" ry="3.2" fill={foamColor} opacity={0.8} />
+      <ellipse cx="8" cy="134" rx="11" ry="3.2" fill={foamColor} opacity={0.8} />
 
-      {/* Rising fine mist spray */}
+      {/* Rising fine mist spray vapor */}
       <ellipse
         cx="1"
-        cy="124"
-        rx="24"
-        ry="8"
+        cy="122"
+        rx="28"
+        ry="10"
         fill={isNight ? "#93c5fd" : "#ffffff"}
-        opacity={0.3}
+        opacity={0.32}
         style={{
-          filter: "blur(6px)",
-          animation: "waterfallMist 3s ease-in-out infinite alternate",
+          filter: "blur(7px)",
+          animation: "waterfallMist 3.2s ease-in-out infinite alternate",
         }}
       />
     </g>
@@ -575,31 +608,43 @@ function MountainScene({ period }: { period: TimePeriod }) {
         className="absolute bottom-0 left-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* ── 1. Grand Alpine Peaks (Back Mountain Range) ── */}
+        {/* ── 1. Grand Alpine Peaks (Back Mountain Range — Varied Majestic Topography) ── */}
         <path
           fill={c.back}
-          d="M0,340 L0,220 L60,165 L130,195 L220,120 L310,165 L410,95
-             L490,135 L580,75 L670,120 L770,55 L860,110 L950,48
-             L1040,95 L1130,58 L1220,95 L1310,45 L1390,75 L1440,65 L1440,340 Z"
+          d="M0,340 L0,205 L55,162 L110,178 L175,105 L210,148 L260,136 L320,186
+             L380,132 L440,86 L485,96 L535,52 L595,112 L650,98 L705,168
+             L775,66 L825,104 L890,48 L925,58 L975,122 L1045,40 L1105,78
+             L1165,56 L1235,96 L1295,70 L1365,118 L1440,82 L1440,340 Z"
         />
 
-        {/* Highlighted sharp ridge facets on the back peaks */}
-        <g stroke={c.mid} strokeWidth="1" opacity={0.35}>
-          <line x1="770" y1="55" x2="790" y2="155" />
-          <line x1="950" y1="48" x2="975" y2="140" />
-          <line x1="1130" y1="58" x2="1155" y2="150" />
-          <line x1="1310" y1="45" x2="1330" y2="130" />
+        {/* 3D Ridge Facet Shading on iconic alpine summits */}
+        <g stroke={c.mid} strokeWidth="1.2" opacity={0.42}>
+          <line x1="175" y1="105" x2="190" y2="180" />
+          <line x1="535" y1="52" x2="560" y2="152" />
+          <line x1="775" y1="66" x2="795" y2="158" />
+          <line x1="890" y1="48" x2="910" y2="142" />
+          <line x1="1045" y1="40" x2="1070" y2="148" />
+          <line x1="1165" y1="56" x2="1185" y2="138" />
+          <line x1="1295" y1="70" x2="1312" y2="138" />
         </g>
 
-        {/* ── 2. Mid Mountain Crags & Rugged Ridges ── */}
+        {/* ── 2. Mid Mountain Crags & Rugged Escarpments ── */}
         <path
           fill={c.mid}
-          d="M0,340 L0,250 L75,210 L160,230 L250,175 L340,205 L440,158
-             L530,185 L620,140 L710,170 L800,128 L890,160 L980,122
-             L1070,152 L1160,115 L1250,148 L1330,110 L1440,132 L1440,340 Z"
+          d="M0,340 L0,240 L70,198 L140,218 L215,166 L275,212 L350,182 L425,154
+             L495,170 L575,126 L635,156 L715,138 L785,176 L865,144 L920,132
+             L952,150 L980,136 L1055,164 L1125,106 L1195,146 L1275,118
+             L1355,148 L1440,124 L1440,340 Z"
         />
 
-        {/* ── 3. Cascading Alpine Waterfall ── */}
+        {/* Mid-mountain rock ridge facets */}
+        <g stroke={c.back} strokeWidth="1" opacity={0.35}>
+          <line x1="575" y1="126" x2="600" y2="200" />
+          <line x1="1125" y1="106" x2="1145" y2="190" />
+          <line x1="215" y1="166" x2="235" y2="225" />
+        </g>
+
+        {/* ── 3. Cascading Alpine Waterfall (Organic Fluid Cascade) ── */}
         <MountainWaterfall x={952} y={150} period={period} />
 
         {/* ── 4. Serene Mountain Lake & Mirror Reflections ── */}
@@ -627,7 +672,7 @@ function MountainScene({ period }: { period: TimePeriod }) {
           </g>
         )}
 
-        {/* ── 4. Pine trees (left cluster) ── */}
+        {/* ── 6. Pine trees (left cluster) ── */}
         <g fill={c.tree}>
           <polygon points="30,270 55,210 80,270" />
           <polygon points="40,240 55,190 70,240" />
@@ -642,18 +687,18 @@ function MountainScene({ period }: { period: TimePeriod }) {
           <rect x="158" y="280" width="8" height="18" />
         </g>
 
-        {/* ── 5. Rustic Fence along hillside ── */}
+        {/* ── 7. Rustic Fence along hillside ── */}
         <RusticFence x={180} y={266} color={c.tree} />
 
-        {/* ── 6. Cozy Alpine Cabin ── */}
+        {/* ── 8. Cozy Alpine Cabin ── */}
         <AlpineCabin x={220} y={250} isLit={isHouseLit} c={c} />
 
-        {/* ── 7. Meadow Barn (day & sunset) ── */}
+        {/* ── 9. Meadow Barn (day & sunset) ── */}
         {(period === "day" || period === "sunset") && (
           <FarmBarn x={275} y={258} c={c} />
         )}
 
-        {/* ── 8. Pine trees (right cluster) ── */}
+        {/* ── 10. Pine trees (right cluster) ── */}
         <g fill={c.tree}>
           <polygon points="1260,280 1285,220 1310,280" />
           <polygon points="1270,253 1285,200 1300,253" />
@@ -668,7 +713,7 @@ function MountainScene({ period }: { period: TimePeriod }) {
           <rect x="1374" y="278" width="8" height="20" />
         </g>
 
-        {/* ── 9. Night Fireflies ── */}
+        {/* ── 11. Night Fireflies ── */}
         {period === "night" && (
           <g>
             <circle cx="280" cy="272" r="1.5" fill="#fef08a" opacity={0.85} style={{ filter: "drop-shadow(0 0 4px #fef08a)" }} />
@@ -679,7 +724,7 @@ function MountainScene({ period }: { period: TimePeriod }) {
           </g>
         )}
 
-        {/* ── 10. Front hills (ground silhouette) ── */}
+        {/* ── 12. Front hills (ground silhouette) ── */}
         <path
           fill={c.front}
           d="M0,340 L0,295 Q120,268 240,284 Q360,302 480,278
@@ -786,7 +831,15 @@ function MoonVisual({
    - Sunset: Sinking sun low on west horizon (left), PLUS twilight moon rising on east (right)
    - Night:  Luminous moon high in the starry sky
 ───────────────────────────────────────────── */
-function CelestialBody({ period, moonPhase }: { period: TimePeriod; moonPhase: MoonPhase }) {
+function CelestialBody({
+  period,
+  moonPhase,
+  weather,
+}: {
+  period: TimePeriod;
+  moonPhase: MoonPhase;
+  weather?: WeatherType;
+}) {
   return (
     <>
       {/* ── Moon at Night ── */}
@@ -898,7 +951,7 @@ function CelestialBody({ period, moonPhase }: { period: TimePeriod; moonPhase: M
         </div>
       )}
 
-      {/* ── Blazing Sun at Day (Tinggi di Tengah Langit) ── */}
+      {/* ── Sun at Day (Tinggi di Tengah Langit) ── */}
       {period === "day" && (
         <div
           className="absolute pointer-events-none select-none"
@@ -908,14 +961,18 @@ function CelestialBody({ period, moonPhase }: { period: TimePeriod; moonPhase: M
             transform: "translate(-50%, -50%)",
             width: 104,
             height: 104,
-            transition: "all 2.4s ease",
+            opacity: weather === "overcast" ? 0.32 : weather === "rain" ? 0.22 : 1,
+            transition: "opacity 1.2s ease, transform 2.4s ease",
           }}
         >
           <div
             style={{
               width: 104,
               height: 104,
-              filter: "drop-shadow(0 0 22px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 44px rgba(245, 158, 11, 0.55))",
+              filter:
+                weather === "overcast"
+                  ? "blur(3px) drop-shadow(0 0 16px rgba(255, 255, 255, 0.45))"
+                  : "drop-shadow(0 0 22px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 44px rgba(245, 158, 11, 0.55))",
             }}
           >
             <svg viewBox="0 0 100 100" width={104} height={104} xmlns="http://www.w3.org/2000/svg">
@@ -1387,7 +1444,7 @@ export function AmbientSkyBackground() {
         {weather !== "clear" && (
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ backgroundColor: WEATHER_OVERLAY[weather], transition: "background-color 1.2s ease" }}
+            style={{ backgroundColor: getWeatherOverlay(weather, period), transition: "background-color 1.2s ease" }}
           />
         )}
 
@@ -1402,11 +1459,21 @@ export function AmbientSkyBackground() {
           <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 to-gray-800/60 pointer-events-none" />
         )}
 
-        {/* Daytime clouds */}
+        {/* Daytime clear clouds */}
         {period === "day" && weather === "clear" && (
           <>
             <div className="absolute top-[8%] left-[5%] w-80 h-24 rounded-full bg-white/60 blur-2xl pointer-events-none" style={{ animation: "fogDrift 35s linear infinite" }} />
             <div className="absolute top-[15%] right-[10%] w-64 h-16 rounded-full bg-white/50 blur-2xl pointer-events-none" style={{ animation: "fogDrift 48s linear infinite reverse" }} />
+          </>
+        )}
+
+        {/* Daytime overcast / mendung cloud blankets */}
+        {period === "day" && weather === "overcast" && (
+          <>
+            <div className="absolute top-0 left-0 right-0 h-[50%] bg-gradient-to-b from-slate-400/35 via-slate-300/20 to-transparent blur-3xl pointer-events-none" />
+            <div className="absolute top-[2%] left-[-10%] w-[120%] h-40 rounded-full bg-slate-200/50 blur-3xl pointer-events-none" style={{ animation: "fogDrift 45s linear infinite" }} />
+            <div className="absolute top-[10%] right-[-10%] w-[110%] h-36 rounded-full bg-slate-300/40 blur-3xl pointer-events-none" style={{ animation: "fogDrift 60s linear infinite reverse" }} />
+            <div className="absolute top-[18%] left-[8%] w-[85%] h-32 rounded-full bg-white/40 blur-2xl pointer-events-none" />
           </>
         )}
 
@@ -1424,7 +1491,7 @@ export function AmbientSkyBackground() {
         )}
 
         {/* ── Sun / Moon in the sky (behind mountains) ── */}
-        <CelestialBody period={period} moonPhase={moonPhase} />
+        <CelestialBody period={period} moonPhase={moonPhase} weather={weather} />
 
         {/* Mountains & trees silhouette — all periods */}
         {hasMountains && <MountainScene period={period} />}

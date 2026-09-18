@@ -156,24 +156,71 @@
   },
   {
     "id": 8,
-    "title": "Centralized Master Data Hub",
+    "title": "Government Core Data Hub",
     "category": "Distributed Systems",
-    "client": "Fintech Ecosystem",
-    "tagline": "Single Source of Truth dengan gRPC, Protobuf & Go",
-    "description": "Layanan data master terpusat berlatensi ultra-rendah dan throughput tinggi (100k+ RPS) menggunakan gRPC binary multiplexing, Go Fiber engine, dan Redis cache-aside cluster.",
-    "image": "/portfolio_photos/attendance_laptop_mockup.jpg",
+    "client": "Government Ecosystem (Confidential)",
+    "tagline": "Jantung Pusat Transaksi & Pertukaran Data 5 Layanan Microservice",
+    "description": "Sistem backbone 'jantung data' terpusat untuk pertukaran dan konsistensi transaksi data antar 5 microservice pemerintahan. Mengimplementasikan gRPC binary multiplexing, skema Protocol Buffers (Proto), dan Go berkecepatan tinggi dengan distributed caching.",
+    "image": "/portfolio_photos/gov-datahub.svg",
     "author": "deriana",
     "url": "#",
     "features": [
-      "Arsitektur gRPC & Protocol Buffers Multiplexed",
-      "Go Fiber Zero-Allocation High Performance Engine",
-      "Redis Cache-Aside Cluster dengan Idempotency Control",
-      "Append-Only Audit Trail Log untuk Integritas Data"
+      "Backbone Pertukaran Data Real-Time Antar 5 Microservice Pemerintahan",
+      "Komunikasi Berkecepatan Tinggi via gRPC Binary Multiplexing & Protocol Buffers",
+      "Mesin Transaksi Go Kinerja Tinggi Bebas Overhead Komputasi",
+      "Distributed Cache & Idempotency Lock Menggunakan Redis Cluster",
+      "Enkripsi Data In-Transit (mTLS) & Audit Log Konsistensi Transaksi"
     ],
-    "tags": ["Golang", "gRPC", "Protobuf", "Redis", "Docker"],
+    "tags": ["Golang", "gRPC", "Protobuf", "Redis", "Kubernetes", "Microservices"],
     "metrics": [
-      { "label": "Throughput", "value": "100k+ RPS" },
-      { "label": "Latensi Service", "value": "< 2ms" }
+      { "label": "Layanan Terkoneksi", "value": "5 Microservices" },
+      { "label": "Throughput", "value": "50k+ RPS" }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Intercompany Banking Cash Flow",
+    "category": "FinTech & Banking",
+    "client": "National Banking Group (Confidential)",
+    "tagline": "Pencatatan Arus Kas & Likuiditas Bank ke Entitas Anak Perusahaan",
+    "description": "Sistem backend skala enterprise untuk pelacakan dan rekonsiliasi arus perputaran dana modal kerja antar bank terkemuka nasional dengan entitas anak perusahaan. Dibangun dengan Go berarsitektur microservices untuk penanganan ledger keuangan berlatensi rendah dan kepatuhan audit ketat.",
+    "image": "/portfolio_photos/banking-cashflow.svg",
+    "author": "deriana",
+    "url": "#",
+    "features": [
+      "Pencatatan Ledger Finansial Multi-Entitas Arus Kas Induk ke Anak Perusahaan",
+      "Otomatisasi Validasi Batas Likuiditas & Allocation Settlement Harian",
+      "Backend Berkinerja Tinggi Menggunakan Go & Arsitektur Microservices",
+      "Penyimpanan Transaksional ACID PostgreSQL dengan Idempotency Redis",
+      "Export Laporan Konsolidasi Finansial & Audit Trail Kepatuhan Regulasi"
+    ],
+    "tags": ["Golang", "PostgreSQL", "Redis", "REST API", "Docker", "Microservices"],
+    "metrics": [
+      { "label": "Akurasi Rekonsiliasi", "value": "99.99%" },
+      { "label": "Latensi Transaksi", "value": "< 15ms" }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Civil Personnel HRIS Platform",
+    "category": "Enterprise HRIS",
+    "client": "Government Institution (Confidential)",
+    "tagline": "Sistem Manajemen Kepegawaian & Tata Kelola ASN Terpadu",
+    "description": "Aplikasi kepegawaian berskala besar untuk tata kelola puluhan ribu personel ASN dan aparatur sipil. Mengintegrasikan manajemen berkas digital, workflow verifikasi berjenjang (kenaikan pangkat, cuti, mutasi), perhitungan tunjangan kinerja, serta terhubung dengan ekosistem mikroservis pemerintahan.",
+    "image": "/portfolio_photos/gov-hris.svg",
+    "author": "deriana",
+    "url": "#",
+    "features": [
+      "Manajemen Profil Terintegrasi Puluhan Ribu Aparatur Sipil Negara (ASN)",
+      "Workflow Persetujuan Kenaikan Pangkat (KP) & Cuti Berjenjang Multi-Instansi",
+      "Kalkulasi Otomatis Tunjangan Kinerja (Tukin) & Integrasi Sistem Pembayaran",
+      "Backend Skalabilitas Tinggi Berbasis Java & Spring Boot Microservices",
+      "Verifikasi Dokumen Digital Aman dengan Jejak Audit Kepatuhan Regulasi"
+    ],
+    "tags": ["Java", "Spring Boot", "PostgreSQL", "Redis", "Docker", "Microservices"],
+    "metrics": [
+      { "label": "Kapasitas Pegawai", "value": "50.000+ Personel" },
+      { "label": "Efisiensi Berkas", "value": "-70% Waktu Proses" }
     ]
   }
 ]
