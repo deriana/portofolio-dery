@@ -746,7 +746,7 @@ function MountainScene({ period }: { period: TimePeriod }) {
 
 /* ─────────────────────────────────────────────
    2. SKILLS BIOME: THE OBSERVATORY RIDGE
-   High-altitude Research Station, Radio Arrays & Telescope Dome
+   High-altitude Research Campus, Grounded Observatory & Lower Comms Mast
 ───────────────────────────────────────────── */
 function ObservatoryScene({ period }: { period: TimePeriod }) {
   const c = MOUNTAIN_COLORS[period];
@@ -762,7 +762,7 @@ function ObservatoryScene({ period }: { period: TimePeriod }) {
       className="w-full h-full"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* ── 1. Far Mountain Ridges ── */}
+      {/* ── 1. Far Mountain Ridges (Distant Alpine Peaks) ── */}
       <path
         fill={c.back}
         d="M0,340 L0,220 L60,180 L130,195 L220,130 L290,170 L380,120 L470,165
@@ -770,7 +770,7 @@ function ObservatoryScene({ period }: { period: TimePeriod }) {
            L1170,125 L1260,65 L1350,120 L1440,90 L1440,340 Z"
       />
 
-      {/* ── 2. Mid Mountains - Observatory sits on THIS ridge's crest ── */}
+      {/* ── 2. Mid Mountain Ridge (Clean natural landscape, no buildings) ── */}
       <path
         fill={c.mid}
         d="M0,340 L0,260 L80,225 L170,245 L260,190 L350,225 L440,175
@@ -778,91 +778,121 @@ function ObservatoryScene({ period }: { period: TimePeriod }) {
            L1070,185 L1160,148 L1250,175 L1340,148 L1440,162 L1440,340 Z"
       />
 
-      {/* ── 3. Observatory Dome sitting ON the mid ridge crest at ~x=620 ── */}
-      <g transform="translate(600, 126)">
-        {/* Rock base / foundation on the ridge */}
-        <polygon points="-14,42 74,42 62,34 -2,34" fill={c.back} opacity={0.65} />
-        {/* Observatory cylinder base */}
-        <rect x="0" y="18" width="60" height="18" fill={c.tree} rx="2" />
-        {/* Collar ring */}
-        <rect x="-4" y="16" width="68" height="4" fill={c.mid} rx="1" />
-        {/* Geodesic Dome */}
-        <path d="M 0,18 A 30,26 0 0,1 60,18 Z" fill={c.tree} />
+      {/* ── 3. Foreground Hills (Rolling Plateau) ── */}
+      <path
+        fill={c.front}
+        d="M0,340 L0,295 Q140,272 280,288 Q420,304 560,278
+           Q700,266 840,278 Q980,292 1120,272
+           Q1260,260 1440,285 L1440,340 Z"
+      />
+
+      {/* ── 4. Satellite Dish Array — Grounded on left foreground hill ── */}
+      <g transform="translate(230, 246)">
+        {/* Dish 1 */}
+        <g transform="translate(0, 8)">
+          <line x1="16" y1="28" x2="16" y2="14" stroke={c.tree} strokeWidth="2.2" />
+          <line x1="8" y1="28" x2="24" y2="28" stroke={c.tree} strokeWidth="2" />
+          <path d="M 0,14 Q 16,0 32,14" stroke={c.tree} strokeWidth="3" fill="none" strokeLinecap="round" />
+          <line x1="16" y1="7" x2="16" y2="0" stroke={c.front} strokeWidth="1.4" />
+          <circle cx="16" cy="0" r="1.8" fill={isLit ? "#38bdf8" : c.front} />
+        </g>
+        {/* Dish 2 */}
+        <g transform="translate(56, 0)">
+          <line x1="14" y1="36" x2="14" y2="14" stroke={c.tree} strokeWidth="2.2" />
+          <line x1="6" y1="36" x2="22" y2="36" stroke={c.tree} strokeWidth="2" />
+          <path d="M 0,14 Q 14,1 28,14" stroke={c.tree} strokeWidth="3" fill="none" strokeLinecap="round" />
+          <line x1="14" y1="7" x2="14" y2="-1" stroke={c.front} strokeWidth="1.4" />
+          <circle cx="14" cy="-1" r="1.8" fill={isLit ? "#38bdf8" : c.front} />
+        </g>
+        {/* Dish 3 */}
+        <g transform="translate(110, 12)">
+          <line x1="14" y1="24" x2="14" y2="12" stroke={c.tree} strokeWidth="2" />
+          <line x1="6" y1="24" x2="22" y2="24" stroke={c.tree} strokeWidth="1.8" />
+          <path d="M 0,12 Q 14,2 28,12" stroke={c.tree} strokeWidth="2.8" fill="none" strokeLinecap="round" />
+          <line x1="14" y1="6" x2="14" y2="1" stroke={c.front} strokeWidth="1.2" />
+        </g>
+      </g>
+
+      {/* ── 5. Modern Observatory Complex — Firmly on the lower foreground hill ── */}
+      {/* Sitting flush on the hill line at y~274 */}
+      <g transform="translate(560, 234)">
+        {/* Concrete research campus foundation terrace */}
+        <rect x="-8" y="38" width="124" height="6" fill={c.tree} rx="1" />
+        <rect x="-4" y="34" width="116" height="4" fill={c.mid} rx="1" />
+
+        {/* Rotunda cylinder building */}
+        <rect x="14" y="14" width="56" height="22" fill={c.mid} rx="2" />
+        <rect x="10" y="12" width="64" height="4" fill={c.tree} rx="1" />
+
+        {/* Geodesic Astronomical Dome */}
+        <path d="M 14,14 A 28,26 0 0,1 70,14 Z" fill={c.mid} />
         {/* Dome shutter slit */}
-        <path d="M 25,2 L 35,2 L 35,18 L 25,18 Z" fill={c.back} opacity={0.75} />
-        {/* Optical Telescope Laser */}
+        <path d="M 37,-12 L 47,-12 L 47,14 L 37,14 Z" fill={c.tree} />
+
+        {/* Telescope laser / optical observation beam */}
         {isLit && (
           <g>
-            <rect x="27" y="3" width="6" height="13" fill="#67e8f9" opacity={0.9} style={{ filter: "drop-shadow(0 0 8px #22d3ee)" }} />
-            <line x1="30" y1="3" x2="30" y2="-55" stroke="#38bdf8" strokeWidth="1.2" opacity={0.6} strokeDasharray="3,2" />
+            <rect x="39" y="-8" width="6" height="18" fill="#67e8f9" opacity={0.9} style={{ filter: "drop-shadow(0 0 8px #22d3ee)" }} />
+            <line x1="42" y1="-8" x2="42" y2="-130" stroke="#38bdf8" strokeWidth="1.6" opacity={0.75} strokeDasharray="4,2" />
           </g>
         )}
-      </g>
 
-      {/* ── 4. Radio Spire Tower on the right ridge crest ~x=920, y=80 ── */}
-      <g transform="translate(912, 38)">
-        {/* Rock base */}
-        <polygon points="-8,48 28,48 22,41 -2,41" fill={c.back} opacity={0.55} />
-        {/* Lattice tower legs */}
-        <line x1="0" y1="85" x2="10" y2="15" stroke={c.tree} strokeWidth="1.6" />
-        <line x1="20" y1="85" x2="10" y2="15" stroke={c.tree} strokeWidth="1.6" />
-        <line x1="10" y1="15" x2="10" y2="0" stroke={c.tree} strokeWidth="1.8" />
-        {/* Cross struts */}
-        <line x1="3" y1="70" x2="17" y2="70" stroke={c.tree} strokeWidth="0.8" />
-        <line x1="5" y1="50" x2="15" y2="50" stroke={c.tree} strokeWidth="0.8" />
-        <line x1="7" y1="30" x2="13" y2="30" stroke={c.tree} strokeWidth="0.8" />
-        {/* Guy wires */}
-        <line x1="10" y1="28" x2="-35" y2="85" stroke={c.back} strokeWidth="0.7" opacity={0.5} />
-        <line x1="10" y1="28" x2="55" y2="85" stroke={c.back} strokeWidth="0.7" opacity={0.5} />
-        {/* Warning Beacon */}
-        <circle cx="10" cy="0" r="2.5" fill="#ef4444" style={{ animation: "beaconPulse 1.8s ease-in-out infinite", filter: "drop-shadow(0 0 6px #ef4444)" }} />
-      </g>
+        {/* Research Annex / Control Center wing */}
+        <rect x="70" y="20" width="38" height="16" fill={c.front} rx="1" />
+        <polygon points="68,20 89,14 110,20" fill={c.tree} />
 
-      {/* ── 5. Radio Dish Antenna Array (Left Ridge at ~x=260, y=190) ── */}
-      <g transform="translate(248, 152)">
-        <g>
-          <line x1="15" y1="30" x2="15" y2="15" stroke={c.tree} strokeWidth="2" />
-          <path d="M 0,15 Q 15,2 30,15" stroke={c.tree} strokeWidth="3" fill="none" strokeLinecap="round" />
-          <line x1="15" y1="8" x2="15" y2="1" stroke={c.front} strokeWidth="1.2" />
-          <circle cx="15" cy="1" r="1.5" fill={isLit ? "#38bdf8" : c.front} />
-        </g>
-        <g transform="translate(55, -8)">
-          <line x1="12" y1="28" x2="12" y2="13" stroke={c.tree} strokeWidth="1.8" />
-          <path d="M 0,13 Q 12,2 24,13" stroke={c.tree} strokeWidth="2.5" fill="none" strokeLinecap="round" />
-          <line x1="12" y1="7" x2="12" y2="0" stroke={c.front} strokeWidth="1" />
-          <circle cx="12" cy="0" r="1.2" fill={isLit ? "#38bdf8" : c.front} />
-        </g>
-        <g transform="translate(106, 6)">
-          <line x1="14" y1="26" x2="14" y2="12" stroke={c.tree} strokeWidth="1.8" />
-          <path d="M 0,12 Q 14,2 28,12" stroke={c.tree} strokeWidth="2.5" fill="none" strokeLinecap="round" />
-          <line x1="14" y1="6" x2="14" y2="1" stroke={c.front} strokeWidth="1" />
-        </g>
-      </g>
-
-      {/* Transmission Cable Lines Across Col */}
-      <path d="M 360,200 Q 520,245 680,215 Q 840,245 1000,210" stroke={c.back} strokeWidth="0.9" fill="none" opacity={0.45} />
-
-      {/* ── 6. Research Station / Server Outpost on plateau ── */}
-      <g transform="translate(720, 238)">
-        <rect x="0" y="6" width="48" height="18" fill={c.front} rx="1" />
-        <rect x="4" y="2" width="40" height="4" fill={c.mid} rx="1" />
-        <circle cx="36" cy="1" r="4" fill={c.tree} />
-        <line x1="12" y1="2" x2="12" y2="-8" stroke={c.tree} strokeWidth="1.2" />
-        <circle cx="12" cy="-8" r="1" fill={isLit ? "#10b981" : c.tree} />
+        {/* Illuminated telemetry / server windows */}
         {isLit ? (
           <g>
-            <rect x="6" y="10" width="8" height="8" rx="0.5" fill="#38bdf8" style={{ filter: "drop-shadow(0 0 5px rgba(56,189,248,0.8))" }} />
-            <rect x="18" y="10" width="8" height="8" rx="0.5" fill="#fde047" style={{ filter: "drop-shadow(0 0 5px rgba(253,224,71,0.8))" }} />
-            <rect x="30" y="10" width="8" height="8" rx="0.5" fill="#38bdf8" style={{ filter: "drop-shadow(0 0 5px rgba(56,189,248,0.8))" }} />
+            <rect x="75" y="23" width="7" height="7" rx="0.5" fill="#38bdf8" style={{ filter: "drop-shadow(0 0 4px #38bdf8)" }} />
+            <rect x="86" y="23" width="7" height="7" rx="0.5" fill="#fde047" style={{ filter: "drop-shadow(0 0 4px #fde047)" }} />
+            <rect x="97" y="23" width="7" height="7" rx="0.5" fill="#10b981" style={{ filter: "drop-shadow(0 0 4px #10b981)" }} />
           </g>
         ) : (
           <g opacity={0.35}>
-            <rect x="6" y="10" width="8" height="8" rx="0.5" fill={c.mid} />
-            <rect x="18" y="10" width="8" height="8" rx="0.5" fill={c.mid} />
-            <rect x="30" y="10" width="8" height="8" rx="0.5" fill={c.mid} />
+            <rect x="75" y="23" width="7" height="7" rx="0.5" fill={c.mid} />
+            <rect x="86" y="23" width="7" height="7" rx="0.5" fill={c.mid} />
+            <rect x="97" y="23" width="7" height="7" rx="0.5" fill={c.mid} />
           </g>
         )}
+
+        {/* Observatory Entrance steps */}
+        <rect x="-2" y="38" width="14" height="3" fill={c.front} />
+        <rect x="0" y="41" width="10" height="3" fill={c.front} />
       </g>
+
+      {/* ── 6. Comms Lattice Mast — Grounded on lower hill (NOT on mountain) ── */}
+      {/* Base sits on the foreground hill at y=280 */}
+      <g transform="translate(1030, 180)">
+        {/* Concrete foundation footings on hill */}
+        <rect x="6" y="98" width="28" height="5" fill={c.tree} rx="1" />
+
+        {/* Steel Lattice Mast */}
+        <line x1="10" y1="98" x2="20" y2="12" stroke={c.tree} strokeWidth="2" />
+        <line x1="30" y1="98" x2="20" y2="12" stroke={c.tree} strokeWidth="2" />
+        <line x1="20" y1="12" x2="20" y2="0" stroke={c.tree} strokeWidth="2.2" />
+
+        {/* Lattice cross struts */}
+        <line x1="12" y1="82" x2="28" y2="82" stroke={c.tree} strokeWidth="1" />
+        <line x1="14" y1="62" x2="26" y2="62" stroke={c.tree} strokeWidth="1" />
+        <line x1="16" y1="42" x2="24" y2="42" stroke={c.tree} strokeWidth="1" />
+        <line x1="18" y1="24" x2="22" y2="24" stroke={c.tree} strokeWidth="1" />
+        <line x1="12" y1="82" x2="26" y2="62" stroke={c.tree} strokeWidth="0.8" />
+        <line x1="28" y1="82" x2="14" y2="62" stroke={c.tree} strokeWidth="0.8" />
+        <line x1="14" y1="62" x2="24" y2="42" stroke={c.tree} strokeWidth="0.8" />
+        <line x1="26" y1="62" x2="16" y2="42" stroke={c.tree} strokeWidth="0.8" />
+
+        {/* Guy wires anchored into the foreground soil */}
+        <line x1="20" y1="28" x2="-35" y2="98" stroke={c.mid} strokeWidth="0.9" opacity={0.6} />
+        <line x1="20" y1="28" x2="75" y2="98" stroke={c.mid} strokeWidth="0.9" opacity={0.6} />
+
+        {/* Red aviation safety beacon */}
+        <circle cx="20" cy="0" r="2.8" fill="#ef4444" style={{ animation: "beaconPulse 1.8s ease-in-out infinite", filter: "drop-shadow(0 0 6px #ef4444)" }} />
+      </g>
+
+      {/* Ground transmission lines */}
+      <path d="M 370,278 Q 460,286 550,275" stroke={c.tree} strokeWidth="1" fill="none" opacity={0.35} />
+      <path d="M 680,274 Q 850,286 1030,280" stroke={c.tree} strokeWidth="1" fill="none" opacity={0.35} />
 
       {/* ── 7. Pine trees LEFT cluster — foreground, grounded at bottom ── */}
       <g fill={c.tree}>
@@ -872,7 +902,6 @@ function ObservatoryScene({ period }: { period: TimePeriod }) {
         <polygon points="92,312 108,255 124,312" />
         <polygon points="130,340 158,268 186,340" />
         <polygon points="143,314 158,256 173,314" />
-        {/* Trunks */}
         <rect x="52" y="312" width="6" height="28" fill={c.mid} opacity={0.65} />
         <rect x="105" y="314" width="6" height="26" fill={c.mid} opacity={0.65} />
         <rect x="155" y="316" width="6" height="24" fill={c.mid} opacity={0.65} />
@@ -886,7 +915,6 @@ function ObservatoryScene({ period }: { period: TimePeriod }) {
         <polygon points="1328,312 1342,256 1356,312" />
         <polygon points="1372,340 1397,272 1422,340" />
         <polygon points="1384,316 1397,260 1410,316" />
-        {/* Trunks */}
         <rect x="1292" y="312" width="6" height="28" fill={c.mid} opacity={0.65} />
         <rect x="1339" y="314" width="6" height="26" fill={c.mid} opacity={0.65} />
         <rect x="1394" y="318" width="6" height="22" fill={c.mid} opacity={0.65} />
@@ -901,21 +929,13 @@ function ObservatoryScene({ period }: { period: TimePeriod }) {
           <circle cx="1200" cy="260" r="1.6" fill="#38bdf8" opacity={0.85} style={{ filter: "drop-shadow(0 0 5px #38bdf8)" }} />
         </g>
       )}
-
-      {/* ── 9. Front Hills ── */}
-      <path
-        fill={c.front}
-        d="M0,340 L0,295 Q140,272 280,288 Q420,304 560,280
-           Q700,268 840,280 Q980,294 1120,272
-           Q1260,260 1440,285 L1440,340 Z"
-      />
     </svg>
   );
 }
 
 /* ─────────────────────────────────────────────
    3. PORTFOLIO BIOME: THE GRAND CANYON VIADUCT
-   Monumental Multi-Arch Viaduct, Gorge River & Natural Cliff Detail
+   Monumental Multi-Arch Viaduct, Gorge River & Riverkeeper's Cottage
 ───────────────────────────────────────────── */
 function ViaductGorgeScene({ period }: { period: TimePeriod }) {
   const c = MOUNTAIN_COLORS[period];
@@ -923,8 +943,8 @@ function ViaductGorgeScene({ period }: { period: TimePeriod }) {
 
   const isLit = period === "night" || period === "dawn";
 
-  // Pier x-positions for 8 piers (span = 110px per bay, pier width = 18px)
-  const pierXs = [248, 358, 468, 578, 688, 798, 908, 1018, 1128];
+  // Pier x-positions spanning canyon from x=330 to x=1100
+  const pierXs = [330, 440, 550, 660, 770, 880, 990, 1100];
 
   return (
     <svg
@@ -933,196 +953,252 @@ function ViaductGorgeScene({ period }: { period: TimePeriod }) {
       className="w-full h-full"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <defs>
-        {/* Clip arch openings per span — actual SVG clip paths */}
-        <clipPath id="archClip">
-          <rect x="0" y="0" width="1440" height="340" />
-        </clipPath>
-      </defs>
-
       {/* ── 1. Distant plateau / canyon rim (back) ── */}
       <path
         fill={c.back}
-        d="M0,340 L0,100 L55,100 L80,118 L130,98 L180,115 L230,88 L280,102
-           L330,82 L360,108 L390,180 L420,205 L500,200 L580,205 L660,200
-           L740,205 L820,200 L900,205 L980,200 L1060,205 L1100,180
-           L1130,108 L1160,88 L1210,105 L1260,90 L1310,112 L1360,95 L1440,100 L1440,340 Z"
+        d="M0,340 L0,110 L80,105 L150,118 L240,95 L340,112 L450,128
+           L600,135 L750,132 L900,135 L1050,128 L1160,112 L1260,95
+           L1350,110 L1440,105 L1440,340 Z"
       />
 
-      {/* Layered cliff face detail — natural vertical strata */}
-      <g fill={c.mid} opacity={0.5}>
-        {/* Left cliff face */}
-        <polygon points="55,100 80,118 82,240 50,240" />
-        <polygon points="130,98 180,115 182,240 128,240" />
-        <polygon points="230,88 280,102 282,205 228,205" />
-        {/* Right cliff face */}
-        <polygon points="1160,88 1210,105 1208,240 1162,240" />
-        <polygon points="1260,90 1310,112 1312,240 1258,240" />
-        <polygon points="1360,95 1440,100 1440,240 1358,240" />
-      </g>
-
-      {/* Cliff ledge detail stripes */}
-      <g stroke={c.front} strokeWidth="1" opacity={0.25}>
-        <line x1="0" y1="145" x2="240" y2="145" />
-        <line x1="0" y1="168" x2="190" y2="168" />
-        <line x1="1200" y1="140" x2="1440" y2="140" />
-        <line x1="1250" y1="162" x2="1440" y2="162" />
-      </g>
-
-      {/* ── 2. Canyon Gorge Floor — visible river ── */}
-      {/* Deep gorge shadow */}
-      <path
-        fill={c.back}
-        opacity={0.55}
-        d="M 300,340 L 300,220 Q 720,235 1140,220 L 1140,340 Z"
-      />
-      {/* River channel */}
+      {/* ── 2. Massive Left and Right Canyon Cliff Formations (Solid Rock) ── */}
+      {/* Left cliff wall rising high — solid rock at deck level (y=165) */}
       <path
         fill={c.mid}
-        opacity={0.55}
-        d="M 310,340 L 310,260 Q 450,250 590,255 Q 720,258 860,252
-           Q 1000,248 1130,258 L 1130,340 Z"
+        d="M0,340 L0,125 L90,120 L160,138 L230,125 L290,140 L310,185
+           L305,250 L270,270 L260,340 Z"
       />
-      {/* River shimmer highlights */}
-      <g stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" strokeLinecap="round">
-        <line x1="360" y1="285" x2="500" y2="280" />
-        <line x1="540" y1="278" x2="700" y2="275" />
-        <line x1="740" y1="275" x2="900" y2="278" />
-        <line x1="940" y1="280" x2="1080" y2="285" />
-        <line x1="400" y1="305" x2="560" y2="300" />
-        <line x1="620" y1="298" x2="820" y2="298" />
-        <line x1="860" y1="300" x2="1040" y2="305" />
+      {/* Left cliff shadow strata */}
+      <g stroke={c.tree} strokeWidth="1.2" opacity={0.35}>
+        <line x1="30" y1="135" x2="260" y2="135" />
+        <line x1="20" y1="158" x2="285" y2="158" />
+        <line x1="40" y1="185" x2="295" y2="185" />
+        <line x1="20" y1="215" x2="290" y2="215" />
       </g>
 
-      {/* Small waterfall on left cliff */}
+      {/* Right cliff wall rising high — solid rock at deck level (y=165) */}
       <path
-        d="M 230,145 Q 225,180 228,220 Q 226,240 230,265"
+        fill={c.mid}
+        d="M1440,340 L1440,125 L1350,120 L1280,138 L1210,125 L1150,140 L1130,185
+           L1135,250 L1170,270 L1180,340 Z"
+      />
+      {/* Right cliff shadow strata */}
+      <g stroke={c.tree} strokeWidth="1.2" opacity={0.35}>
+        <line x1="1180" y1="135" x2="1410" y2="135" />
+        <line x1="1155" y1="158" x2="1420" y2="158" />
+        <line x1="1145" y1="185" x2="1400" y2="185" />
+        <line x1="1150" y1="215" x2="1420" y2="215" />
+      </g>
+
+      {/* Waterfall cascading down left cliff into gorge */}
+      <path
+        d="M 220,135 Q 215,185 218,230 Q 216,260 220,290"
         stroke="rgba(255,255,255,0.35)"
         strokeWidth="2.5"
         fill="none"
         strokeLinecap="round"
       />
       <path
-        d="M 234,150 Q 229,185 232,225 Q 230,245 234,268"
+        d="M 224,140 Q 219,190 222,235 Q 220,265 224,292"
         stroke="rgba(255,255,255,0.2)"
         strokeWidth="1.5"
         fill="none"
         strokeLinecap="round"
       />
 
-      {/* ── 3. Viaduct — pier legs ── */}
-      <g fill={c.mid}>
-        {pierXs.map((px) => (
-          <rect key={px} x={px} y={170} width={18} height={120} rx="1" />
-        ))}
+      {/* ── 3. Canyon Gorge River Basin ── */}
+      {/* Gorge shadow depth */}
+      <path
+        fill={c.back}
+        opacity={0.65}
+        d="M 260,340 L 260,260 Q 720,268 1180,260 L 1180,340 Z"
+      />
+      {/* River channel */}
+      <path
+        fill={c.mid}
+        opacity={0.7}
+        d="M 260,340 L 260,285 Q 460,276 600,280 Q 720,282 860,278
+           Q 1000,275 1180,285 L 1180,340 Z"
+      />
+      {/* River water flow shimmer */}
+      <g stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" strokeLinecap="round">
+        <line x1="360" y1="295" x2="500" y2="290" />
+        <line x1="550" y1="289" x2="720" y2="287" />
+        <line x1="770" y1="287" x2="930" y2="290" />
+        <line x1="970" y1="292" x2="1110" y2="296" />
+        <line x1="410" y1="312" x2="590" y2="308" />
+        <line x1="640" y1="306" x2="840" y2="306" />
+        <line x1="880" y1="308" x2="1060" y2="313" />
       </g>
 
-      {/* Pier cap stones */}
-      <g fill={c.tree} opacity={0.7}>
-        {pierXs.map((px) => (
-          <rect key={px} x={px - 2} y={168} width={22} height={4} rx="1" />
-        ))}
+      {/* ── 4. The Monumental Stone Viaduct (Solid, Fully Anchored) ── */}
+      {/* Bridgehead Abutments: Anchored into left and right cliff faces */}
+      <g fill={c.tree}>
+        {/* Left cliff abutment tower */}
+        <rect x="270" y="156" width="36" height="96" rx="1" />
+        <rect x="264" y="152" width="48" height="5" rx="1" />
+        {/* Right cliff abutment tower */}
+        <rect x="1134" y="156" width="36" height="96" rx="1" />
+        <rect x="1128" y="152" width="48" height="5" rx="1" />
       </g>
 
-      {/* Arch soffit between piers (drawn as curved underside openings) */}
-      <g fill="none" stroke={c.back} strokeWidth="2" opacity={0.6}>
+      {/* Solid continuous spandrel masonry wall behind arches */}
+      <rect x="286" y="165" width="868" height="50" fill={c.mid} />
+
+      {/* Open arch cutouts between piers — revealing gorge behind */}
+      <g fill={c.back} opacity={0.7}>
         {pierXs.slice(0, -1).map((px, i) => {
           const nx = pierXs[i + 1];
-          const mx = (px + 18 + nx) / 2;
-          const archBot = 228;
+          const spanW = nx - (px + 24);
+          const archR = spanW / 2;
+          const mx = px + 24 + archR;
           return (
             <path
               key={i}
-              d={`M ${px + 18},170 Q ${mx},${archBot} ${nx},170`}
+              d={`M ${px + 24},215 A ${archR},${archR} 0 0,1 ${nx},215 L ${nx},305 L ${px + 24},305 Z`}
             />
           );
         })}
       </g>
 
-      {/* Viaduct deck — top rail and beam */}
-      <rect x="230" y="162" width="980" height="8" fill={c.mid} />
-      <rect x="230" y="160" width="980" height="3" fill={c.tree} />
-      {/* Parapet railing */}
-      <rect x="230" y="155" width="980" height="5" fill={c.front} opacity={0.7} rx="1" />
-      {/* Railing posts */}
-      {Array.from({ length: 28 }, (_, i) => 230 + i * 35).map((rx) => (
-        <rect key={rx} x={rx} y={148} width="3" height="12" fill={c.tree} opacity={0.6} />
+      {/* Embossed stone voussoir arch borders */}
+      <g fill="none" stroke={c.tree} strokeWidth="3.5" strokeLinecap="round">
+        {pierXs.slice(0, -1).map((px, i) => {
+          const nx = pierXs[i + 1];
+          const spanW = nx - (px + 24);
+          const archR = spanW / 2;
+          return (
+            <path
+              key={i}
+              d={`M ${px + 24},215 A ${archR},${archR} 0 0,1 ${nx},215`}
+            />
+          );
+        })}
+      </g>
+
+      {/* Heavy stone piers extending into canyon riverbed */}
+      <g fill={c.mid}>
+        {pierXs.map((px) => (
+          <rect key={px} x={px} y="165" width="24" height="142" rx="1" />
+        ))}
+      </g>
+      {/* Pier capstones & stepped plinths in riverbed */}
+      <g fill={c.tree}>
+        {pierXs.map((px) => (
+          <g key={px}>
+            {/* Pier capital corbel */}
+            <rect x={px - 2} y="165" width="28" height="4" rx="1" />
+            {/* Bedrock footing plinth */}
+            <rect x={px - 4} y="298" width="32" height="10" rx="1" opacity={0.85} />
+          </g>
+        ))}
+      </g>
+
+      {/* Viaduct Deck & Parapet Railing */}
+      <rect x="270" y="162" width="900" height="7" fill={c.mid} />
+      <rect x="270" y="160" width="900" height="3" fill={c.tree} />
+      <rect x="270" y="154" width="900" height="6" fill={c.front} opacity={0.8} rx="1" />
+      {/* Stone balusters along parapet */}
+      {Array.from({ length: 30 }, (_, i) => 275 + i * 30).map((rx) => (
+        <rect key={rx} x={rx} y="147" width="3" height="13" fill={c.tree} opacity={0.65} />
       ))}
 
-      {/* Viaduct street lamps when lit */}
+      {/* Victorian lanterns along bridge */}
       {isLit && (
         <g>
           {pierXs.map((px) => (
             <g key={px}>
-              <line x1={px + 9} y1={160} x2={px + 9} y2={150} stroke={c.tree} strokeWidth="1.2" />
-              <circle cx={px + 9} cy={149} r="2.2" fill="#fde047" style={{ filter: "drop-shadow(0 0 5px #fde047)" }} />
+              <line x1={px + 12} y1={160} x2={px + 12} y2={149} stroke={c.tree} strokeWidth="1.4" />
+              <circle cx={px + 12} cy={148} r="2.5" fill="#fde047" style={{ filter: "drop-shadow(0 0 6px #fde047)" }} />
             </g>
           ))}
         </g>
       )}
 
-      {/* ── 4. Cliff-top structures: Survey tower left plateau ── */}
-      <g transform="translate(158, 200)">
-        {/* Small guard tower */}
-        <polygon points="14,0 0,8 28,8" fill={c.mid} />
-        <rect x="2" y="8" width="24" height="14" fill={c.front} />
-        <rect x="0" y="8" width="28" height="3" fill={c.tree} opacity={0.5} />
-        {isLit ? (
-          <rect x="7" y="11" width="6" height="6" fill="#fde047" rx="0.5" style={{ filter: "drop-shadow(0 0 5px #fde047)" }} />
-        ) : (
-          <rect x="7" y="11" width="6" height="6" fill={c.mid} rx="0.5" opacity={0.3} />
+      {/* ── 5. Riverkeeper's Cottage — Firmly on the riverbank at canyon floor ── */}
+      {/* Placed at x=190, riverbank at y=278 — 100% grounded on the riverbank */}
+      <g transform="translate(190, 260)">
+        {/* Solid stone foundation pad on riverbank ground */}
+        <rect x="-4" y="28" width="48" height="6" fill={c.tree} rx="1" />
+
+        {/* Cottage stone walls */}
+        <rect x="0" y="12" width="40" height="18" fill={c.front} />
+
+        {/* Gabled roof with overhang */}
+        <polygon points="-4,12 20,-2 44,12" fill={c.mid} />
+        <polygon points="-3,12 20,0 43,12 20,-2" fill={c.tree} />
+
+        {/* Stone chimney with smoke */}
+        <rect x="30" y="0" width="5" height="10" fill={c.tree} />
+        {isLit && (
+          <g style={{ animation: "chimneySmoke 3s ease-in-out infinite" }}>
+            <circle cx="32" cy="-4" r="1.5" fill="#cbd5e1" opacity={0.6} />
+            <circle cx="34" cy="-8" r="2.2" fill="#94a3b8" opacity={0.4} />
+          </g>
         )}
+
+        {/* Warm glowing window */}
+        {isLit ? (
+          <rect x="6" y="16" width="9" height="9" rx="0.5" fill="#fde047" style={{ filter: "drop-shadow(0 0 6px rgba(253, 224, 71, 0.95))" }} />
+        ) : (
+          <rect x="6" y="16" width="9" height="9" rx="0.5" fill={c.mid} opacity={0.35} />
+        )}
+
+        {/* Wooden door */}
+        <rect x="22" y="16" width="9" height="14" rx="0.5" fill={c.tree} />
+
+        {/* Wooden river jetty stretching into the water */}
+        <rect x="40" y="30" width="30" height="3" fill={c.tree} />
+        <rect x="52" y="33" width="3" height="12" fill={c.tree} />
+        <rect x="66" y="33" width="3" height="12" fill={c.tree} />
+
+        {/* Rowboat moored to jetty */}
+        <ellipse cx="60" cy="38" rx="10" ry="3.5" fill={c.front} />
+        <ellipse cx="60" cy="37" rx="8" ry="2.2" fill={c.tree} />
+        <line x1="68" y1="30" x2="68" y2="38" stroke={c.mid} strokeWidth="0.9" />
       </g>
 
-      {/* Right plateau: rock arch formation */}
-      <g transform="translate(1220, 168)">
-        <ellipse cx="30" cy="18" rx="30" ry="18" fill={c.back} opacity={0.7} />
-        <ellipse cx="30" cy="22" rx="18" ry="12" fill={c.mid} opacity={0.4} />
-      </g>
-
-      {/* ── 5. Cliffside Foreground Terraces + pine trees ── */}
-      {/* Left cliff terrace */}
+      {/* ── 6. Foreground Left & Right Riverbank Terraces ── */}
+      {/* Left riverbank terrace */}
       <path
         fill={c.front}
-        d="M0,340 L0,255 L60,240 L120,250 L185,235 L240,258 L300,265 L300,340 Z"
+        d="M0,340 L0,265 L60,250 L140,260 L220,255 L260,285 L280,340 Z"
       />
-      {/* Right cliff terrace */}
+      {/* Right riverbank terrace */}
       <path
         fill={c.front}
-        d="M1440,340 L1440,255 L1380,240 L1320,250 L1255,235 L1200,258 L1140,265 L1140,340 Z"
+        d="M1440,340 L1440,265 L1380,250 L1300,260 L1220,255 L1180,285 L1160,340 Z"
       />
 
-      {/* Left pine trees on terrace */}
+      {/* Left pine trees on riverbank */}
       <g fill={c.tree}>
         <polygon points="30,340 58,268 86,340" />
         <polygon points="42,316 58,252 74,316" />
         <polygon points="78,340 106,272 134,340" />
         <polygon points="90,316 106,256 122,316" />
-        <polygon points="130,340 154,278 178,340" />
-        {/* Trunks */}
+        <polygon points="128,340 152,280 176,340" />
         <rect x="55" y="314" width="6" height="26" fill={c.mid} opacity={0.7} />
         <rect x="103" y="318" width="6" height="22" fill={c.mid} opacity={0.7} />
-        <rect x="151" y="320" width="6" height="20" fill={c.mid} opacity={0.7} />
+        <rect x="150" y="320" width="5" height="20" fill={c.mid} opacity={0.7} />
       </g>
 
-      {/* Right pine trees on terrace */}
+      {/* Right pine trees on riverbank */}
       <g fill={c.tree}>
         <polygon points="1268,340 1294,272 1320,340" />
         <polygon points="1280,316 1294,256 1308,316" />
         <polygon points="1314,340 1340,278 1366,340" />
         <polygon points="1326,316 1340,262 1354,316" />
         <polygon points="1364,340 1388,274 1412,340" />
-        {/* Trunks */}
         <rect x="1291" y="314" width="6" height="26" fill={c.mid} opacity={0.7} />
         <rect x="1337" y="318" width="6" height="22" fill={c.mid} opacity={0.7} />
         <rect x="1385" y="320" width="6" height="20" fill={c.mid} opacity={0.7} />
       </g>
 
-      {/* ── 6. Bottom foreground strip ── */}
+      {/* ── 7. Bottom foreground riverbank rim ── */}
       <path
         fill={c.front}
-        opacity={0.85}
-        d="M0,340 L0,310 Q360,300 720,308 Q1080,316 1440,308 L1440,340 Z"
+        opacity={0.9}
+        d="M0,340 L0,315 Q360,305 720,312 Q1080,320 1440,312 L1440,340 Z"
       />
     </svg>
   );
